@@ -1,9 +1,53 @@
+@import url('https://fonts.cdnfonts.com/css/satoshi');
+
 @import "tailwindcss";
 
+/*font-family: 'Satoshi', sans-serif;*/
 :root {
 
 }
 
 body {
+  font-family: 'Satoshi', sans-serif;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+.marquee {
+  width: 15vw;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.marquee-inner {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 10s linear infinite;
+}
+
+.marquee-inner span {
+  display: inline-block;
+  padding-right: 2rem; /* space between text copies */
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+[data-slider] {
+  display: flex;
+  overflow: hidden;
+}
+[data-slider] > * {
+  flex-shrink: 0;
+  width: 100%; /* or specific width */
+  /* Use padding for spacing, not CSS gap due to support issues */
 }
