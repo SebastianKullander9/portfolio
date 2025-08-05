@@ -33,7 +33,7 @@ export default function Plane() {
         uTime: { value: 0 },
         incline: { value: -2.0 },
         amplitude: { value: 0.1 },
-        uSpeed: { value: 0.125 },
+        uSpeed: { value: 0.25 },
     }
     
     return (

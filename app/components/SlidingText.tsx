@@ -9,7 +9,7 @@ const fontSize = 0.025;
 const charWidthEstimate = 1.2;
 
 export default function SlidingText() {
-    const speed = 0.0008;
+    const speed = 0.0004;
 
     const textWidth = useMemo(() => {
         return text.length * fontSize * charWidthEstimate;
@@ -19,7 +19,7 @@ export default function SlidingText() {
     const refs = useRef<THREE.Mesh[]>([]);
     const scroll = useScroll();
 
-    const clipY = 0.03;
+    const clipY = 0.023;
     const clippingPlane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), clipY), []);
 
     useFrame(() => {
@@ -31,7 +31,7 @@ export default function SlidingText() {
             const targetY = scrollOffset * 0.5;
             mesh.position.y = targetY;
 
-            const targetScaleY = Math.max(0.1, 1 - scrollOffset * 15);
+            const targetScaleY = Math.max(0.1, 1 - scrollOffset * 20);
             mesh.scale.y = targetScaleY;
             
             mesh.position.x -= speed;

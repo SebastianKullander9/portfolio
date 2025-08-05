@@ -1,55 +1,31 @@
 "use client";
 
-import Core, { damp } from "smooothy"
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, ScrollControls, Scroll, useScroll } from "@react-three/drei";
 import SlidingText from "./SlidingText";
 import Plane from "./Plane";
 import * as THREE from "three";
-import { Suspense, useState, useEffect, useRef } from "react";
+import { Suspense, useRef } from "react";
 import Model from "./Model";
+import Carousel from "./Carousel/Carousel";
+import { EmblaOptionsType } from "embla-carousel";
 
 function SceneContent() {
     const scroll = useScroll();
-    const [scrollOffset, setScrollOffset] = useState(0);
-    const sliderRef = useRef<InstanceType<typeof Core> | null>(null);
+    const scrollOffset = useRef(0);
+
+    const OPTIONS: EmblaOptionsType = { loop: true }
+	const SLIDE_COUNT = 5
+	const SLIDES = Array.from(Array(SLIDE_COUNT).keys())
 
     useFrame(() => {
-        console.log(scroll.offset)
-        setScrollOffset(scroll.offset);
+        scrollOffset.current = scroll.offset;
     });
-
-    useEffect(() => {
-        const wrapper = document.querySelector("[data-slider]");
-
-        if(!(wrapper instanceof HTMLElement)) return;
-
-        const slider = new Core(wrapper, {
-        infinite: true,
-        snap: true
-        });
-
-        sliderRef.current = slider;
-
-        let animationFrame: number;
-        function animate() {
-            console.log(slider)
-        slider.update();
-        animationFrame = requestAnimationFrame(animate);
-        }
-        animate();
-
-        return () => {
-        cancelAnimationFrame(animationFrame);
-        slider.destroy();
-        sliderRef.current = null;
-        };
-    }, []);
 
     return (
         <>
             <Plane />
-            <Model scrollOffset={scrollOffset} />
+            <Model />
             <SlidingText />
 
             <Scroll html>
@@ -83,31 +59,9 @@ function SceneContent() {
                         </div>
                     </div>
                 </div>
+                <div className="w-[100vw] h-[100vh]"></div>
                 <div className="w-[100vw] h-[100vh]">
-                </div>
-                <div className="w-[100vw] h-[100vh]">
-                    <div className="w-9/10 h-8/10 mx-auto">
-                        <p className="text-xl font-bold text-white">Projects</p>
-                        <div className="slider-wrapper flex overflow-hidden w-full h-[300px]" data-slider>
-                            <div className="slide shrink-0 min-w-full h-full bg-red-500 flex justify-center items-center text-white text-3xl">Slide 1</div>
-                            <div className="slide shrink-0 min-w-full h-full bg-green-500 flex justify-center items-center text-white text-3xl">Slide 2</div>
-                            <div className="slide shrink-0 min-w-full h-full bg-blue-500 flex justify-center items-center text-white text-3xl">Slide 3</div>
-                        </div>
-                        <div className="flex justify-center gap-4 mb-4">
-                            <button
-                                className="px-4 py-2 bg-white text-black font-bold rounded hover:bg-gray-200"
-                                onClick={() => sliderRef.current?.goToPrev()}
-                            >
-                                Prev
-                            </button>
-                            <button
-                                className="px-4 py-2 bg-white text-black font-bold rounded hover:bg-gray-200"
-                                onClick={() => sliderRef.current?.goToNext()}
-                            >
-                                Next
-                            </button>
-                        </div>
-                    </div>
+                    <Carousel slides={SLIDES} options={OPTIONS}/>
                 </div>
             </Scroll>
         </>
@@ -126,17 +80,7 @@ export default function Scene() {
         >
             <Suspense fallback={null}>
                 <directionalLight position={[1, 1, 1]} intensity={5} />
-                <Environment 
-                    background
-                    files={[
-                        "/cubemap/px.png", "/cubemap/nx.png",
-                        "/cubemap/py.png", "/cubemap/ny.png",
-                        "/cubemap/pz.png", "/cubemap/nz.png",
-                    ]}
-                />
-                <ScrollControls 
-                pages={6}
-                >
+                <ScrollControls pages={6} damping={0} >
                     <SceneContent />
                 </ScrollControls>
             </Suspense>
