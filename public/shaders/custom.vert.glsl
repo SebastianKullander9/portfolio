@@ -3,6 +3,7 @@ varying float vNoise;
 uniform float uTime;
 uniform float incline;
 uniform float amplitude;
+uniform float uSpeed;
 
 vec4 permute(vec4 x) {
     return mod(((x * 34.0) + 1.0) * x, 289.0);
@@ -75,8 +76,8 @@ void main() {
     float scale = 0.5;
 
     for(int i = 0; i < 5; i++) {
-        float noiseFlow = 0.00000005 + float(i) * 0.03;
-        float noiseSpeed = 0.0000001 + float(i) * 0.03;
+        float noiseFlow = uSpeed * (0.05 + float(i) * 0.1);
+        float noiseSpeed = uSpeed * (0.1 + float(i) * 0.1);
         float noiseSeed = 1.0 + float(i) * 2.0;
         vec2 noiseFreq = vec2(0.1, 0.2);
 

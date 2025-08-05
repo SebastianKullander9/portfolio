@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -30,19 +32,22 @@ export default function Plane() {
     const uniforms = {
         uTime: { value: 0 },
         incline: { value: -2.0 },
-        amplitude: { value: 0.1 }
+        amplitude: { value: 0.1 },
+        uSpeed: { value: 0.125 },
     }
     
     return (
-        <mesh position={[0, 0, 4.2]} rotation={[0, 0, 0]}>
-            <planeGeometry args={[5, 5, 100, 100]} />
-            <shaderMaterial
-                ref={materialRef}
-                vertexShader={vertexShader}
-                fragmentShader={fragmentShader}
-                uniforms={uniforms}
-                side={THREE.DoubleSide}
-            />
-        </mesh>
+        <>
+            <mesh position={[0, 0, 4.2]} rotation={[0, 0, 0]}>
+                <planeGeometry args={[5, 5, 25, 25]} />
+                <shaderMaterial
+                    ref={materialRef}
+                    vertexShader={vertexShader}
+                    fragmentShader={fragmentShader}
+                    uniforms={uniforms}
+                    side={THREE.DoubleSide}
+                />
+            </mesh>
+        </>
     );
 }
