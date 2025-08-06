@@ -3,6 +3,16 @@ import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 
+import { modelConfig } from "../../config/animationConfig";
+const {
+    INITIALPOSITIONY,
+    BOBBINGDISTANCE,
+    BOBBINGSPEED,
+    MATERIAL,
+    POSITION,
+    SCALE,
+} = modelConfig;
+
 export default function Model({ backgroundTexture }: { backgroundTexture: THREE.Texture }) {
     const mesh = useRef<THREE.Mesh>(null);
 
@@ -12,27 +22,27 @@ export default function Model({ backgroundTexture }: { backgroundTexture: THREE.
 
     console.log(backgroundTexture)
 
-    const baseY = -0.05;
+    const baseY = INITIALPOSITIONY;
     useFrame(({ clock }) => {
         const time = clock.getElapsedTime();
 
         if (mesh.current) {
-            mesh.current.position.y = baseY + 0.0025 * Math.sin(time * 4);
+            mesh.current.position.y = baseY + BOBBINGDISTANCE * Math.sin(time * BOBBINGSPEED);
         }
         
     });
 
     const material = {
-        thickness: 0,
-        roughness: 0.2,
-        transmission: 1.0,
-        ior: 1.8,
-        chromaticAberration: 0
+        thickness: MATERIAL.thickness,
+        roughness: MATERIAL.roughness,
+        transmission: MATERIAL.transmisson,
+        ior: MATERIAL.ior,
+        chromaticAberration: MATERIAL.chromaticAberration
     }
 
     return (
         <group >
-            <mesh ref={mesh} {...nodes.BézierCurve} position={[0, 0, 4.75]} scale={[0.1, 0.1, 0.1]}>
+            <mesh ref={mesh} {...nodes.BézierCurve} position={ POSITION } scale={ SCALE }>
                 <MeshTransmissionMaterial {...material} background={backgroundTexture} color={"#F5AEB9"} />
             </mesh>
         </group>

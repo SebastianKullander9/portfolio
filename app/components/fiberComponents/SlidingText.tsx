@@ -4,23 +4,29 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useScroll } from '@react-three/drei';
 
-const text = "Sebastian Kullander Frontend Developer ";
-const fontSize = 0.025;
-const charWidthEstimate = 1.2;
+import { slidingTextConfig } from "../../config/animationConfig";
+const {
+    TEXT,
+    FONTSIZE,
+    CHARWITHESTIMATE,
+    SLIDINGSPEED,
+    CLIPTEXTATY,
+    SCALETEXTMULTIPLIER,
+    TEXTPOSITIONX,
+} = slidingTextConfig;
 
 export default function SlidingText() {
-    const speed = 0.0004;
+    console.log(slidingTextConfig);
 
     const textWidth = useMemo(() => {
-        return text.length * fontSize * charWidthEstimate;
+        return TEXT.length * FONTSIZE * CHARWITHESTIMATE;
     }, []);
 
     const NUM_INSTANCES = 2;
     const refs = useRef<THREE.Mesh[]>([]);
     const scroll = useScroll();
 
-    const clipY = 0.023;
-    const clippingPlane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), clipY), []);
+    const clippingPlane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), CLIPTEXTATY), []);
 
     useFrame(() => {
         const scrollOffset = scroll.offset;
@@ -31,10 +37,10 @@ export default function SlidingText() {
             const targetY = scrollOffset * 0.5;
             mesh.position.y = targetY;
 
-            const targetScaleY = Math.max(0.1, 1 - scrollOffset * 20);
+            const targetScaleY = Math.max(0.1, 1 - scrollOffset * SCALETEXTMULTIPLIER);
             mesh.scale.y = targetScaleY;
             
-            mesh.position.x -= speed;
+            mesh.position.x -= SLIDINGSPEED;
 
             if (mesh.position.x < -textWidth) {
                 const maxX = Math.max(
@@ -63,13 +69,13 @@ export default function SlidingText() {
                 <Text
                     key={i}
                     ref={(el) => (refs.current[i] = el!)}
-                    fontSize={fontSize}
+                    fontSize={FONTSIZE}
                     color="white"
-                    position={[i * textWidth, 0, 4.7]}
+                    position={[i * textWidth, 0, TEXTPOSITIONX]}
                     font="/fonts/Colabero.ttf"
                     material-toneMapped={false}
                 >
-                    {text}
+                    {TEXT}
                 </Text>
             ))}
         </>

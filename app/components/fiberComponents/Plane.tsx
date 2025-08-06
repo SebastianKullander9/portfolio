@@ -4,7 +4,10 @@ import { useEffect, useState, forwardRef, useImperativeHandle, useRef } from "re
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
-const Plane = forwardRef<THREE.Mesh, Object>((_, ref) => {
+import { planeConfig } from "../../config/animationConfig";
+const { UNIFORMS, PLANE } = planeConfig;
+
+const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
     const [vertexShader, setVertexShader] = useState<string | null>(null);
     const [fragmentShader, setFragmentShader] = useState<string | null>(null);
 
@@ -27,15 +30,15 @@ const Plane = forwardRef<THREE.Mesh, Object>((_, ref) => {
     if (!vertexShader || !fragmentShader) return null;
 
     const uniforms = {
-        uTime: { value: 0 },
-        incline: { value: 0.0 },
-        amplitude: { value: 0.25 },
-        uSpeed: { value: 0.15 },
+        uTime: { value: UNIFORMS.uTime },
+        incline: { value: UNIFORMS.incline },
+        amplitude: { value: UNIFORMS.amplitude },
+        uSpeed: { value: UNIFORMS.uSpeed },
     };
 
     return (
-        <mesh ref={meshRef} position={[0, 0, 4.5]} rotation={[0, 0, 0]}>
-            <planeGeometry args={[4, 4, 25, 25]} />
+        <mesh ref={meshRef} position={ PLANE.position } rotation={ PLANE.rotation }>
+            <planeGeometry args={ PLANE.geometry } />
             <shaderMaterial
                 ref={materialRef}
                 vertexShader={vertexShader}
