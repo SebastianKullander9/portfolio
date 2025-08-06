@@ -1,11 +1,11 @@
 "use client";
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment, ScrollControls, Scroll, useScroll } from "@react-three/drei";
 import SlidingText from "./SlidingText";
 import Plane from "./Plane";
 import * as THREE from "three";
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, useEffect } from "react";
 import Model from "./Model";
 import Carousel from "./Carousel/Carousel";
 import { EmblaOptionsType } from "embla-carousel";
@@ -13,6 +13,9 @@ import { EmblaOptionsType } from "embla-carousel";
 function SceneContent() {
     const scroll = useScroll();
     const scrollOffset = useRef(0);
+    const { gl, size } = useThree();
+
+    const renderTarget = useRef(new THREE.WebGLRenderTarget(size.width, size.height)).current;
 
     const OPTIONS: EmblaOptionsType = { loop: true }
 	const SLIDE_COUNT = 5
@@ -20,12 +23,37 @@ function SceneContent() {
 
     useFrame(() => {
         scrollOffset.current = scroll.offset;
+
+        gl.setRenderTarget(renderTarget);
+        gl.clear();
+        gl.render(backgroundScene, backgroundCamera);
+        gl.setRenderTarget(null);
     });
+
+    const backgroundScene = useRef(new THREE.Scene()).current;
+    const backgroundCamera = useRef(new THREE.PerspectiveCamera(75, size.width / size.height, 0.1, 100)).current;
+    backgroundCamera.position.z = 5;
+
+    const planeRef = useRef<THREE.Mesh>(null);
+
+    useEffect(() => {
+          if(planeRef.current) {
+            backgroundScene.add(planeRef.current);
+          }
+    }, [])
+
+        // Resize handling
+    useEffect(() => {
+        renderTarget.setSize(size.width, size.height);
+        backgroundCamera.aspect = size.width / size.height;
+        backgroundCamera.updateProjectionMatrix();
+    }, [size]);
+
 
     return (
         <>
-            <Plane />
-            <Model />
+            <Plane ref={planeRef} />
+            <Model backgroundTexture={renderTarget.texture} />
             <SlidingText />
 
             <Scroll html>
@@ -79,7 +107,8 @@ export default function Scene() {
             }}
         >
             <Suspense fallback={null}>
-                <directionalLight position={[1, 1, 1]} intensity={5} />
+                <directionalLight position={[0, 3, 2]} intensity={3} />
+                <Environment preset="dawn"/>
                 <ScrollControls pages={6} damping={0} >
                     <SceneContent />
                 </ScrollControls>

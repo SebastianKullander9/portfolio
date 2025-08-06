@@ -65,7 +65,7 @@ export default function SlidingText() {
                     ref={(el) => (refs.current[i] = el!)}
                     fontSize={fontSize}
                     color="white"
-                    position={[i * textWidth, 0, 4.78]}
+                    position={[i * textWidth, 0, 4.7]}
                     font="/fonts/Colabero.ttf"
                     material-toneMapped={false}
                 >
