@@ -4,7 +4,7 @@ import { useEffect, useState, forwardRef, useImperativeHandle, useRef } from "re
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
-const Plane = forwardRef<THREE.Mesh, {}>((_, ref) => {
+const Plane = forwardRef<THREE.Mesh, Object>((_, ref) => {
     const [vertexShader, setVertexShader] = useState<string | null>(null);
     const [fragmentShader, setFragmentShader] = useState<string | null>(null);
 
