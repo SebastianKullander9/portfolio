@@ -7,7 +7,7 @@ import Plane from "./fiberComponents/Plane";
 import * as THREE from "three";
 import { Suspense, useRef, useEffect } from "react";
 import Model from "./fiberComponents/Model";
-import Carousel from "./carousel/Carousel";
+import Carousel from "./Carousel/Carousel";
 import { EmblaOptionsType } from "embla-carousel";
 import Home from "./pages/Home";
 import About from "./pages/About";

@@ -1,5 +1,3 @@
-import { chromaticAberration } from "three/examples/jsm/tsl/display/ChromaticAberrationNode.js"
-
 export const canvasConfig = {
     CAMERA: {
         position: [0, 0, 5] as [number, number, number],
