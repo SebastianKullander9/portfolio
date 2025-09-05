@@ -12,14 +12,14 @@ import { EmblaOptionsType } from "embla-carousel";
 import Home from "./pages/Home";
 import About from "./pages/About";
 
-import { canvasConfig } from "../config/animationConfig";
+import { canvasConfig, modelConfig } from "../config/animationConfig";
 const { CAMERA, DIRECTIONALLIGHT, SCROLLCONTROLS } = canvasConfig;
+const { POSITION, ROTATION, BOBBINGDISTANCE, BOBBINGSPEED } = modelConfig;
 
 
 function SceneContent() {
-    const scroll = useScroll();
-    const scrollOffset = useRef(0);
     const planeRef = useRef<THREE.Mesh>(null);
+    const modelRef = useRef<THREE.Mesh>(null);
     const { gl, size } = useThree();
 
     const renderTarget = useRef(new THREE.WebGLRenderTarget(size.width, size.height)).current;
@@ -32,13 +32,40 @@ function SceneContent() {
     const backgroundCamera = useRef(new THREE.PerspectiveCamera(75, size.width / size.height, 0.1, 100)).current;
     backgroundCamera.position.z = 5;
 
-    useFrame(() => {
-        scrollOffset.current = scroll.offset;
+    const data = useScroll();
 
+    const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
+
+    function animateRotation(start: number[], end: number[], t: number, target: THREE.Mesh) {
+        target.rotation.set(
+            lerp(start[0], end[0], t),
+            lerp(start[1], end[1], t),
+            lerp(start[2], end[2], t)
+        )
+    }
+    
+    function animatePosition(start: number[], end: number[], t: number, target: THREE.Mesh, time: number) {
+        const bobbing = BOBBINGDISTANCE * Math.sin(time * BOBBINGSPEED)
+        target.position.set(
+            lerp(start[0], end[0], t),
+            lerp(start[1], end[1], t) + bobbing,
+            lerp(start[2], end[2], t)
+        )
+    }
+
+    useFrame(({ clock }) => {
         gl.setRenderTarget(renderTarget);
         gl.clear();
         gl.render(backgroundScene, backgroundCamera);
         gl.setRenderTarget(null);
+
+        const a = data.range(1/6, 1/6);
+        const time = clock.getElapsedTime();
+
+        if (modelRef.current) {
+            animateRotation(ROTATION, [0, 0, 0], a, modelRef.current)
+            animatePosition(POSITION, [0.2, -0.05, 4.650], a, modelRef.current, time)
+        }
     });
 
     useEffect(() => {
@@ -58,7 +85,7 @@ function SceneContent() {
     return (
         <>
             <Plane ref={planeRef} />
-            <Model backgroundTexture={renderTarget.texture} />
+            <Model ref={modelRef} backgroundTexture={renderTarget.texture} />
             <SlidingText />
 
             <Scroll html>

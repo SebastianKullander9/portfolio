@@ -1,8 +1,11 @@
+import Image from "next/image";
+import skLogo from "../../../public/svgs/sklogo2.svg"
+
 export default function Home() {
     return (
         <div className="w-9/10 h-8/10 flex flex-col justify-between text-white">
             <div className="w-full flex flex-row justify-between">
-                <div className="font-bold text-5xl">S.K</div>
+                <Image src={skLogo} width={100} height={100} alt=""/>
                 <div className="font-bold text-5xl">Menu</div>
             </div>
             <div className="w-full flex flex-row justify-between">

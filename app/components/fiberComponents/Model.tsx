@@ -10,27 +10,19 @@ const {
     BOBBINGSPEED,
     MATERIAL,
     POSITION,
+    ROTATION,
     SCALE,
 } = modelConfig;
 
-export default function Model({ backgroundTexture }: { backgroundTexture: THREE.Texture }) {
-    const mesh = useRef<THREE.Mesh>(null);
+interface ModelProps {
+    backgroundTexture: THREE.Texture,
+    ref?: React.Ref<THREE.Mesh>;
+}
 
+export default function Model({ backgroundTexture, ref }: ModelProps) {
     const { nodes } = useGLTF("/models/sk-logo.glb") as unknown as {
         nodes: { [key: string]: THREE.Mesh }
     };
-
-    console.log(backgroundTexture)
-
-    const baseY = INITIALPOSITIONY;
-    useFrame(({ clock }) => {
-        const time = clock.getElapsedTime();
-
-        if (mesh.current) {
-            mesh.current.position.y = baseY + BOBBINGDISTANCE * Math.sin(time * BOBBINGSPEED);
-        }
-        
-    });
 
     const material = {
         thickness: MATERIAL.thickness,
@@ -42,7 +34,14 @@ export default function Model({ backgroundTexture }: { backgroundTexture: THREE.
 
     return (
         <group >
-            <mesh ref={mesh} {...nodes.BézierCurve} position={ POSITION } scale={ SCALE }>
+            <mesh 
+                ref={ref} 
+                geometry={nodes.BézierCurve.geometry}
+                material={nodes.BézierCurve.material}
+                position={ POSITION } 
+                scale={ SCALE }
+                rotation={ ROTATION }
+            >
                 <MeshTransmissionMaterial {...material} background={backgroundTexture} color={"#F5AEB9"} />
             </mesh>
         </group>

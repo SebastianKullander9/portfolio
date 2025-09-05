@@ -8,7 +8,7 @@ export const canvasConfig = {
     },
     SCROLLCONTROLS: {
         pages: 6,
-        damping: 0,
+        damping: 0.1,
     }
 }
 
@@ -19,7 +19,7 @@ export const slidingTextConfig = {
     SLIDINGSPEED: 0.0004,
     CLIPTEXTATY: 0.023,
     SCALETEXTMULTIPLIER: 20,
-    TEXTPOSITIONX: 4.7,
+    TEXTPOSITIONX: 4.8,
 }
 
 export const planeConfig = {
@@ -37,16 +37,17 @@ export const planeConfig = {
 }
 
 export const modelConfig = {
-    INITIALPOSITIONY: -0.05,
+    INITIALPOSITIONY: -0.03,
     BOBBINGDISTANCE: 0.0025,
     BOBBINGSPEED: 4,
     MATERIAL: {
-        thickness: 0,
+        thickness: 0.5,
         roughness: 0.2,
         transmisson: 1.0,
         ior: 1.8,
         chromaticAberration: 0,
     },
-    POSITION: [0, 0, 4.75] as [number, number, number],
+    POSITION: [0.059, -0.03, 4.781] as [number, number, number],
+    ROTATION: [0, -0.9, -0.25] as [number, number, number],
     SCALE: [0.1, 0.1, 0.1] as [number, number, number],
 }
