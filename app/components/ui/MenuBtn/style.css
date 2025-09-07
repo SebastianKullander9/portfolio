@@ -1,0 +1,55 @@
+.menu-icon {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    border: 1px solid white;
+    --scale: 1;
+}
+
+.menu-icon-cross::before,
+.menu-icon-cross::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 1px;
+    height: 100%;
+    background: white;
+    transform: translate(-50%, -50%) rotate(0deg) scaleY(var(--scale, 1));
+    transform-origin: center;
+}
+
+.menu-icon-cross::after {
+    transform: translate(-50%, -50%) rotate(-90deg) scaleY(var(--scale, 1));
+}
+
+.dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+}
+
+.top-left {
+    top: var(--dot-offset, -3px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.top-right {
+    top: 50%;
+    right: var(--dot-offset, -3px);
+    transform: translateY(-50%);
+}
+
+.bottom-left {
+    bottom: var(--dot-offset, -3px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bottom-right {
+    top: 50%;
+    left: var(--dot-offset, -3px);
+    transform: translateY(-50%)
+}

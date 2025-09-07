@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 
 import { canvasConfig, modelConfig } from "../config/animationConfig";
+import Header from "./ui/Header";
 const { CAMERA, DIRECTIONALLIGHT, SCROLLCONTROLS } = canvasConfig;
 const { POSITION, ROTATION, BOBBINGDISTANCE, BOBBINGSPEED } = modelConfig;
 
@@ -35,6 +36,12 @@ function SceneContent() {
     const data = useScroll();
 
     const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
+
+    function easeInOutCubic(t: number) {
+        return t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
 
     function animateRotation(start: number[], end: number[], t: number, target: THREE.Mesh) {
         target.rotation.set(
@@ -59,7 +66,8 @@ function SceneContent() {
         gl.render(backgroundScene, backgroundCamera);
         gl.setRenderTarget(null);
 
-        const a = data.range(1/6, 1/6);
+        let a = data.range(0.5 / 1/6, 1/6);
+        a = easeInOutCubic(a);
         const time = clock.getElapsedTime();
 
         if (modelRef.current) {
@@ -111,21 +119,25 @@ function SceneContent() {
 
 export default function Scene() {
     return (
-        <Canvas
-            camera={{ position: CAMERA.position }}
-            gl={{
-                toneMapping: THREE.ACESFilmicToneMapping,
-                toneMappingExposure: 1.0,
-                localClippingEnabled: true,
-            }}
-        >
-            <Suspense fallback={null}>
-                <directionalLight position={ DIRECTIONALLIGHT.position } intensity={ DIRECTIONALLIGHT.intensity } />
-                <Environment preset="dawn"/>
-                <ScrollControls pages={ SCROLLCONTROLS.pages } damping={ SCROLLCONTROLS.damping } >
-                    <SceneContent />
-                </ScrollControls>
-            </Suspense>
-        </Canvas>
+        <>
+            <Header />
+
+            <Canvas
+                camera={{ position: CAMERA.position }}
+                gl={{
+                    toneMapping: THREE.ACESFilmicToneMapping,
+                    toneMappingExposure: 1.0,
+                    localClippingEnabled: true,
+                }}
+            >
+                <Suspense fallback={null}>
+                    <directionalLight position={ DIRECTIONALLIGHT.position } intensity={ DIRECTIONALLIGHT.intensity } />
+                    <Environment preset="dawn"/>
+                    <ScrollControls pages={ SCROLLCONTROLS.pages } damping={ SCROLLCONTROLS.damping } >
+                        <SceneContent />
+                    </ScrollControls>
+                </Suspense>
+            </Canvas>
+        </>
     );
 }

@@ -1,14 +1,7 @@
-import Image from "next/image";
-import skLogo from "../../../public/svgs/sklogo2.svg"
-
 export default function Home() {
     return (
-        <div className="w-9/10 h-8/10 flex flex-col justify-between text-white">
-            <div className="w-full flex flex-row justify-between">
-                <Image src={skLogo} width={100} height={100} alt=""/>
-                <div className="font-bold text-5xl">Menu</div>
-            </div>
-            <div className="w-full flex flex-row justify-between">
+        <div className="relative w-[100vw] h-[100vh] inset-0 flex flex-col items-center text-white">
+            <div className="absolute bottom-0 w-full p-4 md:p-8 xl:w-8/10 flex flex-row justify-between">
                 <div className="text-lg font-bold w-[15vw]">This portfolio is built on Next.js, React Three Fiber and Drei</div>
                 <div className="text-lg font-bold w-[15vw] border-1 rounded-xl flex items-center marquee">
                     <div className="marquee-inner">

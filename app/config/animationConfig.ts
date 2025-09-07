@@ -8,7 +8,7 @@ export const canvasConfig = {
     },
     SCROLLCONTROLS: {
         pages: 6,
-        damping: 0.1,
+        damping: 0.2,
     }
 }
 
