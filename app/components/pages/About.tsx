@@ -7,29 +7,26 @@ import SplitType from "gsap/SplitText";
 gsap.registerPlugin(SplitType);
 
 export default function About() {
-    const split1Ref = useRef<HTMLParagraphElement>(null);
-    const split2Ref = useRef<HTMLParagraphElement>(null);
-    const text1Ref = useRef<any>(null);
-    const text2Ref = useRef<any>(null);
-    const tlRef = useRef<gsap.core.Timeline>(null);
+    const splitRefs = useRef<HTMLParagraphElement[]>([]);
+    const splitInstances = useRef<SplitType[]>([]);
+    const tlRef = useRef<gsap.core.Timeline | null>(null);
 
 
     useEffect(() => {
-        if (split1Ref.current && split2Ref.current) {
-            text1Ref.current = new SplitType(split1Ref.current, { type: "chars" });
-            text2Ref.current = new SplitType(split2Ref.current, { type: "chars" });
+        if (splitRefs.current.length) {
+            splitInstances.current = splitRefs.current.map(
+                (element) => new SplitType(element, { type: "chars" })
+            );
 
             tlRef.current = gsap.timeline({ paused: true });
 
-            tlRef.current.to(text1Ref.current.chars, {
-                y: "-100%",
-                stagger: 0.02,
-            }, 0);
-
-            tlRef.current.to(text2Ref.current.chars, {
-                y: "-100%",
-                stagger: 0.02,
-            }, 0);
+            splitInstances.current.forEach((split) => {
+                tlRef.current!.to(
+                    split.chars,
+                    { y: "-100%", stagger: 0.02 },
+                    0
+                );
+            });
         }
     }, []);
 
@@ -64,8 +61,9 @@ export default function About() {
                             onMouseLeave={handleLeave}
                         >   
                             <div className="relative overflow-hidden">
-                                <p ref={split1Ref} className="splitText text-lg">View More</p>
-                                <p ref={split2Ref} className=" absolute splitText text-lg">View More</p>
+                                <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText text-lg">View More</p>
+                                <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText text-lg">View More</p>
+                                
                             </div>
                             <div className="relative w-9 h-9 rounded-full border-1 backdrop-blur-sm bg-white/20 group-hover:scale-85 transition-transform duration-400">
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">

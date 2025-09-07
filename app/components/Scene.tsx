@@ -43,6 +43,10 @@ function SceneContent() {
             : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
 
+    function easeInCirc(t: number) {
+        return 1 - Math.sqrt(1 - t * t);
+    }
+
     function animateRotation(start: number[], end: number[], t: number, target: THREE.Mesh) {
         target.rotation.set(
             lerp(start[0], end[0], t),
@@ -68,11 +72,19 @@ function SceneContent() {
 
         let a = data.range(0.5 / 1/6, 1/6);
         a = easeInOutCubic(a);
+
+        let a2 = data.range(2.5 / 6, 1/6);
+        a2 = easeInCirc(a2);
+        
         const time = clock.getElapsedTime();
 
         if (modelRef.current) {
-            animateRotation(ROTATION, [0, 0, 0], a, modelRef.current)
-            animatePosition(POSITION, [0.2, -0.05, 4.650], a, modelRef.current, time)
+            animateRotation(ROTATION, [0, 0, 0], a, modelRef.current);
+            animatePosition(POSITION, [0.2, -0.05, 4.650], a, modelRef.current, time);
+
+            if (a2 > 0) {
+                animatePosition([0.2, -0.05, 4.650], [0.2, 0.5, 4.650], a2, modelRef.current, time);
+            }
         }
     });
 
