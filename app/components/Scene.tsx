@@ -102,7 +102,8 @@ function SceneContent() {
                 </div>
 
                 {/*Scroll view*/}
-                <div className="w-[100vw] h-[100vh]"></div>
+                <div className="w-[100vw] h-[80vh]"></div>
+
                 <div className="w-[100vw] h-[100vh]">
                     <About />
                 </div>

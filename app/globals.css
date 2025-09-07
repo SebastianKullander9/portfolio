@@ -8,46 +8,46 @@
 }
 
 body {
-  font-family: 'Satoshi', sans-serif;
+    font-family: 'Satoshi', sans-serif;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .marquee {
-  width: 15vw;
-  overflow: hidden;
-  white-space: nowrap;
-  box-sizing: border-box;
+    width: 15vw;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
 .marquee-inner {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scroll-left 10s linear infinite;
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 10s linear infinite;
 }
 
 .marquee-inner span {
-  display: inline-block;
-  padding-right: 2rem; /* space between text copies */
+    display: inline-block;
+    padding-right: 2rem; /* space between text copies */
 }
 
 @keyframes scroll-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 [data-slider] {
-  display: flex;
-  overflow: hidden;
+    display: flex;
+    overflow: hidden;
 }
 [data-slider] > * {
-  flex-shrink: 0;
-  width: 100%; /* or specific width */
-  /* Use padding for spacing, not CSS gap due to support issues */
+    flex-shrink: 0;
+    width: 100%; /* or specific width */
+    /* Use padding for spacing, not CSS gap due to support issues */
 }
