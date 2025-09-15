@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "../components/ui/Header";
+import { CanvasLoader } from "../components/canvas-loader/canvas-loader";
+import SmoothScroll from "../components/ui/SmoothScroll";
 
 export const metadata: Metadata = {
     title: "SK",
@@ -16,6 +19,10 @@ export default function RootLayout({
             <body
                 className={`antialiased`}
             >
+                <Header />
+                <SmoothScroll />
+                <CanvasLoader />
+
                 {children}
             </body>
         </html>

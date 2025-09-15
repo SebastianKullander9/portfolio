@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState, forwardRef, useImperativeHandle, useRef } from "react";
+import { useEffect, useState, forwardRef, useImperativeHandle, useRef, useMemo } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
-import { planeConfig } from "../../config/animationConfig";
+import { planeConfig } from "../config/animationConfig";
 const { UNIFORMS, PLANE } = planeConfig;
 
 const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
@@ -15,6 +15,13 @@ const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
     const materialRef = useRef<THREE.ShaderMaterial>(null);
 
     useImperativeHandle(ref, () => meshRef.current!, []);
+
+    const uniforms = useMemo(() => ({
+        uTime: { value: UNIFORMS.uTime },
+        incline: { value: UNIFORMS.incline },
+        amplitude: { value: UNIFORMS.amplitude },
+        uSpeed: { value: UNIFORMS.uSpeed },
+    }), []);
 
     useEffect(() => {
         fetch("/shaders/custom.vert.glsl").then(res => res.text()).then(setVertexShader);
@@ -28,13 +35,6 @@ const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
     });
 
     if (!vertexShader || !fragmentShader) return null;
-
-    const uniforms = {
-        uTime: { value: UNIFORMS.uTime },
-        incline: { value: UNIFORMS.incline },
-        amplitude: { value: UNIFORMS.amplitude },
-        uSpeed: { value: UNIFORMS.uSpeed },
-    };
 
     return (
         <mesh ref={meshRef} position={ PLANE.position } rotation={ PLANE.rotation }>

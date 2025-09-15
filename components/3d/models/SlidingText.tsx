@@ -2,9 +2,9 @@ import { Text } from '@react-three/drei';
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useScroll } from '@react-three/drei';
+import { useAnimationStore } from '@/store/useAnimationStore';
 
-import { slidingTextConfig } from "../../config/animationConfig";
+import { slidingTextConfig } from '../config/animationConfig';
 const {
     TEXT,
     FONTSIZE,
@@ -16,7 +16,7 @@ const {
 } = slidingTextConfig;
 
 export default function SlidingText() {
-    console.log(slidingTextConfig);
+    const scroll_progress = useAnimationStore((s) => s.progress);
 
     const textWidth = useMemo(() => {
         return TEXT.length * FONTSIZE * CHARWITHESTIMATE;
@@ -24,20 +24,18 @@ export default function SlidingText() {
 
     const NUM_INSTANCES = 2;
     const refs = useRef<THREE.Mesh[]>([]);
-    const scroll = useScroll();
 
     const clippingPlane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), CLIPTEXTATY), []);
 
     useFrame(() => {
-        const scrollOffset = scroll.offset;
 
         refs.current.forEach((mesh) => {
             if (!mesh) return;
 
-            const targetY = scrollOffset * 0.5;
+            const targetY = scroll_progress * 0.5;
             mesh.position.y = targetY;
 
-            const targetScaleY = Math.max(0.1, 1 - scrollOffset * SCALETEXTMULTIPLIER);
+            const targetScaleY = Math.max(0.1, 1 - scroll_progress * SCALETEXTMULTIPLIER);
             mesh.scale.y = targetScaleY;
             
             mesh.position.x -= SLIDINGSPEED;

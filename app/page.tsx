@@ -1,9 +1,21 @@
-import Scene from "./components/Scene";
+import HomeView from "@/sections/Home";
+import About from "@/sections/about/About";
 
 export default function Home() {
     return (
-			<div style={{ position: 'fixed', top: 0, left: 0, height: '100vh', width: '100vw', pointerEvents: 'none', zIndex: 0 }}>
-				<Scene />
+		<>
+			<div className="relative w-screen h-screen">
+
+				<section className="w-screen h-screen">
+					<HomeView />
+				</section>
+
+				<section className="w-screen h-[70vh]"></section>
+				
+				<section className="w-screen h-screen">
+					<About />
+				</section>
 			</div>
+		</>
     );
 }

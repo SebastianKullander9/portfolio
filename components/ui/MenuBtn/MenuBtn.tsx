@@ -1,6 +1,8 @@
+"use client";
+
 import { useRef, useState } from "react";
 import Image from "next/image";
-import whiteStar from "../../../../public/svgs/white-star.svg";
+import whiteStar from "../../../public/svgs/white-star.svg";
 import BackdropMenu from "./BackdropMenu";
 import "./style.css";
 import gsap from "gsap";

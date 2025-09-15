@@ -1,13 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
 
-import { modelConfig } from "../../config/animationConfig";
+import { modelConfig } from '../config/animationConfig';
 const {
-    INITIALPOSITIONY,
-    BOBBINGDISTANCE,
-    BOBBINGSPEED,
     MATERIAL,
     POSITION,
     ROTATION,
@@ -15,11 +11,10 @@ const {
 } = modelConfig;
 
 interface ModelProps {
-    backgroundTexture: THREE.Texture,
     ref?: React.Ref<THREE.Mesh>;
 }
 
-export default function Model({ backgroundTexture, ref }: ModelProps) {
+export default function Logo({ ref }: ModelProps) {
     const { nodes } = useGLTF("/models/sk-logo.glb") as unknown as {
         nodes: { [key: string]: THREE.Mesh }
     };
@@ -42,7 +37,7 @@ export default function Model({ backgroundTexture, ref }: ModelProps) {
                 scale={ SCALE }
                 rotation={ ROTATION }
             >
-                <MeshTransmissionMaterial {...material} background={backgroundTexture} color={"#F5AEB9"} />
+                <MeshTransmissionMaterial {...material} color={"#F5AEB9"} />
             </mesh>
         </group>
     );
