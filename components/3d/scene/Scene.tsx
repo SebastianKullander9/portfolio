@@ -1,11 +1,15 @@
+"use client";
+
 import * as THREE from "three";
 import { useRef } from "react";
 import Plane from "../models/Plane";
 import Logo from "../models/Logo";
 import SlidingText from "../models/SlidingText";
 import { useLogoAnimations } from "@/hooks/useLogoAnimations";
+import { usePathname } from "next/navigation";
 
 export default function Scene() {
+    const pathname = usePathname();
     const planeRef = useRef<THREE.Mesh>(null);
     const logoRef = useLogoAnimations();
 
@@ -28,8 +32,14 @@ export default function Scene() {
     return (
         <>
             <Plane ref={planeRef} />
-            <Logo ref={logoRef} />
-            <SlidingText />
+            {pathname === "/" ? 
+                <>
+                    <Logo ref={logoRef} />
+                    <SlidingText />
+                </> : 
+                <>
+                </>
+            }
         </>
     );
 }

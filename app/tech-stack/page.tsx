@@ -1,9 +1,9 @@
-import Link from "next/link";
+import TechStack from "@/sections/tech-stack/TechStack";
 
-export default function TechStack() {
+export default function TechStackPage() {
     return (
-			<div>Tech
-                <Link href="/tech-stack">test</Link>
-            </div>
+			<>
+                <TechStack />
+            </>
     );
 }

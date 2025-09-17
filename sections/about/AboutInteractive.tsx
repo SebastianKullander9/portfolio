@@ -5,6 +5,7 @@ import gsap from "gsap";
 import SplitType from "gsap/SplitText";
 import Image from "next/image";
 import svgStar from "../../public/svgs/white-star.svg";
+import Link from "next/link";
 
 gsap.registerPlugin(SplitType);
 
@@ -40,21 +41,23 @@ export default function AboutInteractive() {
     };
 
     return (
-        <div 
-            className="flex flex-row items-center gap-4 cursor-pointer w-fit group"
-            onMouseEnter={handleEnter}
-            onMouseLeave={handleLeave}
-        >   
-            <div className="relative overflow-hidden">
-                <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText text-lg">View More</p>
-                <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText text-lg">View More</p>
-                
-            </div>
-            <div className="relative w-9 h-9 rounded-full border-1 backdrop-blur-sm bg-white/20 group-hover:scale-85 transition-transform duration-400">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <Image src={svgStar} alt="" width={20} height={20} />
+        <Link href="/tech-stack">
+            <div 
+                className="flex flex-row items-center gap-4 cursor-pointer w-fit group"
+                onMouseEnter={handleEnter}
+                onMouseLeave={handleLeave}
+            >   
+                <div className="relative overflow-hidden">
+                    <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText text-lg">View More</p>
+                    <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText text-lg">View More</p>
+                    
+                </div>
+                <div className="relative w-9 h-9 rounded-full border-1 backdrop-blur-sm bg-white/20 group-hover:scale-85 transition-transform duration-400">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <Image src={svgStar} alt="" width={20} height={20} />
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }

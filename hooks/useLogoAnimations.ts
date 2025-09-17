@@ -18,8 +18,8 @@ function easeInCirc(t: number) {
     return 1 - Math.sqrt(1 - t * t);
 }
 
-        //let a = data.range(0.5 / 1/6, 1/6);
-        //a = easeInOutCubic(a);
+//let a = data.range(0.5 / 1/6, 1/6);
+//a = easeInOutCubic(a);
 
 function animatePosition(start: number[], end: number[], t: number, target: THREE.Mesh, time: number) {
     const bobbing = BOBBINGDISTANCE * Math.sin(time * BOBBINGSPEED);
