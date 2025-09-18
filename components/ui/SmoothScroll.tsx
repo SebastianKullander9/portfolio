@@ -6,7 +6,7 @@ import { useAnimationStore } from "@/store/useAnimationStore";
 
 function SmoothScroll() {
     const lenis = useLenis();
-    const setScroll = useAnimationStore((s) => s.setScroll)
+    const setScroll = useAnimationStore((s) => s.setScroll);
 
     useEffect(() => {
         if (!lenis) return;

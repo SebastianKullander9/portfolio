@@ -28,7 +28,6 @@ export default function SlidingText() {
     const clippingPlane = useMemo(() => new THREE.Plane(new THREE.Vector3(0, -1, 0), CLIPTEXTATY), []);
 
     useFrame(() => {
-
         refs.current.forEach((mesh) => {
             if (!mesh) return;
 

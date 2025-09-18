@@ -7,11 +7,15 @@ import Logo from "../models/Logo";
 import SlidingText from "../models/SlidingText";
 import { useLogoAnimations } from "@/hooks/useLogoAnimations";
 import { usePathname } from "next/navigation";
+import MacScreen from "../models/MacScreen";
+import { useMacAnimations } from "@/hooks/useMacAnimations";
+import { useAnimationStore } from "@/store/useAnimationStore";
 
 export default function Scene() {
     const pathname = usePathname();
     const planeRef = useRef<THREE.Mesh>(null);
     const logoRef = useLogoAnimations();
+    const macRef = useMacAnimations();
 
     /*
     useFrame(({ clock }) => {
@@ -36,6 +40,7 @@ export default function Scene() {
                 <>
                     <Logo ref={logoRef} />
                     <SlidingText />
+                    <MacScreen ref={macRef} />
                 </> : 
                 <>
                 </>

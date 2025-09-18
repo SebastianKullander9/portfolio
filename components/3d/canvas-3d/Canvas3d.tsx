@@ -6,7 +6,6 @@ import Scene from "../scene/Scene";
 import { canvasConfig } from "../config/animationConfig";
 const { CAMERA, DIRECTIONALLIGHT } = canvasConfig;
 
-
 function Canvas3d() {
     return (
         <Canvas

@@ -1,14 +1,14 @@
-import React from 'react';
-import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei';
-import * as THREE from 'three';
+import React from "react";
+import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 
-import { modelConfig } from '../config/animationConfig';
+import { modelConfig } from "../config/animationConfig";
 const {
     MATERIAL,
     POSITION,
     ROTATION,
     SCALE,
-} = modelConfig;
+} = modelConfig.LOGO;
 
 interface ModelProps {
     ref?: React.Ref<THREE.Mesh>;
@@ -43,7 +43,7 @@ export default function Logo({ ref }: ModelProps) {
     );
 }
 
-useGLTF.preload('/models/sk-logo.glb');
+useGLTF.preload("/models/sk-logo.glb");
 
 //mesh.position.set(0.035, -0.05, 4.765);
 //mesh.rotation.y = 0.9;

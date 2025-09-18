@@ -1,10 +1,14 @@
+export const pageConfig = {
+    TOTALPAGES: 7,
+}
+
 export const canvasConfig = {
     CAMERA: {
         position: [0, 0, 5] as [number, number, number],
     },
     DIRECTIONALLIGHT: {
-        position: [0, 3, 2] as [number, number, number],
-        intensity: 3,
+        position: [0, 3, 5] as [number, number, number],
+        intensity: 1.5,
     },
     SCROLLCONTROLS: {
         pages: 6,
@@ -37,17 +41,26 @@ export const planeConfig = {
 }
 
 export const modelConfig = {
-    INITIALPOSITIONY: -0.03,
-    BOBBINGDISTANCE: 0.0025,
-    BOBBINGSPEED: 4,
-    MATERIAL: {
-        thickness: 0.5,
-        roughness: 0.2,
-        transmisson: 1.0,
-        ior: 1.8,
-        chromaticAberration: 0,
+    LOGO: {
+        INITIALPOSITIONY: -0.03,
+        BOBBINGDISTANCE: 0.0025,
+        BOBBINGSPEED: 4,
+        MATERIAL: {
+            thickness: 0.5,
+            roughness: 0.2,
+            transmisson: 1.0,
+            ior: 1.8,
+            chromaticAberration: 0,
+        },
+        POSITION: [0.059, -0.03, 4.781] as [number, number, number],
+        ROTATION: [0, -0.9, -0.25] as [number, number, number],
+        SCALE: [0.1, 0.1, 0.1] as [number, number, number],
     },
-    POSITION: [0.059, -0.03, 4.781] as [number, number, number],
-    ROTATION: [0, -0.9, -0.25] as [number, number, number],
-    SCALE: [0.1, 0.1, 0.1] as [number, number, number],
+    MAC: {
+        BOBBINGDISTANCE: 0.0025,
+        BOBBINGSPEED: 4,
+        POSITION: [0, -0.7, 4.5] as [number, number, number],
+        ROTATION: [0, 4.7, 0] as [number, number, number],
+        SCALE: [0.04, 0.04, 0.04] as [number, number, number],
+    }
 }
