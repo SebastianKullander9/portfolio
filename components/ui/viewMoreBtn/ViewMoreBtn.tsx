@@ -4,12 +4,12 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import SplitType from "gsap/SplitText";
 import Image from "next/image";
-import svgStar from "../../public/svgs/white-star.svg";
+import svgStar from "../../../public/svgs/white-star.svg";
 import Link from "next/link";
 
 gsap.registerPlugin(SplitType);
 
-export default function AboutInteractive() {
+export default function ViewMoreBtn({ linkTo }: { linkTo: string }) {
     const splitRefs = useRef<HTMLParagraphElement[]>([]);
     const splitInstances = useRef<SplitType[]>([]);
     const tlRef = useRef<gsap.core.Timeline | null>(null);
@@ -41,7 +41,7 @@ export default function AboutInteractive() {
     };
 
     return (
-        <Link href="/tech-stack">
+        <Link href={linkTo}>
             <div 
                 className="flex flex-row items-center gap-4 cursor-pointer w-fit group"
                 onMouseEnter={handleEnter}

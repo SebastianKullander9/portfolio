@@ -1,6 +1,6 @@
 import Image from "next/image";
 import svgStar from "../../public/svgs/white-star.svg";
-import AboutInteractive from "./AboutInteractive";
+import ViewMoreBtn from "@/components/ui/viewMoreBtn/ViewMoreBtn";
 
 export default function About() {
     return (
@@ -20,7 +20,7 @@ export default function About() {
                 <div className="col-start-3 row-start-2 self-end justify-self-end">
                     <p className="text-lg mb-8">I mainly do my work in the Javascript stack. Curious about the tools and technologies I use? Dive in to the stack for a deeper look.</p>
                     <div className="flex w-full justify-end">
-                        <AboutInteractive />
+                        <ViewMoreBtn linkTo="/tech-stack" />
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ export default function Home() {
 					<About />
 				</section>
 
-				<section className="w-[100%] h-screen">
+				<section className="w-screen h-screen">
 					<Carousel />
 				</section>
 				

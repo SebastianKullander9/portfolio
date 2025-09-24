@@ -1,4 +1,4 @@
-import MenuBtn from "./MenuBtn/MenuBtn";
+import MenuBtn from "./menuBtn/MenuBtn";
 import Image from "next/image";
 import skLogo from "../../public/svgs/sklogo2.svg";
 

@@ -23,7 +23,7 @@ function SmoothScroll() {
         });
     }, [setScroll, lenis]);
 
-    return <ReactLenis root options={{ lerp: 0.1, duration: 1.5 }} />
+    return <ReactLenis root options={{ lerp: 0.1, duration: 1 }} />
 }
 
 export default SmoothScroll;
