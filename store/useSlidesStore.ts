@@ -14,8 +14,7 @@ interface SlideStore {
     sliderOffset: number;
     setSlides: (slides: Slide[]) => void;
     setSlideWidth: (slideWidth: number) => void;
-    setSliderVelocity: (sliderVelocity: number) => void;
-    setSliderOffset: (sliderOffset: number) => void;
+    setSliderState: (offset: number, velocity: number) => void;
 }
 
 export const useSlidesStore = create<SlideStore>((set) => ({
@@ -33,8 +32,7 @@ export const useSlidesStore = create<SlideStore>((set) => ({
     setSlideWidth: (slideWidth) => set({ slideWidth }),
 
     sliderVelocity: 0,
-    setSliderVelocity: (sliderVelocity) => set({ sliderVelocity }),
-
     sliderOffset: 0,
-    setSliderOffset: (sliderOffset) => set({ sliderOffset }),
+
+    setSliderState: (offset, velocity) => set({ sliderOffset: offset, sliderVelocity: velocity }),
 }));

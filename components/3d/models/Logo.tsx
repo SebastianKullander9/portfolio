@@ -15,7 +15,7 @@ interface ModelProps {
 }
 
 export default function Logo({ ref }: ModelProps) {
-    const { nodes } = useGLTF("/models/sk-logo.glb") as unknown as {
+    const { nodes } = useGLTF("/models/sk-logo-compressed.glb") as unknown as {
         nodes: { [key: string]: THREE.Mesh }
     };
 

@@ -1,5 +1,4 @@
 "use client";
-//TODO: REFACTOR INTO SERVER / CLIENT
 
 import { useEffect, useRef, useState } from "react";
 import Core from "smooothy";
@@ -9,13 +8,19 @@ import ViewMoreBtn from "@/components/ui/viewMoreBtn/ViewMoreBtn";
 import Image from "next/image";
 import svgStar from "../../public/svgs/white-star.svg";
 import gsap from "gsap";
+import { preloadTextures } from "@/helpers/preloadTextures";
 
 export default function Carousel() {
     const sliderWrapperRef = useRef<HTMLDivElement>(null);
     const starRefs = useRef<(HTMLImageElement | null)[]>([]);
-    const { slides, setSlideWidth, setSliderVelocity, setSliderOffset } = useSlidesStore();
+    const { slides, setSlideWidth, setSliderState } = useSlidesStore();
     const slideRef = useRef<HTMLDivElement>(null);
+    const sliderValuesRef = useRef({ current: 0, velocity: 0, currentSlide: 0 });
     const [currentSlide, setCurrentSlide] = useState(0);
+
+    useEffect(() => {
+        preloadTextures(slides.map(s => s.imgUrl));
+    }, [slides]);
 
     useEffect(() => {
         if (!slideRef.current) return;
@@ -35,16 +40,27 @@ export default function Carousel() {
 
         function animate() {
             slider.update();
-
-            setCurrentSlide(slider.currentSlide);
-
             const newPos = slider.current;
-            setSliderVelocity(newPos - lastPos);
-            setSliderOffset(slider.current)
-            lastPos = newPos;
+            const velocity = newPos - lastPos;
 
+            sliderValuesRef.current.current = newPos;
+            sliderValuesRef.current.velocity = velocity;
+
+            setSliderState(newPos, velocity);
+
+            if (slider.currentSlide !== sliderValuesRef.current.currentSlide) {
+                sliderValuesRef.current.currentSlide = slider.currentSlide;
+                setCurrentSlide(slider.currentSlide);
+            }
+
+            if (slider.currentSlide !== sliderValuesRef.current.currentSlide) {
+                sliderValuesRef.current.currentSlide = slider.currentSlide;
+                setCurrentSlide(slider.currentSlide);
+            }
+
+            lastPos = newPos;
             requestAnimationFrame(animate);
-        };
+        }
 
         animate();
     }, []);
@@ -71,7 +87,7 @@ export default function Carousel() {
             <div className="absolute w-screen h-1/2 top-1/2 -translate-y-1/2">   
                 <CarouselCanvas />
             </div>
-            <div className="absolute w-screen h-[60%] top-1/2 -translate-y-1/2">
+            <div className="absolute w-screen h-[60%] top-1/2 -translate-y-1/2 select-none">
                 <div ref={sliderWrapperRef} className="w-full h-full flex flex-row overflow-hidden z-10">
                     {slides.map((slide, index) => (
                         <div ref={slideRef} key={index} className="slide w-1/3 flex-none">

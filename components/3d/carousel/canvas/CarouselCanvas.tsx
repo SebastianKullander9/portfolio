@@ -4,7 +4,6 @@ import Scene from "../scene/Scene";
 import { Environment } from "@react-three/drei";
 
 import { canvasConfig } from "../../config/animationConfig";
-const { DIRECTIONALLIGHT } = canvasConfig;
 
 export default function CarouselCanvas() {
     return (
