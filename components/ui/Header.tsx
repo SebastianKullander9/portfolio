@@ -1,5 +1,5 @@
-import MenuBtn from "./menuBtn/MenuBtn";
 import Image from "next/image";
+import MenuBtn from "./menuBtn/MenuBtn";
 import skLogo from "../../public/svgs/sklogo2.svg";
 
 export default function Header() {
