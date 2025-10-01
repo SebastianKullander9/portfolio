@@ -80,24 +80,27 @@ export default function Carousel() {
 
     return (
         <section className="relative w-screen h-full">
-            <div className="h-[20%] w-full flex justify-center items-center">
-                <h1 className="text-6xl font-medium text-white">Things I&apos;ve Built</h1>
+            <div className="h-[17.5%] w-full flex items-end">
+                <div className="flex flex-row gap-2 site-x-padding pb-8">
+                    <Image src={svgStar} width={17} height={17} alt="" />
+                    <h1 className="site-text-size text-white">Creations</h1>            
+                </div>
             </div>
 
             <div className="absolute w-screen h-1/2 top-1/2 -translate-y-1/2">   
                 <CarouselCanvas />
             </div>
-            <div className="absolute w-screen h-[60%] top-1/2 -translate-y-1/2 select-none">
+            <div className="absolute w-screen h-[65%] top-1/2 -translate-y-1/2 select-none">
                 <div ref={sliderWrapperRef} className="w-full h-full flex flex-row overflow-hidden z-10">
                     {slides.map((slide, index) => (
-                        <div ref={slideRef} key={index} className="slide w-1/3 flex-none">
-                            <div className="slideContent m-5 h-[calc(100%-40px)] flex flex-col justify-between text-white text-md font-medium">
-                                <div className="flex justify-between px-[13%] items-center">
-                                    <p>{slide.title}</p>
-                                    <p>{slide.id}</p>
+                        <div ref={slideRef} key={index} className="slide w-full lg:w-3/5 xl:w-1/3 flex-none">
+                            <div className="slideContent m-5 h-[calc(100%-40px)] flex flex-col justify-between text-white site-text-size font-medium">
+                                <div className="flex justify-between px-[15vw] sm:px-[23vw]  xl:px-[6vw] items-center">
+                                    <p className="site-text-size">{slide.title}</p>
+                                    <p className="site-text-size">{slide.id}</p>
                                 </div>
-                                <div className="flex justify-between px-[13%] items-center">
-                                    <p className="w-1/2">{slide.summary}</p>
+                                <div className="flex justify-between px-[15vw] sm:px-[23vw] md:px-[10vw] xl:px-[6vw] items-center">
+                                    <p className="w-1/2 site-text-size">{slide.summary}</p>
                                     <ViewMoreBtn linkTo="/" />
                                 </div>
                             </div>
@@ -106,7 +109,7 @@ export default function Carousel() {
                 </div>
             </div>
 
-            <div className="absolute bottom-0 h-[20%] w-full flex justify-center items-center gap-4">
+            <div className="absolute bottom-0 h-[17.5%] w-full flex justify-center items-center gap-4">
                 {slides.map((_, index) => (
                     <div className="relative p-2" key={index}>
                         <div className="p-1 bg-white rounded-full"></div>

@@ -3,13 +3,16 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import SplitType from "gsap/SplitText";
-import Image from "next/image";
-import svgStar from "../../../public/svgs/white-star.svg";
 import Link from "next/link";
+
+interface AnimatedLinkProps {
+    linkTo: string;
+    text: string;
+}
 
 gsap.registerPlugin(SplitType);
 
-export default function ViewMoreBtn({ linkTo }: { linkTo: string }) {
+export default function AnimatedLink({ linkTo, text }: AnimatedLinkProps) {
     const splitRefs = useRef<HTMLParagraphElement[]>([]);
     const splitInstances = useRef<SplitType[]>([]);
     const tlRef = useRef<gsap.core.Timeline | null>(null);
@@ -25,7 +28,7 @@ export default function ViewMoreBtn({ linkTo }: { linkTo: string }) {
             splitInstances.current.forEach((split) => {
                 tlRef.current!.to(
                     split.chars,
-                    { y: "-100%", stagger: 0.02 },
+                    { y: "-100%", stagger: 0.03 },
                     0
                 );
             });
@@ -48,14 +51,9 @@ export default function ViewMoreBtn({ linkTo }: { linkTo: string }) {
                 onMouseLeave={handleLeave}
             >   
                 <div className="relative overflow-hidden">
-                    <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText site-text-size">View More</p>
-                    <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText site-text-size">View More</p>
+                    <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText site-text-size">{text}</p>
+                    <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText site-text-size">{text}</p>
                     
-                </div>
-                <div className="relative w-8 sm:w-11 h-8 sm:h-11 rounded-full border-1 backdrop-blur-sm bg-white/20 group-hover:scale-85 transition-transform duration-400">
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                        <Image src={svgStar} alt="" width={20} height={20} />
-                    </div>
                 </div>
             </div>
         </Link>

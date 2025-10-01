@@ -23,7 +23,7 @@ export default function Logo({ ref }: ModelProps) {
     const material = {
         thickness: MATERIAL.thickness,
         roughness: MATERIAL.roughness,
-        transmission: MATERIAL.transmisson,
+        transmission: MATERIAL.transmission,
         ior: MATERIAL.ior,
         chromaticAberration: MATERIAL.chromaticAberration
     }
@@ -34,7 +34,7 @@ export default function Logo({ ref }: ModelProps) {
                 ref={ref} 
                 geometry={nodes.Cube.geometry}
                 material={nodes.Cube.material}
-                position={[0,0.5,4.5]} 
+                position={[0,2,4.5]} 
                 scale={[0.015, 0.015, 0.015]}
                 rotation={ [0, 0, 0]}
             >

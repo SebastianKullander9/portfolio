@@ -2,9 +2,32 @@
 
 @import "tailwindcss";
 
-/*font-family: 'Satoshi', sans-serif;*/
-:root {
+@layer base {
+    .site-x-padding {
+        @apply px-4 sm:px-12 md:px-16 lg:px-24;
+    }
 
+    .site-y-padding {
+        @apply py-6 sm:py-10 md:py-12 lg:py-20;
+    }
+
+    .site-text-size {
+        @apply text-[12px] sm:text-sm md:text-base lg:text-xl;
+    }
+}
+
+@font-face {
+    font-family: "tanPearl";
+    src: url("../public/fonts/tan-pearl.otf") format("opentype");
+}
+
+:root {
+    --font-special-heading: "tanPearl", sans-serif;
+}
+
+.special-heading {
+    font-family: var(--font-special-heading)!important;
+    font-style: italic;
 }
 
 body, html {
@@ -21,7 +44,6 @@ body {
 }
 
 .marquee {
-    width: 15vw;
     overflow: hidden;
     white-space: nowrap;
     box-sizing: border-box;
@@ -30,7 +52,7 @@ body {
 .marquee-inner {
     display: inline-block;
     white-space: nowrap;
-    animation: scroll-left 10s linear infinite;
+    animation: scroll-left 5s linear infinite;
 }
 
 .marquee-inner span {
@@ -51,6 +73,7 @@ body {
     display: flex;
     overflow: hidden;
 }
+
 [data-slider] > * {
     flex-shrink: 0;
     width: 100%; /* or specific width */

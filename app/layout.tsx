@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "../components/ui/Header";
+import Header from "../components/ui/header/Header";
 import { CanvasLoader } from "../components/canvas-loader/canvas-loader";
-import SmoothScroll from "../components/ui/SmoothScroll";
+import SmoothScroll from "@/components/ui/smoothScroll/SmoothScroll";
 
 export const metadata: Metadata = {
     title: "SK",

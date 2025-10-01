@@ -17,9 +17,9 @@ export const canvasConfig = {
 }
 
 export const slidingTextConfig = {
-    TEXT: "Sebastian Kullander Frontend Developer ",
-    FONTSIZE: 0.025,
-    CHARWITHESTIMATE: 1.2,
+    TEXT: "Sebastian  Kullander  Fullstack  Developer",
+    FONTSIZE: 0.03,
+    CHARWITHESTIMATE: 0.65,
     SLIDINGSPEED: 0.0004,
     CLIPTEXTATY: 0.023,
     SCALETEXTMULTIPLIER: 20,
@@ -34,7 +34,7 @@ export const planeConfig = {
         uSpeed: 0.15,
     },
     PLANE: {
-        position: [0, 0, 4.5] as [number, number, number],
+        position: [0, 0, 4] as [number, number, number],
         rotation: [0, 0, 0] as [number, number, number],
         geometry: [4, 4, 25, 25] as [number, number, number, number],
     }
@@ -47,14 +47,25 @@ export const modelConfig = {
         BOBBINGSPEED: 4,
         MATERIAL: {
             thickness: 0.5,
-            roughness: 0.2,
-            transmisson: 1.0,
-            ior: 1.8,
-            chromaticAberration: 0,
+            roughness: 0.05,
+            transmission: 1,
+            ior: 1.5,
+            chromaticAberration: 1,
+            anisotropy: 0.1,
+            distortion: 0.1,
+            distortionScale: 0.2
         },
-        POSITION: [0.059, -0.03, 4.781] as [number, number, number],
+        POSITION: {
+            DESKTOP: [0.059, -0.03, 4.781] as [number, number, number],
+            TABLET: [0, -0.03, 4.781] as [number, number, number],
+            MOBILE: [-0.01, -0.03, 4.781] as [number, number, number],
+        },
         ROTATION: [0, -0.9, -0.25] as [number, number, number],
-        SCALE: [0.1, 0.1, 0.1] as [number, number, number],
+        SCALE: {
+            DESKTOP: [0.1, 0.1, 0.1] as [number, number, number],
+            TABLET: [0.1, 0.1, 0.1] as [number, number, number],
+            MOBILE: [0.1, 0.1, 0.1] as [number, number, number],
+        },
     },
     MAC: {
         BOBBINGDISTANCE: 0.0025,
@@ -64,3 +75,5 @@ export const modelConfig = {
         SCALE: [0.04, 0.04, 0.04] as [number, number, number],
     }
 }
+
+//POSITION: [0.059, -0.03, 4.781] as [number, number, number],

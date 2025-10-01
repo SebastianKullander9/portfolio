@@ -1,5 +1,6 @@
 import React from "react";
 import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 import { modelConfig } from "../config/animationConfig";
@@ -19,13 +20,13 @@ export default function Logo({ ref }: ModelProps) {
         nodes: { [key: string]: THREE.Mesh }
     };
 
-    const material = {
-        thickness: MATERIAL.thickness,
-        roughness: MATERIAL.roughness,
-        transmission: MATERIAL.transmisson,
-        ior: MATERIAL.ior,
-        chromaticAberration: MATERIAL.chromaticAberration
-    }
+    const { viewport } = useThree();
+    console.log(viewport.width, viewport.height);
+
+    const vw = viewport.width;
+
+    const scale = vw < 4 ? SCALE.MOBILE : vw < 10 ? SCALE.TABLET : SCALE.DESKTOP;
+    const position = vw < 4 ? POSITION.MOBILE : vw < 10 ? POSITION.TABLET : POSITION.DESKTOP;
 
     return (
         <group >
@@ -33,20 +34,14 @@ export default function Logo({ ref }: ModelProps) {
                 ref={ref} 
                 geometry={nodes.BézierCurve.geometry}
                 material={nodes.BézierCurve.material}
-                position={ POSITION } 
-                scale={ SCALE }
+                position={ position } 
+                scale={ scale }
                 rotation={ ROTATION }
             >
-                <MeshTransmissionMaterial {...material} color={"#F5AEB9"} />
+                <MeshTransmissionMaterial {...MATERIAL} color={"#F5AEB9"} />
             </mesh>
         </group>
     );
 }
 
 useGLTF.preload("/models/sk-logo-compressed.glb");
-
-//mesh.position.set(0.035, -0.05, 4.765);
-//mesh.rotation.y = 0.9;
-//mesh.rotation.z = 0;
-
-//thickness: 0 rougness: 0.5 transmission: 1.0  ior: 1.8

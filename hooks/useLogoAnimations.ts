@@ -54,7 +54,7 @@ export function useLogoAnimations() {
 
         if (scroll_progress > animationStart && scroll_progress < animationMiddle) {
             const t = (scroll_progress - animationStart) / (animationMiddle - animationStart);
-            animatePosition(POSITION, [0.2, -0.05, 4.650], easeInOutCubic(t), ref.current, time);
+            animatePosition(POSITION.DESKTOP, [0.2, -0.05, 4.650], easeInOutCubic(t), ref.current, time);
             animateRotation(ROTATION, [0, 0, 0], easeInOutCubic(t), ref.current);
         } else if (scroll_progress > animationMiddle && scroll_progress < animationEnd) {
             const t = (scroll_progress - animationMiddle) / (animationEnd - animationMiddle);
@@ -63,7 +63,7 @@ export function useLogoAnimations() {
             ref.current.scale.set(targetScale, targetScale, targetScale);
         }
 
-        ref.current.position.y = POSITION[1] + BOBBINGDISTANCE * Math.sin(time * BOBBINGSPEED);
+        ref.current.position.y = POSITION.DESKTOP[1] + BOBBINGDISTANCE * Math.sin(time * BOBBINGSPEED);
     });
 
     return ref;

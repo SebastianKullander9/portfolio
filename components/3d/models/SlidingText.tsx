@@ -69,7 +69,7 @@ export default function SlidingText() {
                     fontSize={FONTSIZE}
                     color="white"
                     position={[i * textWidth, 0, TEXTPOSITIONX]}
-                    font="/fonts/Colabero.ttf"
+                    font="/fonts/tan-pearl.otf"
                     material-toneMapped={false}
                 >
                     {TEXT}

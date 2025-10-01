@@ -1,16 +1,17 @@
 import Image from "next/image";
 import skLogo from "../../public/svgs/sklogo2.svg";
+import AnimatedLink from "../ui/animatedLink/AnimatedLink";
 
 export default function Footer() {
     return (
         <footer className="w-full h-full text-white">
-            <div className="w-full h-1/10 border-b-1">
-                
-            </div>
-            <div className="w-full h-8/10 flex flex-row">
-                <div className="w-1/2 h-full border-r-1">
+            <div className="w-full  border-b-1"></div>
+            <div className="w-full h-9/10 flex flex-row">
+                <div className="w-1/2 h-full border-r-1 border-t-1">
                     <div className="w-full h-1/2 flex items-center px-24">
-                        <p className="text-6xl font-medium max-w-prose leading-[1.4]">Please feel free to contact me through email or the contact form.</p>                        
+                        <p className="text-6xl font-medium max-w-prose leading-[1.4]">Please feel free to contact me through 
+                            <span className="special-heading text-5xl"> Email </span> or the 
+                            <span className="special-heading text-5xl"> Contact form </span>.</p>                        
                     </div>
                     <div className="h-1/2 flex flex-row px-24 justify-between items-center">
 
@@ -19,23 +20,23 @@ export default function Footer() {
                         </div>
                         <div className="flex flex-row gap-12">
                             <div className="flex flex-col gap-8">
-                                <h1 className="text-lg font-medium">MENU</h1>
-                                <div>
-                                    <p>Top</p>
-                                    <p>About</p>
-                                    <p>Projects</p>
-                                    <p>Contact</p>
+                                <h1 className="text-lg font-bold">MENU</h1>
+                                <div className="site-text-size">
+                                    <AnimatedLink linkTo="" text="Top" />
+                                    <AnimatedLink linkTo="" text="About" />
+                                    <AnimatedLink linkTo="" text="Projects" />
+                                    <AnimatedLink linkTo="" text="Contacts" />
                                 </div>
                             </div>
                             <div className="flex flex-col gap-8">
-                                <h1 className="text-lg font-medium">EXPLORE</h1>
-                                <p>My stack</p>
+                                <h1 className="text-lg font-bold">EXPLORE</h1>
+                                <AnimatedLink linkTo="" text="My stack" />
                             </div>
                             <div className="flex flex-col gap-8">
-                                <h1 className="text-lg font-medium">SOCIALS</h1>
-                                <div>
-                                    <p>GitHub</p>
-                                    <p>LinkedIn</p>
+                                <h1 className="text-lg font-bold">SOCIALS</h1>
+                                <div className="site-text-size">
+                                    <AnimatedLink linkTo="" text="GitHub" />
+                                    <AnimatedLink linkTo="" text="LinkedIn" />
                                 </div>
                             </div>
                         </div>
@@ -44,15 +45,17 @@ export default function Footer() {
                 </div>
                 <div className="relative w-1/2 h-full 
                     bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] 
-                    bg-[size:160px_160px]
+                    bg-[size:150px_150px]
                     bg-[position:-1px_-1px]"
                 >   
-                    <div className="aspect-auto flex justify-center items-center w-full h-full rotate-13">
-                        <Image src="/images/nanobanana-fixed.png" width={300} height={500} alt="A card with some 3d objects, cube and spheres." />
+                    <div className="relative w-full h-full">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-auto flex justify-center items-center  rotate-13">
+                            <Image src="/images/nanobanana-fixed.png" width={300} height={500} alt="A card with some 3d objects, cube and spheres." />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="w-full h-1/10 border-t-1 flex flex-row items-center justify-between px-24">
+            <div className="w-full h-1/10 border-t-1 flex flex-row items-center justify-between px-24 site-text-size">
                 <p>Privacy Policy</p>
                 <p>Copyright © Sebastian Kullander</p>
             </div>

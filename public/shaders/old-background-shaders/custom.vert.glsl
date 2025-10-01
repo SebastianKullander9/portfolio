@@ -91,6 +91,9 @@ void main() {
         scale *= 1.5;
     }
 
+    float tilt = -0.9 * vUv.y;
+    pos.z += tilt;
+
     pos.z += totalNoise * amplitude;
 
     float offset = incline * mix(-0.25, 0.25, vUv.y);
