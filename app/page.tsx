@@ -1,7 +1,8 @@
-import HomeView from "@/sections/Home";
-import About from "@/sections/about/About";
-import Footer from "@/sections/Footer";
-import Carousel from "@/sections/carousel/Carousel";
+import HomeView from "@/components/sections/Home";
+import About from "@/components/sections/about/About";
+import Footer from "@/components/sections/Footer";
+import Carousel from "@/components/sections/carousel/Carousel";
+import Contact from "@/components/sections/contact/Contact";
 
 export default function Home() {
     return (
@@ -18,12 +19,14 @@ export default function Home() {
 					<About />
 				</section>
 
-				<section className="w-screen h-screen">
+				<section className="w-[100%] h-screen">
 					<Carousel />
 				</section>
 				
-				<section className="w-[100%] h-screen"></section>
-
+				<section className="w-[100%] h-screen">
+					<Contact />
+				</section>
+					
 				<section className="w-[100%] h-screen"></section>
 
 				<Footer />

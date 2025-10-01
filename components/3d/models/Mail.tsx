@@ -1,6 +1,7 @@
 import React from "react";
 import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import { useFrame } from "@react-three/fiber";
 
 import { modelConfig } from "../config/animationConfig";
 const {
@@ -15,7 +16,7 @@ interface ModelProps {
 }
 
 export default function Logo({ ref }: ModelProps) {
-    const { nodes } = useGLTF("/models/sk-logo-compressed.glb") as unknown as {
+    const { nodes } = useGLTF("/models/mail4.glb") as unknown as {
         nodes: { [key: string]: THREE.Mesh }
     };
 
@@ -31,11 +32,11 @@ export default function Logo({ ref }: ModelProps) {
         <group >
             <mesh 
                 ref={ref} 
-                geometry={nodes.BézierCurve.geometry}
-                material={nodes.BézierCurve.material}
-                position={ POSITION } 
-                scale={ SCALE }
-                rotation={ ROTATION }
+                geometry={nodes.Cube.geometry}
+                material={nodes.Cube.material}
+                position={[0,0.5,4.5]} 
+                scale={[0.015, 0.015, 0.015]}
+                rotation={ [0, 0, 0]}
             >
                 <MeshTransmissionMaterial {...material} color={"#F5AEB9"} />
             </mesh>
@@ -43,10 +44,4 @@ export default function Logo({ ref }: ModelProps) {
     );
 }
 
-useGLTF.preload("/models/sk-logo-compressed.glb");
-
-//mesh.position.set(0.035, -0.05, 4.765);
-//mesh.rotation.y = 0.9;
-//mesh.rotation.z = 0;
-
-//thickness: 0 rougness: 0.5 transmission: 1.0  ior: 1.8
+useGLTF.preload("/models/mail4.glb");

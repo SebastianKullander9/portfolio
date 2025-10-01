@@ -1,5 +1,5 @@
 import Image from "next/image";
-import svgStar from "../../public/svgs/white-star.svg";
+import svgStar from "../../../public/svgs/white-star.svg";
 import ViewMoreBtn from "@/components/ui/viewMoreBtn/ViewMoreBtn";
 
 export default function About() {

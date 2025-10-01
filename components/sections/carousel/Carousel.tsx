@@ -6,7 +6,7 @@ import CarouselCanvas from "@/components/3d/carousel/canvas/CarouselCanvas";
 import { useSlidesStore } from "@/store/useSlidesStore";
 import ViewMoreBtn from "@/components/ui/viewMoreBtn/ViewMoreBtn";
 import Image from "next/image";
-import svgStar from "../../public/svgs/white-star.svg";
+import svgStar from "../../../public/svgs/white-star.svg";
 import gsap from "gsap";
 import { preloadTextures } from "@/helpers/preloadTextures";
 

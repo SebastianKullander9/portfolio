@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <div className="relative w-[100%] h-[100vh] inset-0 flex flex-col items-center text-white">
+        <div className="relative w-full h-[100vh] inset-0 flex flex-col items-center text-white">
             <div className="absolute bottom-0 w-full p-4 md:p-8 xl:w-8/10 flex flex-row justify-between">
                 <div className="text-lg font-bold w-[15vw]">This portfolio is built on Next.js, React Three Fiber and Drei
                     <Link href="/tech-stack">test</Link>
