@@ -45,3 +45,4 @@ export default function Logo({ ref }: ModelProps) {
 }
 
 useGLTF.preload("/models/sk-logo-compressed.glb");
+

@@ -1,7 +1,7 @@
 import React from "react";
 import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { useFrame } from "@react-three/fiber";
+import { useThree } from "@react-three/fiber";
 
 import { modelConfig } from "../config/animationConfig";
 const {
@@ -9,7 +9,7 @@ const {
     POSITION,
     ROTATION,
     SCALE,
-} = modelConfig.LOGO;
+} = modelConfig.MAIL;
 
 interface ModelProps {
     ref?: React.Ref<THREE.Mesh>;
@@ -20,13 +20,13 @@ export default function Logo({ ref }: ModelProps) {
         nodes: { [key: string]: THREE.Mesh }
     };
 
-    const material = {
-        thickness: MATERIAL.thickness,
-        roughness: MATERIAL.roughness,
-        transmission: MATERIAL.transmission,
-        ior: MATERIAL.ior,
-        chromaticAberration: MATERIAL.chromaticAberration
-    }
+    const { viewport } = useThree();
+    console.log(viewport.width, viewport.height);
+
+    const vw = viewport.width;
+
+    const scale = vw < 4 ? SCALE.MOBILE : vw < 10 ? SCALE.TABLET : SCALE.DESKTOP;
+    //const position = vw < 4 ? POSITION.MOBILE : vw < 10 ? POSITION.TABLET : POSITION.DESKTOP;
 
     return (
         <group >
@@ -34,11 +34,11 @@ export default function Logo({ ref }: ModelProps) {
                 ref={ref} 
                 geometry={nodes.Cube.geometry}
                 material={nodes.Cube.material}
-                position={[0,2,4.5]} 
-                scale={[0.015, 0.015, 0.015]}
-                rotation={ [0, 0, 0]}
+                position={POSITION} 
+                scale={scale}
+                rotation={ROTATION}
             >
-                <MeshTransmissionMaterial {...material} color={"#F5AEB9"} />
+                <MeshTransmissionMaterial {...MATERIAL} color={"#F5AEB9"} />
             </mesh>
         </group>
     );

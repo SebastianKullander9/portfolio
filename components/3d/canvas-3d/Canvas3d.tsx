@@ -9,7 +9,10 @@ const { CAMERA, DIRECTIONALLIGHT } = canvasConfig;
 function Canvas3d() {
     return (
         <Canvas
-            camera={{ position: CAMERA.position }}
+            camera={{ 
+                position: CAMERA.position,
+                near: 0.01,
+            }}
             gl={{
                 toneMapping: THREE.ACESFilmicToneMapping,
                 toneMappingExposure: 1.0,

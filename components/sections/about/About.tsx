@@ -11,7 +11,7 @@ export default function About() {
             </div>
             <div className="grid grid-cols-3 grid-rows-2 h-8/10 text-white">
                 <div className="col-span-3 sm:col-span-2 justify-self-start w-full h-full">
-                    <p className="text-xl/8 lg:text-3xl/12 xl:text-5xl/18 font-medium">I’m a <span className="special-heading text-5xl"> Fullstack Developer </span> who loves turning design ideas into interactive experiences.  
+                    <p className="text-xl/8 lg:text-3xl/12 xl:text-5xl/18 font-medium">I’m a <span className="special-heading text-lg xl:text-5xl"> Fullstack Developer </span> who loves turning design ideas into interactive experiences.  
                         I mostly work with the JavaScript stack and enjoy seeing how code, design, and a little bit of math can come together in creative ways
                     </p>
                 </div>
