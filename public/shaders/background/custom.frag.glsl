@@ -69,14 +69,14 @@ float snoise(vec3 v) {
 void main() {
     vec3 colors[5];
     colors[0] = vec3(0.678, 0.847, 0.902); // Light Blue
-    colors[1] = vec3(1.000, 0.753, 0.796); // Soft Pink
+    colors[1] = vec3(1.000, 0.678, 0.729); // Soft Pink
     colors[2] = vec3(0.725, 0.616, 0.812); // Muted Purple (lavender-like)
-    colors[3] = vec3(0.988, 0.875, 0.757); // Very Light Orange (peachy pastel)
+    colors[3] = vec3(0.973, 0.729, 0.467); // Very Light Orange (peachy pastel)
     colors[4] = vec3(0.537, 0.741, 0.855); // Slightly Darker Blue
 
     // Create layered color noise with HIGHER frequencies for smaller patches
     float colorNoise = 0.0;
-    float scale = 0.095;  // Start with larger scale multiplier
+    float scale = 0.15;  // Start with larger scale multiplier
 
     for(int i = 0; i < 3; i++) {
         float noiseFlow = uSpeed * (0.05 + float(i) * 1.6);
