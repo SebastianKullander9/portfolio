@@ -4,11 +4,11 @@
 
 @layer base {
     .site-x-padding {
-        @apply px-4 sm:px-12 md:px-16 lg:px-24;
+        @apply px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24;
     }
 
     .site-y-padding {
-        @apply py-6 sm:py-10 md:py-12 lg:py-20;
+        @apply py-6 sm:py-10 md:py-16 lg:py-20 xl:px-28;
     }
 
     .site-text-size {
@@ -23,6 +23,22 @@
 
 :root {
     --font-special-heading: "tanPearl", sans-serif;
+    --color-blue: #ADD8E6;
+    --color-blue-accent: #1D4D5D;
+
+    --color-pink: #FFADB9;
+    --color-pink-accent: #A3001B;
+
+    --color-purple: #B99DCE;
+    --color-purple-accent: #603D7B;
+
+    --color-orange: #F8BA77;
+    --color-orange-accent: #884A07;
+
+    --color-darkblue: #89BDEB;
+    --color-darkblue-accent: #2C6A8C;
+
+    --color-offwhite: #F2F0EF;
 }
 
 .special-heading {

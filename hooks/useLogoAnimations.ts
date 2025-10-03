@@ -54,8 +54,6 @@ export function useLogoAnimations() {
     const animationEnd= 1.5 / TOTALPAGES;
 
     const { viewport } = useThree();
-    console.log(viewport.width, viewport.height);
-
     const vw = viewport.width;
 
     const position = vw < 4 ? POSITION.MOBILE : vw < 10 ? POSITION.TABLET : POSITION.DESKTOP;

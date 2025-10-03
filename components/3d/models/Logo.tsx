@@ -21,8 +21,6 @@ export default function Logo({ ref }: ModelProps) {
     };
 
     const { viewport } = useThree();
-    console.log(viewport.width, viewport.height);
-
     const vw = viewport.width;
 
     const scale = vw < 4 ? SCALE.MOBILE : vw < 10 ? SCALE.TABLET : SCALE.DESKTOP;
