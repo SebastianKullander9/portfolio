@@ -1,5 +1,5 @@
 export const pageConfig = {
-    TOTALPAGES: 7,
+    TOTALPAGES: 6.2,
 }
 
 export const canvasConfig = {
@@ -36,7 +36,7 @@ export const planeConfig = {
     PLANE: {
         position: [0, 0, 4] as [number, number, number],
         rotation: [0, 0, 0] as [number, number, number],
-        geometry: [4, 4, 25, 25] as [number, number, number, number],
+        geometry: [4, 4, 1, 1] as [number, number, number, number],
     }
 }
 
@@ -45,15 +45,19 @@ export const modelConfig = {
         INITIALPOSITIONY: -0.03,
         BOBBINGDISTANCE: 0.0025,
         BOBBINGSPEED: 4,
-        MATERIAL: {
-            thickness: 0.5,
-            roughness: 0.05,
+        TRANSMISSION_MATERIAL: {
+            thickness: 0.9,
+            roughness: 0.1,
             transmission: 1,
-            ior: 1.5,
-            chromaticAberration: 1,
+            ior: 0.8,
             anisotropy: 0.1,
-            distortion: 0.1,
-            distortionScale: 0.2
+        },
+        STANDARD_MATERIAL: {
+            metalness: 0,
+            roughness: 0.05,
+            transmission: 0.9,
+            thickness: 0.5,
+            opacity: 1,
         },
         POSITION: {
             DESKTOP: [0.059, -0.03, 4.781] as [number, number, number],

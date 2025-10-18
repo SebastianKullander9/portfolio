@@ -24,8 +24,8 @@ const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
     }), []);
 
     useEffect(() => {
-        fetch("/shaders/background/custom.vert.glsl").then(res => res.text()).then(setVertexShader);
-        fetch("/shaders/background/custom.frag.glsl").then(res => res.text()).then(setFragmentShader);
+        fetch("/shaders/background/quality/custom.vert.glsl").then(res => res.text()).then(setVertexShader);
+        fetch("/shaders/background/quality/custom.frag.glsl").then(res => res.text()).then(setFragmentShader);
     }, []);
 
     useFrame(({ clock }) => {

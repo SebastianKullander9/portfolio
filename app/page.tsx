@@ -26,9 +26,9 @@ export default function Home() {
 				<section className="w-[100%] h-screen">
 					<Contact />
 				</section>
-					
-				<section className="w-[100%] h-screen"></section>
 
+				<section className="w-[100%] h-[20vh]"></section>
+					
 				<Footer />
 			</div>
 		</>

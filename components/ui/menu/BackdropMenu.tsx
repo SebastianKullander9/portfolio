@@ -15,7 +15,8 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
     useEffect(() => {
         if (!menuItemsRef.current || !backdropRef.current) return;
 
-        const items = menuItemsRef.current.querySelectorAll(".innerMenuItem");
+        const innerMenuItems = menuItemsRef.current.querySelectorAll(".innerMenuItem");
+        const outerMenuItems = menuItemsRef.current.querySelectorAll(".outerMenuItem");
         const tl = gsap.timeline({
             onStart: () => {
                 backdropRef.current!.classList.remove("hidden");
@@ -25,11 +26,11 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
         if (isOpen) {
             tl.to(backdropRef.current, {
                 opacity: 1,
-                duration: 0.3,
-                zIndex: 49
+                duration: 0.1,
+                zIndex: 9998
             })
             .fromTo(
-                items,
+                innerMenuItems,
                 { y: "100%" },
                 {
                     y: "0%",
@@ -37,16 +38,31 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
                     duration: 0.4,
                 },
                 "+=0.05"
+            )
+            .fromTo(
+                outerMenuItems,
+                { y: "100%" },
+                {
+                    y: "0%",
+                    stagger: 0.1,
+                    duration: 0.4,
+                },
+                "<"
             );
         } else {
-            tl.to(items, {
+            tl.to(innerMenuItems, {
                 y: "-100%",
                 stagger: 0.1,
                 duration: 0.3,
             })
+            tl.to(outerMenuItems, {
+                y: "-100%",
+                stagger: 0.1,
+                duration: 0.3,
+            }, "<")
             .to(backdropRef.current, {
                 opacity: 0,
-                duration: 0.3,
+                duration: 0.1,
                 zIndex: -1,
                 onComplete: () => {
                     backdropRef.current!.classList.add("hidden");

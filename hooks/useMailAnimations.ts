@@ -20,8 +20,8 @@ export function useMailAnimations() {
     const ref = useRef<THREE.Mesh>(null);
     const scroll_progress = useAnimationStore((s) => s.progress);
 
-    const animationStart = 4 / TOTALPAGES;
-    const animationEnd = 5 / TOTALPAGES
+    const animationStart = 4.2 / TOTALPAGES;
+    const animationEnd = 5.2 / TOTALPAGES
 
     useFrame(({ clock }) => {
         if (!ref.current) return;

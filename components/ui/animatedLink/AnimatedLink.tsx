@@ -8,11 +8,12 @@ import Link from "next/link";
 interface AnimatedLinkProps {
     linkTo: string;
     text: string;
+    autoTextSize?: boolean;
 }
 
 gsap.registerPlugin(SplitType);
 
-export default function AnimatedLink({ linkTo, text }: AnimatedLinkProps) {
+export default function AnimatedLink({ linkTo, text, autoTextSize=true }: AnimatedLinkProps) {
     const splitRefs = useRef<HTMLParagraphElement[]>([]);
     const splitInstances = useRef<SplitType[]>([]);
     const tlRef = useRef<gsap.core.Timeline | null>(null);
@@ -51,9 +52,8 @@ export default function AnimatedLink({ linkTo, text }: AnimatedLinkProps) {
                 onMouseLeave={handleLeave}
             >   
                 <div className="relative overflow-hidden">
-                    <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText site-text-size">{text}</p>
-                    <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText site-text-size">{text}</p>
-                    
+                    <p ref={(element) => { if (element) splitRefs.current[0] = element}} className={`splitText ${autoTextSize ? "site-text-size" : ""}`}>{text}</p>
+                    <p ref={(element) => { if (element) splitRefs.current[1] = element}} className={`absolute splitText ${autoTextSize ? "site-text-size" : ""}`}>{text}</p>
                 </div>
             </div>
         </Link>

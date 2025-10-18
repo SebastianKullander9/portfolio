@@ -6,8 +6,7 @@ import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import whiteStar from "../../../public/svgs/white-star.svg"
+import CarouseLDots from "./CarouselDots";
 
 gsap.registerPlugin(Draggable, InertiaPlugin);
 
@@ -15,7 +14,7 @@ export default function Carousel() {
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const [carouselCurve, setCarouselCurve] = useState<number>();
-    const [activeIndex, setActiveIndex] = useState<number>();
+    const [activeIndex, setActiveIndex] = useState<number>(0);
 
     useEffect(() => {
         const updateCurve = () => {
@@ -161,21 +160,14 @@ export default function Carousel() {
                             title={card.title}
                             text={card.text}
                             tags={card.tags}
+                            githubUrl={card.github}
                         />
                     </div>)
                 })}
             </div>
 
             <div className="w-full h-full flex justify-center items-center">
-                <div className="flex flex-row">
-                    {data.map((_, index) => (
-                        <div key={index} className="relative p-2">
-                            <div  className="p-1 rounded-full bg-white">
-                                <Image width={25} height={25} src={whiteStar} className={`absolute inset-0 transform transition-transform ${activeIndex === index ? "scale-80" : "scale-0"}`} alt="an svg illustration of a small star" />
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <CarouseLDots data={data} activeIndex={activeIndex} />
             </div>
         </div>
     );

@@ -8,7 +8,9 @@ export const data = [
             "React",
             "Vite",
             "Creative",
-        ]
+        ],
+        github: "https://github.com/SebastianKullander9/three-js-spinning-images",
+        url: "",
     },
     {
         id: "02",
@@ -20,7 +22,9 @@ export const data = [
             "Drei", 
             "Smooothy", 
             "Creative"
-        ]
+        ],
+        github: "",
+        url: "",
     },
     {
         id: "03",
@@ -33,7 +37,9 @@ export const data = [
             "Neo4j",
             "SQLite",
             "Backend"
-        ]
+        ],
+        github: "https://github.com/SebastianKullander9/music-discover",
+        url: "",
     },
     {
         id: "04",
@@ -48,7 +54,9 @@ export const data = [
             "e2e",
             "Backend",
             "Frontend"
-        ]
+        ],
+        github: "https://github.com/SebastianKullander9/stash-box-library",
+        url: "",
     },
     {
         id: "05",
@@ -61,7 +69,9 @@ export const data = [
             "Drei",
             "Frontend",
             "Creative"
-        ]
+        ],
+        github: "https://github.com/SebastianKullander9/portfolio",
+        url: "",
     },
 ];
 

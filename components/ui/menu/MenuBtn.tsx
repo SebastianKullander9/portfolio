@@ -45,7 +45,7 @@ export default function MenuBtn() {
         <>
             <div className="group cursor-pointer">
                 {/* relative */}
-                <div className="z-50 menu-icon" onClick={handleClick}>
+                <div className="z-[9999] menu-icon" onClick={handleClick}>
                     <div ref={spinnerRef} className="menu-icon-cross absolute inset-0">
                         <div className="w-5 h-5 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 group-hover:w-8 group-hover:h-8 transform duration-300">
                             <Image src={whiteStar} alt="" width={100} height={100} />

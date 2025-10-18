@@ -5,9 +5,9 @@ import AnimatedLink from "../ui/animatedLink/AnimatedLink";
 export default function Footer() {
     return (
         <footer className="w-full h-full text-white">
-            <div className="w-full  border-b-1"></div>
+            <div className="w-full  border-b-1 border-[#E0E0E0]"></div>
             <div className="w-full h-9/10 flex flex-col-reverse xl:flex-row ">
-                <div className="w-full xl:w-1/2 h-full xl:border-r-1 border-t-1">
+                <div className="w-full xl:w-1/2 h-full xl:border-r-1 border-t-1 xl:border-t-0 border-[#E0E0E0]">
                     <div className="w-full h-1/2 flex items-center site-x-padding">
                         <p className="text-xl xl:text-6xl font-medium max-w-prose leading-[1.6] xl:leading-[1.4]">Please feel free to contact me through <span className="special-heading text-lg xl:text-5xl underline underline-offset-3 xl:no-underline">Email</span> or the <span className="special-heading text-lg xl:text-5xl underline underline-offset-3 xl:no-underline">Contact form.</span></p>                        
                     </div>
@@ -47,7 +47,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="relative w-full xl:w-1/2 h-full 
-                    bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] 
+                    bg-[linear-gradient(to_right,#E0E0E0_1px,transparent_1px),linear-gradient(to_bottom,#E0E0E0_1px,transparent_1px)] 
                     bg-[size:60px_60px]
                     xl:bg-[size:150px_150px]
                     bg-[position:-1px_-1px]"
@@ -59,7 +59,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="w-full h-1/10 border-t-1 flex flex-row items-center justify-between site-x-padding site-text-size">
+            <div className="w-full h-1/10 border-[#E0E0E0] border-t-1 flex flex-row items-center justify-between site-x-padding site-text-size">
                 <p>Privacy Policy</p>
                 <p>Copyright © Sebastian Kullander</p>
             </div>

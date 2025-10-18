@@ -10,13 +10,18 @@ import { useLogoAnimations } from "@/hooks/useLogoAnimations";
 import { usePathname } from "next/navigation";
 import { useStats } from "@/hooks/useStats";
 import { useMailAnimations } from "@/hooks/useMailAnimations";
+import { useDevicePerformance } from "@/hooks/useDevicePerformance";
 
 export default function Scene() {
     const pathname = usePathname();
     const planeRef = useRef<THREE.Mesh>(null);
     const logoRef = useLogoAnimations();
     const mailRef = useMailAnimations();
+    const performanceTier = useDevicePerformance();
+
     useStats(0);
+
+    console.log(performanceTier);
 
     return (
         <>

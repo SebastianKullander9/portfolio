@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MenuBtn from "../menuBtn/MenuBtn";
+import MenuBtn from "../menu/MenuBtn";
 import skLogo from "../../../public/svgs/sklogo2.svg";
 import ClientHeaderWrapper from "./ClientHeaderWrapper";
 

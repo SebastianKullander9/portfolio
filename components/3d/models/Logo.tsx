@@ -5,7 +5,7 @@ import * as THREE from "three";
 
 import { modelConfig } from "../config/animationConfig";
 const {
-    MATERIAL,
+    TRANSMISSION_MATERIAL,
     POSITION,
     ROTATION,
     SCALE,
@@ -19,6 +19,7 @@ export default function Logo({ ref }: ModelProps) {
     const { nodes } = useGLTF("/models/sk-logo-compressed.glb") as unknown as {
         nodes: { [key: string]: THREE.Mesh }
     };
+    console.log("LOGOGO");
 
     const { viewport } = useThree();
     const vw = viewport.width;
@@ -36,7 +37,7 @@ export default function Logo({ ref }: ModelProps) {
                 scale={ scale }
                 rotation={ ROTATION }
             >
-                <MeshTransmissionMaterial {...MATERIAL} color={"#F5AEB9"} />
+                <MeshTransmissionMaterial  {...TRANSMISSION_MATERIAL} color={"#F5AEB9"} />
             </mesh>
         </group>
     );
