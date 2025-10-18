@@ -45,20 +45,6 @@ export const modelConfig = {
         INITIALPOSITIONY: -0.03,
         BOBBINGDISTANCE: 0.0025,
         BOBBINGSPEED: 4,
-        TRANSMISSION_MATERIAL: {
-            thickness: 0.9,
-            roughness: 0.1,
-            transmission: 1,
-            ior: 0.8,
-            anisotropy: 0.1,
-        },
-        STANDARD_MATERIAL: {
-            metalness: 0,
-            roughness: 0.05,
-            transmission: 0.9,
-            thickness: 0.5,
-            opacity: 1,
-        },
         POSITION: {
             DESKTOP: [0.059, -0.03, 4.781] as [number, number, number],
             TABLET: [0, -0.03, 4.781] as [number, number, number],
@@ -79,15 +65,27 @@ export const modelConfig = {
             MOBILE: [0.01, 0.01, 0.01] as [number, number, number],
         },
         ROTATION: [0, 0, 0] as [number, number, number],
-        MATERIAL: {
-            thickness: 0.5,
-            roughness: 0.05,
+    },
+    MATERIAL: {
+            TRANSMISSION_MATERIAL: {
+            thickness: 0.9,
+            roughness: 0.1,
             transmission: 1,
-            ior: 1.5,
-            chromaticAberration: 1,
+            ior: 0.8,
             anisotropy: 0.1,
-            distortion: 0.1,
-            distortionScale: 0.2
         },
+        PHYSICAL_MATERIAL: {
+            metalness: 0,
+            roughness: 0.05,
+            transmission: 0.9,
+            thickness: 0.5,
+            opacity: 1,
+        },
+        STANDARD_MATERIAL: {
+            metalness: 0,
+            roughness: 0.05,
+            opacity: 1,
+        },
+        COLOR: "#F5AEB9",
     }
 }

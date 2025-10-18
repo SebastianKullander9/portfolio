@@ -21,16 +21,14 @@ export default function Scene() {
 
     useStats(0);
 
-    console.log(performanceTier);
-
     return (
         <>
             <Plane ref={planeRef} />
             {pathname === "/" ? 
                 <>
-                    <Logo ref={logoRef} />
+                    <Logo ref={logoRef} performanceTier={performanceTier} />
                     <SlidingText />
-                    <Mail ref={mailRef} />
+                    <Mail ref={mailRef} performanceTier={performanceTier} />
                 </> : 
                 <>
                 </>

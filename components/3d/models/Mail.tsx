@@ -2,10 +2,10 @@ import React from "react";
 import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
+import useDetermineMeshMaterial from "@/hooks/useDetermineMeshMaterial";
 
 import { modelConfig } from "../config/animationConfig";
 const {
-    MATERIAL,
     POSITION,
     ROTATION,
     SCALE,
@@ -13,9 +13,10 @@ const {
 
 interface ModelProps {
     ref?: React.Ref<THREE.Mesh>;
+    performanceTier: "low" | "medium" | "high";
 }
 
-export default function Logo({ ref }: ModelProps) {
+export default function Logo({ ref, performanceTier }: ModelProps) {
     const { nodes } = useGLTF("/models/mail4.glb") as unknown as {
         nodes: { [key: string]: THREE.Mesh }
     };
@@ -24,6 +25,8 @@ export default function Logo({ ref }: ModelProps) {
     const vw = viewport.width;
 
     const scale = vw < 4 ? SCALE.MOBILE : vw < 10 ? SCALE.TABLET : SCALE.DESKTOP;
+
+    const material = useDetermineMeshMaterial(performanceTier);
 
     return (
         <group >
@@ -35,7 +38,7 @@ export default function Logo({ ref }: ModelProps) {
                 scale={scale}
                 rotation={ROTATION}
             >
-                <MeshTransmissionMaterial {...MATERIAL} color={"#F5AEB9"} />
+                {material}
             </mesh>
         </group>
     );
