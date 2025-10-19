@@ -13,10 +13,13 @@ function Canvas3d() {
                 position: CAMERA.position,
                 near: 0.01,
             }}
+            dpr={[1, 2]}
+            performance={{ min: 0.5 }}
             gl={{
                 toneMapping: THREE.ACESFilmicToneMapping,
                 toneMappingExposure: 1.0,
                 localClippingEnabled: true,
+                powerPreference: "high-performance"
             }}
         >
             <directionalLight position={ DIRECTIONALLIGHT.position } intensity={ DIRECTIONALLIGHT.intensity } />
