@@ -9,7 +9,7 @@ export default function useDetermineMeshMaterial(performanceTier: "low" | "mediu
     const material = useMemo(() => {
         switch (performanceTier) {
             case "low":
-                return <meshStandardMaterial {...STANDARD_MATERIAL} color={COLOR} />
+                return <meshPhysicalMaterial {...PHYSICAL_MATERIAL} color={COLOR} />
             case "medium":
                 return <meshPhysicalMaterial {...PHYSICAL_MATERIAL} color={COLOR} />
             case "high":
@@ -23,3 +23,4 @@ export default function useDetermineMeshMaterial(performanceTier: "low" | "mediu
     return material;
 }
  
+//<meshStandardMaterial {...STANDARD_MATERIAL} color={COLOR} />

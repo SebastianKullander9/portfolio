@@ -73,7 +73,7 @@ body {
 
 .marquee-inner span {
     display: inline-block;
-    padding-right: 2rem; /* space between text copies */
+    padding-right: 2rem;
 }
 
 @keyframes scroll-left {
@@ -92,6 +92,5 @@ body {
 
 [data-slider] > * {
     flex-shrink: 0;
-    width: 100%; /* or specific width */
-    /* Use padding for spacing, not CSS gap due to support issues */
+    width: 100%;
 }

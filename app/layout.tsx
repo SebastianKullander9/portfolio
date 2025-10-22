@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "../components/ui/header/Header";
 import { CanvasLoader } from "../components/canvas-loader/canvas-loader";
 import SmoothScroll from "@/components/ui/smoothScroll/SmoothScroll";
 
@@ -19,7 +18,6 @@ export default function RootLayout({
             <body
                 className={`antialiased`}
             >
-                <Header />
                 <SmoothScroll />
                 <CanvasLoader />
 

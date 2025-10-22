@@ -92,8 +92,27 @@ export default function TechStack() {
 
     return (
         <section className="w-screen h-screen">
-            <div className="relative w-screen h-4/10 flex items-center justify-center">
-                <h1 className="text-white text-8xl font-medium">MY TECH STACK</h1>
+            <div className="relative w-screen h-4/10 flex flex-row">
+                <div className="w-1/2 h-full flex items-center site-x-padding">
+                    <h1 className="text-white text-7xl special-heading">MY TECH STACK</h1>
+                </div>
+
+                <div className="w-1/2 h-full relative
+                ">
+                    <div className="w-full h-full
+                                bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)]
+                                bg-[size:60px_60px]
+                                xl:bg-[size:150px_150px]
+                                bg-[position:-1px_-1px]
+                                mask-[linear-gradient(to_left,rgba(0,0,0,1),rgba(0,0,0,0))]
+                                -webkit-mask-[linear-gradient(to_left,rgba(0,0,0,1),rgba(0,0,0,0))]"
+                    ></div>
+
+                    <Image src="/images/nanobanana-fixed.png" height={150} width={150} alt="" className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2 rotate-16" />
+
+                </div>
+
+                
             </div>
             <div className="absolute bottom-0 w-screen h-6/10 flex text-white">
                 {content.map((card, index) => 
@@ -117,11 +136,7 @@ export default function TechStack() {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="w-1/2 flex items-center justify-end">
-                                <Image className="transformImage" src={card.img.url} width={card.img.width} height={card.img.height} alt="" />
-                            </div>
                         </div>
-                        
                     </div>
                 )}
             </div>
