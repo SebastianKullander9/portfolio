@@ -1,6 +1,6 @@
 import Image from "next/image";
 import svgStar from "../../../public/svgs/white-star.svg";
-import ViewMoreBtn from "@/components/ui/viewMoreBtn/ViewMoreBtn";
+import ViewMoreBtn from "@/components/ui/buttons/viewMoreBtn/ViewMoreBtn";
 
 export default function About() {
     return (

@@ -20,7 +20,7 @@ function animatePosition(
     );
 }
 
-export function useMailAnimations() {
+export function useMailHomeAnimations() {
     const ref = useRef<THREE.Mesh>(null);
     const scroll_progress = useAnimationStore((s) => s.progress);
 

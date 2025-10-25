@@ -8,7 +8,7 @@
     }
 
     .site-y-padding {
-        @apply py-6 sm:py-10 md:py-16 lg:py-20 xl:px-28;
+        @apply py-6 sm:py-10 md:py-16 lg:py-20 xl:py-24;
     }
 
     .site-text-size {

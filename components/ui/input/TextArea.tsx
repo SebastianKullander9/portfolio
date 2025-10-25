@@ -1,34 +1,28 @@
-import React from "react";
-
 type InputProps = {
     value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     label: string;
     type: string;
     name: string;
-    required: boolean;
     placeholder: string;
 }
 
-function Input({ value, onChange, label, name, required, placeholder }: InputProps) {
-    console.log(`Render: ${name}`);
-
+export default function TextArea({ value, onChange, label, name, placeholder }: InputProps) {
     return (
         <div className="flex flex-col gap-8">
             <label htmlFor={name}>
                 {label}
             </label> 
-            <input
+            <textarea
                 id={name}
                 name={name}
                 value={value}
+                rows={5}
                 onChange={onChange}
-                required={required}
                 placeholder={placeholder}
+                required={true}
                 className="border-1 border-white p-8"
             />
         </div>
-    );
+    )
 }
-
-export default React.memo(Input);

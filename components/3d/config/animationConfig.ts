@@ -57,7 +57,7 @@ export const modelConfig = {
             MOBILE: [0.09, 0.09, 0.09] as [number, number, number],
         },
     },
-    MAIL: {
+    MAILHOME: {
         POSITION: [0, 2, 4.5] as [number, number, number],
         SCALE: {
             DESKTOP: [0.015, 0.015, 0.015] as [number, number, number],
@@ -65,6 +65,17 @@ export const modelConfig = {
             MOBILE: [0.01, 0.01, 0.01] as [number, number, number],
         },
         ROTATION: [0, 0, 0] as [number, number, number],
+    },
+    MAILCONTACT: {
+        POSITION: [0.25, 0, 4.3] as [number, number, number],
+        SCALE: {
+            DESKTOP: [0.03, 0.03, 0.03] as [number, number, number],
+            TABLET: [0.015, 0.015, 0.015] as [number, number, number],
+            MOBILE: [0.01, 0.01, 0.01] as [number, number, number],
+        },
+        ROTATION: [0, -1, -0.4] as [number, number, number],
+        BOBBINGDISTANCE: 0.0025,
+        BOBBINGSPEED: 4,
     },
     MATERIAL: {
             TRANSMISSION_MATERIAL: {

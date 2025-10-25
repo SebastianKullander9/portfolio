@@ -1,5 +1,5 @@
 import React from "react";
-import { MeshTransmissionMaterial, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import useDetermineMeshMaterial from "@/hooks/useDetermineMeshMaterial";
@@ -9,7 +9,7 @@ const {
     POSITION,
     ROTATION,
     SCALE,
-} = modelConfig.MAIL;
+} = modelConfig.MAILHOME;
 
 interface ModelProps {
     ref?: React.Ref<THREE.Mesh>;

@@ -4,7 +4,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import SplitType from "gsap/SplitText";
 import Image from "next/image";
-import svgStar from "../../../public/svgs/white-star.svg";
+import svgStar from "../../../../public/svgs/white-star.svg";
 import Link from "next/link";
 
 gsap.registerPlugin(SplitType);
