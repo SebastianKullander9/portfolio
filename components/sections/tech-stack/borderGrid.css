@@ -1,0 +1,11 @@
+.border-grid {
+    mask: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+    -webkit-mask: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+@media (min-width: 768px) {
+    .border-grid {
+        mask: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+        -webkit-mask: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+    }
+}
