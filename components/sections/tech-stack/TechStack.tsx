@@ -1,32 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { content } from "./data"
 import Image from "next/image"
-import "./BorderGrid.css";
+import "./borderGrid.css";
 import TechCard from "./TechCard";
 import gsap from "gsap";
+import { useDomViewport } from "@/hooks/useDomViewport";
+import { useCardTimelines } from "@/hooks/useCardTimelines";
 
 export default function TechStack() {
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
     cardRefs.current = [];
-    const timelineRefs = useRef<gsap.core.Timeline[]>([]);
-    const [width, setWidth] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
     const [activeCard, setActiveCard] = useState<number | null>(null);
     const hasInitialized = useRef(false);
+    const viewport = useDomViewport();
+    const timelineRefs = useCardTimelines({ cardRefs });
+    const { isMobile } = viewport;
 
-    useEffect(() => {
-        const handleWidth = () => {
-            const newWidth = window.innerWidth;
-            setWidth(newWidth);
-            setIsMobile(newWidth < 768);
-        };
-        handleWidth();
-
-        window.addEventListener("resize", handleWidth);
-        return () => window.removeEventListener("resize", handleWidth);
-    }, []);
+    console.log(viewport);
 
     useEffect(() => {
         cardRefs.current.forEach((card) => {
@@ -44,73 +36,46 @@ export default function TechStack() {
             if (!card) return;
             
             gsap.set(card, {
-                width: isMobile ? "auto" : "20%",
-                height: isMobile ? "20%" : "auto"
+                width: viewport.isMobile ? "auto" : "20%",
+                height: viewport.isMobile ? "20%" : "auto"
             });
         });
         
         hasInitialized.current = true;
-    }, [isMobile]);
- 
-    useEffect(() => {
-        cardRefs.current.forEach((card, index) => {
-            if (!card) return;
+    }, [viewport.isMobile]);
 
-            const listItems = card.querySelectorAll(".transformListItem");
-            const transformH2 = card.querySelector(".transformH2");
-            const scaleH2 = card.querySelector(".scaleH2");
-
-            timelineRefs.current[index] = gsap.timeline({ paused: true })
-                .to(scaleH2, { scaleY: 0, duration: 0.1, transformOrigin: "center center" })
-                .fromTo(transformH2, { y: "-100%" }, { y: "0%", duration: 0.3, ease: "power1.out" }, "+=0.3" )
-                .fromTo(listItems, { y: "-100%" }, { y: "0%", duration: 0.6, ease: "power1.out", stagger: 0.033 }, ">" )
-                
-        })
-    }, []);
-
-    const handleEnter = (index: number) => {
-        const isMobile = width < 768;
-        if (!cardRefs.current[index]) return;
-
-        timelineRefs.current[index]?.timeScale(1).play();
-
+    const animateCards = useCallback((expandedIndex: number | null) => {
         cardRefs.current.forEach((card, i) => {
             if (!card) return;
-
-            if (i === index) {
-                gsap.to(card, {
-                    [isMobile ? "height" : "width"]: isMobile ? "500px" : "40%",
-                    duration: 0.6, 
-                    ease: "power1.out"
-                });
+            
+            let size: string;
+            if (expandedIndex === null) {
+                size = isMobile ? "20vh" : "20%";
+            } else if (i === expandedIndex) {
+                size = isMobile ? "500px" : "40%";
             } else {
-                gsap.to(card, {
-                    [isMobile ? "height" : "width"]: isMobile ? "20vh" : "15%",
-                    duration: 0.6, 
-                    ease: "power1.out"
-                });
+                size = isMobile ? "20vh" : "15%";
             }
-        })
-    }
-
-    const handleLeave = (index: number) => {
-        const isMobile = width < 768;
-        if (!cardRefs.current[index]) return;
-
-        timelineRefs.current[index]?.timeScale(5).reverse();
-
-        cardRefs.current.forEach((card) => {
-            if (!card) return;
-
+            
             gsap.to(card, {
-                [isMobile ? "height" : "width"]: isMobile ? "20vh" : "20%",
-                duration: 0.6, 
+                [isMobile ? "height" : "width"]: size,
+                duration: 0.6,
                 ease: "power1.out"
             });
-        })
-    }
+        });
+    }, [isMobile]);
 
-    const handleClick = (index: number) => {
+        const handleEnter = useCallback((index: number) => {
+        timelineRefs.current[index]?.timeScale(1).play();
+        animateCards(index);
+    }, [animateCards, timelineRefs]);
+
+    const handleLeave = useCallback((index: number) => {
+        timelineRefs.current[index]?.timeScale(5).reverse();
+        animateCards(null);
+    }, [animateCards, timelineRefs]);
+
+    const handleClick = useCallback((index: number) => {
         if (activeCard === index) {
             handleLeave(index);
             setActiveCard(null);
@@ -121,7 +86,7 @@ export default function TechStack() {
             handleEnter(index);
             setActiveCard(index);
         }
-    }
+    }, [activeCard, handleEnter, handleLeave]);
 
     return (
         <section className="relative w-screen md:h-screen flex flex-col text-white">
