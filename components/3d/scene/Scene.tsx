@@ -6,15 +6,14 @@ import Plane from "../models/Plane";
 import Logo from "../models/Logo";
 import SlidingText from "../models/SlidingText";
 import Mail from "../models/Mail";
-import { useLogoAnimations } from "@/hooks/useLogoAnimations";
+import { useLogoAnimations } from "@/hooks/animations/useLogoAnimations";
 import { usePathname } from "next/navigation";
-import { useStats } from "@/hooks/useStats";
-import { useMailHomeAnimations } from "@/hooks/useMailHomeAnimations";
-import { useMailContactAnimations } from "@/hooks/useMailContactAnimations";
-import { useSlidingTextAnimations } from "@/hooks/useSlidingTextAnimations";
-import { useDevicePerformance } from "@/hooks/useDevicePerformance";
-import { useFrameManager } from "@/hooks/useFrameManager";
-
+import { useStats } from "@/hooks/performance/useStats";
+import { useMailHomeAnimations } from "@/hooks/animations/useMailHomeAnimations";
+import { useMailContactAnimations } from "@/hooks/animations/useMailContactAnimations";
+import { useSlidingTextAnimations } from "@/hooks/animations/useSlidingTextAnimations";
+import { useDevicePerformance } from "@/hooks/performance/useDevicePerformance";
+import { useFrameManager } from "@/hooks/performance/useFrameManager";
 
 export default function Scene() {
     const pathname = usePathname();

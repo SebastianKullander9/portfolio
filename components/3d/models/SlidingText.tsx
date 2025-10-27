@@ -1,5 +1,5 @@
 import { Text } from "@react-three/drei";
-import { useSlidingTextAnimations } from "@/hooks/useSlidingTextAnimations";
+import { useSlidingTextAnimations } from "@/hooks/animations/useSlidingTextAnimations";
 import { slidingTextConfig } from "../config/animationConfig";
 import { RefObject } from "react";
 import * as THREE from "three";

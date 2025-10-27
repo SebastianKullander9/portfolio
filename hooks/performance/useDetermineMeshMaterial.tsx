@@ -2,7 +2,7 @@
 import React, { useMemo } from "react";
 import { MeshTransmissionMaterial } from "@react-three/drei";
 
-import { modelConfig } from "../components/3d/config/animationConfig";
+import { modelConfig } from "../../components/3d/config/animationConfig";
 const { TRANSMISSION_MATERIAL, STANDARD_MATERIAL, PHYSICAL_MATERIAL, COLOR } = modelConfig.MATERIAL;
 
 export default function useDetermineMeshMaterial(performanceTier: "low" | "medium" | "high") {

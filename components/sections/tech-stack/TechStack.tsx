@@ -6,8 +6,9 @@ import Image from "next/image"
 import "./borderGrid.css";
 import TechCard from "./TechCard";
 import gsap from "gsap";
-import { useDomViewport } from "@/hooks/useDomViewport";
-import { useCardTimelines } from "@/hooks/useCardTimelines";
+import { useDomViewport } from "@/hooks/ui/useDomViewport";
+import { useCardTimelines } from "@/hooks/animations/useCardTimelines";
+import { useCardHeights } from "@/hooks/ui/useDetermineCardHeights";
 
 export default function TechStack() {
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -18,7 +19,7 @@ export default function TechStack() {
     const timelineRefs = useCardTimelines({ cardRefs });
     const { isMobile } = viewport;
 
-    console.log(viewport);
+    const cardHeights = useCardHeights({ cardRefs, isMobile });
 
     useEffect(() => {
         cardRefs.current.forEach((card) => {
@@ -52,7 +53,7 @@ export default function TechStack() {
             if (expandedIndex === null) {
                 size = isMobile ? "20vh" : "20%";
             } else if (i === expandedIndex) {
-                size = isMobile ? "500px" : "40%";
+                size = isMobile ? `${cardHeights[i]}px` : "40%";
             } else {
                 size = isMobile ? "20vh" : "15%";
             }
@@ -63,7 +64,7 @@ export default function TechStack() {
                 ease: "power1.out"
             });
         });
-    }, [isMobile]);
+    }, [isMobile, cardHeights]);
 
         const handleEnter = useCallback((index: number) => {
         timelineRefs.current[index]?.timeScale(1).play();
@@ -87,7 +88,7 @@ export default function TechStack() {
             setActiveCard(index);
         }
     }, [activeCard, handleEnter, handleLeave]);
-
+    
     return (
         <section className="relative w-screen md:h-screen flex flex-col text-white">
             <div className="w-full h-5/10 flex flex-col md:flex-row items-center border-b-1 border-white">

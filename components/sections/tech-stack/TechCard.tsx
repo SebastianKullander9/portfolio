@@ -14,7 +14,7 @@ export default function TechCard({ id, title, technologies, onMouseEnter, onMous
     return (
         <div 
             ref={ref} 
-            className="w-full md:w-[25%] h-[25vh] md:h-full border-r-0 md:border-r-1 border-b-1 md:border-b-0 border-white p-8 overflow-hidden"
+            className="w-full md:w-[25%] h-[20vh] md:h-full border-r-0 md:border-r-1 border-b-1 md:border-b-0 border-white p-8 overflow-hidden"
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
             onClick={onClick}
