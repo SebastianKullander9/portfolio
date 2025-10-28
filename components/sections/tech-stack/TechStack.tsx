@@ -115,6 +115,7 @@ export default function TechStack() {
                         id={card.id}
                         title={card.title}
                         technologies={card.list}
+                        icon={card.icon}
                         onMouseEnter={isMobile ? undefined : () => handleEnter(index)}
                         onMouseLeave={isMobile ? undefined : () => handleLeave(index)}
                         onClick={isMobile ? () => handleClick(index) : undefined}

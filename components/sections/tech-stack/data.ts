@@ -3,79 +3,79 @@ export const content = [
         id: "01",
         title: "Frontend",
         list: [
-            "React.js",
-            "Next.js",
-            "Tailwind",
-            "Typescript/Javascript",
-            "HTML5",
-            "CSS3",
+            { title: "React.js", iconUrl: "/svgs/frontend/react.svg" },
+            { title: "Next.js", iconUrl: "/svgs/frontend/next.svg" },
+            { title: "Tailwind", iconUrl: "/svgs/frontend/tailwind.svg" },
+            { title: "Typescript/Javascript", iconUrl: "/svgs/frontend/javascript.svg"  },
+            { title: "HTML5", iconUrl: "/svgs/frontend/html.svg" },
+            { title: "CSS3", iconUrl: "/svgs/frontend/css.svg" },
         ],
-        img: {
-            url: "/tech-images/frontend-transparent-bg.png",
-            width: 200,
-            height: 200,
+        icon: {
+            url: "/svgs/noun-frontend-4.svg",
+            width: 50,
+            height: 50,
         }
     },
     {
         id: "02",
         title: "Backend",
         list: [
-            "Node.js",
-            "NestJS",
-            "Express",
-            "Fastify",
-            "RESTful APIs, GraphQL",
+            { title: "Node.js", iconUrl: "/svgs/backend/node.svg" },
+            { title: "NestJS", iconUrl: "/svgs/backend/nest.svg" },
+            { title: "Express", iconUrl: "/svgs/backend/express.svg" },
+            { title: "Fastify", iconUrl: "/svgs/backend/fastify.svg" },
+            { title: "RESTful APIs, GraphQL", iconUrl: "/svgs/backend/graphql.svg" },
         ],
-        img: {
-            url: "/tech-images/cogwheel-transparent-bg.png",
-            width: 200,
-            height: 200
+        icon: {
+            url: "/svgs/noun-backend-1.svg",
+            width: 50,
+            height: 50,
         }
     },
     {
         id: "03",
         title: "Databases",
         list: [
-            "PostgreSQL",
-            "MySQL",
-            "SQLite",
-            "MongoDB",
-            "Supabase",
+            { title: "PostgreSQL", iconUrl: "/svgs/databases/postgresql.svg" },
+            { title: "MySQL", iconUrl: "/svgs/databases/mysql.svg" },
+            { title: "SQLite", iconUrl: "/svgs/databases/sqlite.svg" },
+            { title: "MongoDB", iconUrl: "/svgs/databases/mongodb.svg" },
+            { title: "Supabase", iconUrl: "/svgs/databases/supabase.svg" },
         ],
-        img: {
-            url: "/tech-images/cylinder-transparent-bg.png",
-            width: 150,
-            height: 150
+        icon: {
+            url: "/svgs/noun-database-3.svg",
+            width: 50,
+            height: 50,
         }
     },
     {
         id: "04",
         title: "Tools",
         list: [
-            "Git",
-            "GitHub",
-            "Vercel",
+            { title: "Git", iconUrl: "/svgs/tools/git.svg" },
+            { title: "GitHub", iconUrl: "/svgs/tools/github.svg" },
+            { title: "Vercel", iconUrl: "/svgs/tools/vercel.svg" },
         ],
-        img: {
-            url: "/tech-images/version-control-transparent-bg.png",
-            width: 100,
-            height: 100
+        icon: {
+            url: "/svgs/noun-hosting-2.svg",
+            width: 50,
+            height: 50,
         }
     },
     {
         id: "05",
         title: "Creative",
         list: [
-            "Three.js",
-            "React Three Fiber",
-            "Drei",
-            "GSAP",
-            "Lenis",
+            { title: "Three.js", iconUrl: "/svgs/creative/threedotjs.svg" },
+            { title: "React Three Fiber", iconUrl: "" },
+            { title: "Drei", iconUrl: "" },
+            { title: "GSAP", iconUrl: "/svgs/creative/gsap.svg" },
+            { title: "Lenis", iconUrl: "" },
         ],
-        img: {
-            url: "/tech-images/",
-            width: 200,
-            height: 200
+        icon: {
+            url: "/svgs/noun-creative-1.svg",
+            width: 70,
+            height: 70,
         }
     },
 ];

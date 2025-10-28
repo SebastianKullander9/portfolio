@@ -17,9 +17,11 @@ export function useCardTimelines({ cardRefs }: useCardTimelinesProps) {
             const listItems = card.querySelectorAll(".transformListItem");
             const transformH2 = card.querySelector(".transformH2");
             const scaleH2 = card.querySelector(".scaleH2");
+            const scaleIcon = card.querySelector(".scaleIcon");
             
             timelineRefs.current[index] = gsap.timeline({ paused: true })
                 .to(scaleH2, { scaleY: 0, duration: 0.1, transformOrigin: "center center" })
+                .to(scaleIcon, { scaleY: 0, scaleX: 0, duration: 0.1, transformOrigin: "center center"})
                 .fromTo(transformH2, { y: "-100%" }, { y: "0%", duration: 0.3, ease: "power1.out" }, "+=0.3" )
                 .fromTo(listItems, { y: "-100%" }, { y: "0%", duration: 0.6, ease: "power1.out", stagger: 0.033 }, ">" )
         });
