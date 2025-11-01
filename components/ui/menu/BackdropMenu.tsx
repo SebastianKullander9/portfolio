@@ -11,6 +11,7 @@ interface BackdropMenuProps {
 export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
     const menuItemsRef = useRef<HTMLDivElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
+    const tlRef = useRef<gsap.core.Timeline | null>(null);
 
     useEffect(() => {
         if (!menuItemsRef.current || !backdropRef.current) return;
@@ -22,6 +23,10 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
                 backdropRef.current!.classList.remove("hidden");
             }
         });
+
+        if (tlRef.current) {
+            tlRef.current.kill();
+        }
 
         if (isOpen) {
             tl.to(backdropRef.current, {
@@ -69,6 +74,9 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
                 }
             });
         }
+
+        tlRef.current = tl;
+
     }, [isOpen]);
 
     return (

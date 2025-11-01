@@ -33,7 +33,6 @@ export default function BackdropMenuContent({ ref }: { ref?: RefObject<HTMLDivEl
                             <Image src={arrowRight} width={34} height={34} alt="" className="invert group-hover:scale-120 transition-transform duration-200" />
                         </div>
                     </Link>
-                    <p className="outerMenuItem"></p>
                     <Link href="https://www.linkedin.com/in/sebastian-kullander-9922b9133/" target="_blank">
                         <div className="outerMenuItem flex flex-row group cursor-pointer items-center">
                             <p>LinkedIn</p>
@@ -42,8 +41,8 @@ export default function BackdropMenuContent({ ref }: { ref?: RefObject<HTMLDivEl
                     </Link>
                 </div>
 
-                <div>
-                    <p className="text-sm">Copyright © Sebastian Kullander</p>
+                <div className="overflow-hidden">
+                    <p className="text-sm outerMenuItem">Copyright © Sebastian Kullander</p>
                 </div>
             </div>
         </div>

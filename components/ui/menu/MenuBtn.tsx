@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useLenis } from "lenis/react";
 import Image from "next/image";
 import whiteStar from "../../../public/svgs/white-star.svg";
 import BackdropMenu from "./BackdropMenu";
@@ -12,10 +13,25 @@ export default function MenuBtn() {
     const [isOpen, setIsOpen] = useState(false);
     const tlRef = useRef<gsap.core.Timeline | null>(null);
     const [isAnimating, setIsAnimating] = useState(false);
+    const lenis = useLenis();
 
     if (!tlRef.current) {
         tlRef.current = gsap.timeline({ defaults: { duration: 0.2 }, paused: true });
-    }
+    };
+
+    useEffect(() => {
+        if (!lenis) return;
+
+        if (isOpen) {
+            lenis.stop();
+        } else {
+            lenis.start();
+        }
+
+        return () => {
+            lenis.start();
+        };
+    }, [isOpen, lenis]);
 
     const handleClick = () => {
         if (!spinnerRef.current || isAnimating) return;
@@ -24,7 +40,10 @@ export default function MenuBtn() {
 
         const tl = gsap.timeline({
             defaults: { duration: 0.2 },
-            onComplete: () => setIsAnimating(false)
+            onComplete: () => {
+                setIsAnimating(false)
+                setIsOpen(!isOpen);
+            }
         });
 
         if (!isOpen) {
@@ -38,7 +57,6 @@ export default function MenuBtn() {
         }
 
         tl.play();
-        setIsOpen(!isOpen);
     };
 
     return (

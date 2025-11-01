@@ -17,10 +17,6 @@ function SmoothScroll() {
     useEffect(() => {
         if(!lenis) return;
 
-        /*const currentScroll = lenis.scroll;
-        const maxScroll = document.body.scrollHeight - window.innerHeight;
-        setScroll(currentScroll, maxScroll);*/
-
         lenis.on("scroll", ({ scroll }) => {
             const maxScroll = document.body.scrollHeight - window.innerHeight;
             setScroll(scroll, maxScroll);
