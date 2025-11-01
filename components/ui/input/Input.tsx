@@ -8,11 +8,11 @@ type InputProps = {
     name: string;
     required: boolean;
     placeholder: string;
+    minLength?: number;
+    maxLength?: number;
 }
 
-function Input({ value, onChange, label, name, required, placeholder }: InputProps) {
-    console.log(`Render: ${name}`);
-
+function Input({ value, onChange, label, type, name, required, placeholder, minLength, maxLength }: InputProps) {
     return (
         <div className="flex flex-col gap-8">
             <label htmlFor={name}>
@@ -22,9 +22,12 @@ function Input({ value, onChange, label, name, required, placeholder }: InputPro
                 id={name}
                 name={name}
                 value={value}
+                type={type}
                 onChange={onChange}
                 required={required}
                 placeholder={placeholder}
+                minLength={minLength}
+                maxLength={maxLength}
                 className="border-1 border-white p-8"
             />
         </div>

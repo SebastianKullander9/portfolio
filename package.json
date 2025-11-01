@@ -12,6 +12,7 @@
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.3.0",
+    "@vercel/edge": "^1.2.2",
     "embla-carousel": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "glslify": "^7.1.1",

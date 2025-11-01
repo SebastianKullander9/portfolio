@@ -36,6 +36,14 @@ export default function StepFill({ formData, handleChange, setFormProgress } : S
                 <p className="">* required fields</p>
             </div>
             <form ref={formRef} className="flex flex-col gap-24" onSubmit={(e) => e.preventDefault()}>
+                <input 
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="absolute left-[-9999px] w-[1px] h-[1px]"
+                />
+
                 {inputData.map((field) => (
                     <Input 
                         key={field.name}
@@ -46,6 +54,8 @@ export default function StepFill({ formData, handleChange, setFormProgress } : S
                         onChange={handleChange}
                         required={field.required}
                         placeholder={field.placeholder}
+                        minLength={field.minLength}
+                        maxLength={field.maxLength}
                     />
                 ))}
                 <TextArea 

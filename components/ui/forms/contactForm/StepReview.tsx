@@ -21,17 +21,13 @@ export default function StepReview({ formData, setFormProgress }: StepReviewProp
 
         try {
             const submitData = new FormData();
+            submitData.append("website", "");
             submitData.append("name", formData.name);
+            submitData.append("company", formData.company);
             submitData.append("email", formData.email);
-
-            const fullMessage = `
-                ${formData.message}
-                ---
-                Company: ${formData.company || "N/A" }
-                Phone: ${formData.phone || "N/A" }
-            `.trim();
-
-            submitData.append("message", fullMessage);
+            submitData.append("phone", formData.phone);
+            submitData.append("message", formData.message);
+            submitData.append("privacy", String(formData.privacy));
 
             const result = await sendContactEmail(submitData);
 
@@ -50,7 +46,7 @@ export default function StepReview({ formData, setFormProgress }: StepReviewProp
 
     return (
         <div className="flex flex-col gap-12">
-            <h2 className="text-2xl">
+            <h2 className="heading-3 font-normal">
                 Please review your information before submitting.
             </h2>
             
@@ -62,15 +58,15 @@ export default function StepReview({ formData, setFormProgress }: StepReviewProp
 
                     return (
                         <div key={input.name}>
-                            <h3 className="text-gray-200">{input.label}</h3>
-                            <p>{formData[inputName]}</p>
+                            <h3 className="body text-gray-200">{input.label}</h3>
+                            <p className="body-large">{formData[inputName]}</p>
                         </div>
                     );
                 })}
 
                 <div>
-                    <h3 className="text-gray-200">Message</h3>
-                    <p>{formData.message}</p>
+                    <h3 className="body text-gray-200">Message</h3>
+                    <p className="body-large">{formData.message}</p>
                 </div>
             </div>
 

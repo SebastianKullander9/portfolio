@@ -21,6 +21,8 @@ export default function TextArea({ value, onChange, label, name, placeholder }: 
                 onChange={onChange}
                 placeholder={placeholder}
                 required={true}
+                minLength={10}
+                maxLength={5000}
                 className="border-1 border-white p-8"
             />
         </div>
