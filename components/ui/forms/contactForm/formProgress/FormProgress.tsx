@@ -15,7 +15,7 @@ export default function FormProgress({ formProgress }: FormProgressProps) {
                 <React.Fragment key={step.number}>
                     <div className="flex flex-col md:flex-row items-center gap-4 relative" style={{ color: formProgress == index ? "black" : "white" }}>
                         <div style={{ backgroundColor: formProgress == index ? "white" : "" }} className="relative w-12 h-12 border-1 border-white rounded-full backdrop-blur-sm bg-white/20">
-                            <p className="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2">0{step.number}</p>
+                            <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">0{step.number}</p>
                         </div>
 
                         {index < steps.length - 1 && (

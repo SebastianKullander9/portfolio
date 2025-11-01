@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
@@ -33,7 +33,6 @@ export default function Logo({ ref, performanceTier }: ModelProps) {
             <mesh 
                 ref={ref} 
                 geometry={nodes.Cube.geometry}
-                material={nodes.Cube.material}
                 position={POSITION} 
                 scale={scale}
                 rotation={ROTATION}

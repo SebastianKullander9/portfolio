@@ -14,7 +14,6 @@ const {
 
 export function useSlidingTextAnimations() {
     const scroll_progress = useAnimationStore((s) => s.progress);
-
     const refs = useRef<THREE.Mesh[]>([]);
 
     const textWidth = useMemo(() => TEXT.length * FONTSIZE * CHARWITHESTIMATE,[]);

@@ -2,28 +2,19 @@ import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import { useAnimationStore } from "@/store/useAnimationStore";
 import { modelConfig } from "@/components/3d/config/animationConfig";
+import { useFadeInAnimation } from "./useFadeInAnimation";
 
 const { MAILCONTACT } = modelConfig;
 const { BOBBINGDISTANCE, BOBBINGSPEED, POSITION, ROTATION, SCALE } = MAILCONTACT; 
 
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
 
-function animatePosition(
-    start: number[],
-    end: number[],
-    t: number,
-    target: THREE.Mesh
-) {
-    target.position.set(
-        lerp(start[0], end[0], t),
-        lerp(start[1], end[1], t),
-        lerp(start[2], end[2], t)
-    );
-}
-
 export function useMailContactAnimations() {
     const ref = useRef<THREE.Mesh>(null);
     const scroll_progress = useAnimationStore((s) => s.progress);
+
+    const { applyFadeIn } = useFadeInAnimation();
+
     const [windowHeight, setWindowHeight] = useState(0);
 
     useEffect(() => {
@@ -36,12 +27,6 @@ export function useMailContactAnimations() {
         return () => document.removeEventListener("resize", setHeight);
     }, [windowHeight])
 
-    if (ref.current) {
-        ref.current.position.set( ...POSITION );
-        ref.current.rotation.set( ...ROTATION );
-        ref.current.scale.set( ...SCALE.DESKTOP);
-    }
-
     const animationStart = 0.1;
     const animationEnd = 1.001;
 
@@ -49,6 +34,10 @@ export function useMailContactAnimations() {
         if (!ref.current) return;
 
         const time = clock.getElapsedTime();
+
+        ref.current.position.set(...POSITION);
+        ref.current.rotation.set(...ROTATION);
+        ref.current.scale.set(...SCALE.DESKTOP);
 
         if (scroll_progress > animationStart && scroll_progress < animationEnd) {
             const t =
@@ -62,6 +51,8 @@ export function useMailContactAnimations() {
         } else {
             ref.current.position.y = POSITION[1] + BOBBINGDISTANCE * Math.sin(time * BOBBINGSPEED);
         }
+
+        applyFadeIn(ref.current, time, SCALE.DESKTOP);
     }
 
     return { ref, animate };

@@ -1,9 +1,14 @@
 import { useRef } from "react";
 import * as THREE from "three";
 import { useAnimationStore } from "@/store/useAnimationStore";
+import { useFadeInAnimation } from "./useFadeInAnimation";
 import { pageConfig } from "@/components/3d/config/animationConfig";
+import { modelConfig } from "@/components/3d/config/animationConfig";
+import { useDomViewport } from "../ui/useDomViewport";
 
 const { TOTALPAGES } = pageConfig;
+const { MAILHOME } = modelConfig;
+const { SCALE } = MAILHOME;
 
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
 
@@ -23,9 +28,14 @@ function animatePosition(
 export function useMailHomeAnimations() {
     const ref = useRef<THREE.Mesh>(null);
     const scroll_progress = useAnimationStore((s) => s.progress);
+    const { isMobile } = useDomViewport();
 
-    const animationStart = 4.2 / TOTALPAGES;
-    const animationEnd = 5.2 / TOTALPAGES;
+    const { applyFadeIn } = useFadeInAnimation(); 
+
+    const animationStart = 3.5 / TOTALPAGES;
+    const animationEnd = 5.7 / TOTALPAGES;
+    
+    const scale = isMobile ? SCALE.MOBILE : SCALE.TABLET;
 
     const animate = ({ clock }: { clock: THREE.Clock }) => {
         if (!ref.current) return;
@@ -40,6 +50,7 @@ export function useMailHomeAnimations() {
         }
 
         ref.current.rotation.y += 0.004;
+        applyFadeIn(ref.current, time, scale);
     };
 
     return { ref, animate };
