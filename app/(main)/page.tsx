@@ -9,13 +9,13 @@ export default function Home() {
 		<>
 			<div className="relative w-[100%] h-screen">
 
-				<section className="w-[100%] h-screen">
+				<section className="w-[100%] h-[100lvh]">
 					<HomeView />
 				</section>
 
 				<section className="w-[100%] h-screen"></section>
 				
-				<section className="w-[100%] h-screen">
+				<section className="w-[100%] h-[200vh]">
 					<About />
 				</section>
 

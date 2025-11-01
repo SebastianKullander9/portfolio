@@ -12,8 +12,8 @@ export const content = [
         ],
         icon: {
             url: "/svgs/noun-frontend-4.svg",
-            width: 50,
-            height: 50,
+            width: 45,
+            height: 45,
         }
     },
     {
@@ -28,8 +28,8 @@ export const content = [
         ],
         icon: {
             url: "/svgs/noun-backend-1.svg",
-            width: 50,
-            height: 50,
+            width: 45,
+            height: 45,
         }
     },
     {

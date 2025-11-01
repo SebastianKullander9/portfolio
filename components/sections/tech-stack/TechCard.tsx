@@ -32,18 +32,13 @@ export default function TechCard({ id, title, technologies, icon, onMouseEnter, 
             onClick={onClick}
         >
             <div className="flex flex-row justify-between font-bold items-center overflow-hidden relative">
-                <p className="text-4xl">{id}</p>
-                <h2 className="transformH2 text-xl sm:text-2xl md:text-3xl xl:text-4xl">{title}</h2>
+                <p className="heading-4">{id}</p>
+                <h2 className="transformH2 heading-4">{title}</h2>
             </div>
-            <div className="scaleIcon bg-white/20 backdrop-blur-xl h-25 w-25 rounded-bl-3xl absolute right-0 top-0">
-                <div className="w-full h-full relative">
-                    <Image src={icon.url} width={icon.width} height={icon.height} alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2" />
-                </div>
-            </div>
-            <h2 className="scaleH2 text-xl sm:text-2xl md:text-3xl xl:text-4xl font-bold mt-12">
+            <h2 className="scaleH2 heading-4 font-bold mt-12">
                 {title}
             </h2>
-            <ul>
+            <ul className="flex flex-col gap-4">
                 {technologies.map((t) => (
                     <li key={t.title} className="overflow-hidden">
                         <div className="transformListItem flex flex-row gap-4 items-center">
@@ -52,7 +47,7 @@ export default function TechCard({ id, title, technologies, icon, onMouseEnter, 
                             ) : (
                                 <Image src={t.iconUrl} width={35} height={35} alt="" className="invert" />
                             )}
-                            <p className="text-3xl/14 font-medium">
+                            <p className="body-large font-medium">
                                 {t.title}
                             </p>
                             

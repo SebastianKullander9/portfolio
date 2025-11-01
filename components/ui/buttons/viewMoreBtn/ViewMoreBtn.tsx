@@ -48,8 +48,8 @@ export default function ViewMoreBtn({ linkTo }: { linkTo: string }) {
                 onMouseLeave={handleLeave}
             >   
                 <div className="relative overflow-hidden">
-                    <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText site-text-size">View More</p>
-                    <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText site-text-size">View More</p>
+                    <p ref={(element) => { if (element) splitRefs.current[0] = element}} className="splitText body-large">View More</p>
+                    <p ref={(element) => { if (element) splitRefs.current[1] = element}} className=" absolute splitText body-large">View More</p>
                     
                 </div>
                 <div className="relative w-8 sm:w-11 h-8 sm:h-11 rounded-full border-1 backdrop-blur-sm bg-white/20 group-hover:scale-85 transition-transform duration-400">

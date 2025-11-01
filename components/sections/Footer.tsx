@@ -9,10 +9,13 @@ export default function Footer() {
             <div className="w-full h-9/10 flex flex-col-reverse xl:flex-row ">
                 <div className="w-full xl:w-1/2 h-full xl:border-r-1 border-t-1 xl:border-t-0 border-[#E0E0E0]">
                     <div className="w-full h-1/2 flex items-center site-x-padding">
-                        <p className="text-xl xl:text-6xl font-medium max-w-prose leading-[1.6] xl:leading-[1.4]">Please feel free to contact me through <span className="special-heading text-lg xl:text-5xl underline underline-offset-3 xl:no-underline">Email</span> or the <span className="special-heading text-lg xl:text-5xl underline underline-offset-3 xl:no-underline">Contact form.</span></p>                        
+                        <p className="heading-2 font-normal max-w-prose leading-[1.6] xl:leading-[1.4]">Please feel free to contact me through 
+                            <span className="special-heading heading-3 font-normal underline underline-offset-3 xl:no-underline"> Email </span> 
+                            or the 
+                            <span className="special-heading heading-3 font-normal underline underline-offset-3 xl:no-underline"> Contact form.</span></p>                        
                     </div>
                     <div className="h-1/2 flex flex-row site-x-padding justify-between items-center">
-
+                    <div>
                         <div className="relative w-25 h-25">
                             <Image 
                                 src={skLogo} 
@@ -21,23 +24,27 @@ export default function Footer() {
                                 alt="Image of the websites logo. The letters S and K."
                             />
                         </div>
+                    </div>
                         <div className="flex flex-row gap-4 xl:gap-12">
                             <div className="flex flex-col gap-4 xl:gap-8">
-                                <h1 className="text-sm xl:text-lg font-medium">MENU</h1>
-                                <div className="site-text-size">
+                                <h1 className="body-large font-medium">MENU</h1>
+                                <div className="body">
                                     <AnimatedLink linkTo="" text="Top" />
                                     <AnimatedLink linkTo="" text="About" />
                                     <AnimatedLink linkTo="" text="Projects" />
-                                    <AnimatedLink linkTo="" text="Contacts" />
+                                    <AnimatedLink linkTo="" text="Contact" />
                                 </div>
                             </div>
                             <div className="flex flex-col gap-4 xl:gap-8">
-                                <h1 className="text-sm xl:text-lg font-medium">EXPLORE</h1>
-                                <AnimatedLink linkTo="" text="My stack" />
+                                <h1 className="body-large font-medium">EXPLORE</h1>
+                                <div className="body">
+                                    <AnimatedLink linkTo="" text="My stack" />
+                                    <AnimatedLink linkTo="" text="Contact" />
+                                </div>
                             </div>
                             <div className="flex flex-col gap-4 xl:gap-8">
-                                <h1 className="text-sm xl:text-lg font-medium">SOCIALS</h1>
-                                <div className="site-text-size">
+                                <h1 className="body-large font-medium">SOCIALS</h1>
+                                <div className="body">
                                     <AnimatedLink linkTo="" text="GitHub" />
                                     <AnimatedLink linkTo="" text="LinkedIn" />
                                 </div>
@@ -59,7 +66,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="w-full h-1/10 border-[#E0E0E0] border-t-1 flex flex-row items-center justify-between site-x-padding site-text-size">
+            <div className="w-full h-1/10 border-[#E0E0E0] border-t-1 flex flex-row items-center justify-between site-x-padding body-small">
                 <p>Privacy Policy</p>
                 <p>Copyright © Sebastian Kullander</p>
             </div>

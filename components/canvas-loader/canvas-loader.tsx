@@ -8,7 +8,7 @@ const Canvas = dynamic(() => import("../3d/canvas-3d/Canvas3d"), {
 
 export function CanvasLoader() {
     return (
-        <div className="fixed inset-0">
+        <div className="fixed inset-0 h-[100lvh]">
             <Canvas />
         </div>
     );

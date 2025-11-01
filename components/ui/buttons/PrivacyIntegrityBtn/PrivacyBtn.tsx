@@ -23,7 +23,7 @@ export default function PrivacyBtn({ checked, onChange }: PrivacyBtnProps) {
             </span>
             <Link 
                 href="/"
-                className="hover:underline underline-offset-4 text-sm md:text-xl"
+                className="hover:underline underline-offset-4 body-small"
             >
                 I have read and agree to the Privacy Policy.
             </Link>

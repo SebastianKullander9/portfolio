@@ -51,7 +51,7 @@ export default function AnimatedLink({ linkTo, text, autoTextSize=true }: Animat
                 onMouseEnter={handleEnter}
                 onMouseLeave={handleLeave}
             >   
-                <div className="relative overflow-hidden">
+                <div className="relative pr-1 overflow-hidden">
                     <p ref={(element) => { if (element) splitRefs.current[0] = element}} className={`splitText ${autoTextSize ? "site-text-size" : ""}`}>{text}</p>
                     <p ref={(element) => { if (element) splitRefs.current[1] = element}} className={`absolute splitText ${autoTextSize ? "site-text-size" : ""}`}>{text}</p>
                 </div>

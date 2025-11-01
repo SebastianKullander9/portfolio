@@ -10,7 +10,7 @@ type FormProgressProps = {
 
 export default function FormProgress({ formProgress }: FormProgressProps) {
     return (
-        <div className="flex flex-row md:flex-col gap-16 justify-center md:justify-start">
+        <div className="flex flex-row md:flex-col gap-16 justify-center md:justify-start body-small">
             {steps.map((step, index) => (
                 <React.Fragment key={step.number}>
                     <div className="flex flex-col md:flex-row items-center gap-4 relative" style={{ color: formProgress == index ? "black" : "white" }}>

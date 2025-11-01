@@ -2,17 +2,56 @@
 
 @import "tailwindcss";
 
+@theme {
+    --text-xs: clamp(0.5rem, 0.6rem + 0.3vw, 1.5rem);
+    --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);
+    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.875rem);
+    --text-2xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+    --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
+    --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3.75rem);
+    --text-5xl: clamp(1.7rem, 1.4rem + 2vw, 4.5rem);
+}
+
 @layer base {
+    h1, .heading-1 {
+        @apply text-5xl font-bold tracking-tight;
+    }
+
+    h2, .heading-2 {
+        @apply text-4xl font-bold tracking-tight;
+    }
+
+    h3, .heading-3 {
+        @apply text-3xl font-bold tracking-tight;
+    }
+
+    h4, .heading-4 {
+        @apply text-2xl font-bold tracking-tight;
+    }
+
+    h5, .heading-5 {
+        @apply text-xl font-bold tracking-tight;
+    }
+
+    .body-large {
+        @apply text-lg leading-relaxed;
+    }
+
+    .body {
+        @apply text-base leading-relaxed;
+    }
+
+    .body-small {
+        @apply text-xs leading-relaxed;
+    }
+
     .site-x-padding {
         @apply px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24;
     }
 
     .site-y-padding {
         @apply py-6 sm:py-10 md:py-16 lg:py-20 xl:py-24;
-    }
-
-    .site-text-size {
-        @apply text-[12px] sm:text-sm md:text-base lg:text-xl;
     }
 }
 
@@ -65,20 +104,22 @@ body {
     box-sizing: border-box;
 }
 
-.marquee-inner {
-    display: inline-block;
+.marquee-content {
+    display: flex;
+    animation: marquee 5s linear infinite;
+    width: fit-content;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
     white-space: nowrap;
-    animation: scroll-left 5s linear infinite;
+    padding-right: 2.5rem;
 }
 
-.marquee-inner span {
-    display: inline-block;
-    padding-right: 2rem;
-}
-
-@keyframes scroll-left {
+@keyframes marquee {
     0% {
-        transform: translateX(0%);
+        transform: translateX(0);
     }
     100% {
         transform: translateX(-50%);

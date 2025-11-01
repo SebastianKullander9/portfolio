@@ -47,13 +47,13 @@ export const modelConfig = {
         BOBBINGSPEED: 4,
         POSITION: {
             DESKTOP: [0.059, -0.03, 4.781] as [number, number, number],
-            TABLET: [0, -0.03, 4.781] as [number, number, number],
+            TABLET: [-0.02, -0.03, 4.781] as [number, number, number],
             MOBILE: [-0.02, -0.03, 4.781] as [number, number, number],
         },
         ROTATION: [0, -0.9, -0.25] as [number, number, number],
         SCALE: {
             DESKTOP: [0.1, 0.1, 0.1] as [number, number, number],
-            TABLET: [0.1, 0.1, 0.1] as [number, number, number],
+            TABLET: [0.09, 0.09, 0.09] as [number, number, number],
             MOBILE: [0.09, 0.09, 0.09] as [number, number, number],
         },
     },

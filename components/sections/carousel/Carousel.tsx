@@ -144,8 +144,8 @@ export default function Carousel() {
 
     return (
         <div className="h-full overflow-hidden flex flex-col justify-center">
-            <div className="h-full flex justify-center items-center">
-                <p className="text-white text-xl xl:text-6xl font-medium max-w-prose leading-[1.6] xl:leading-[1.4]">Some of my <span className="special-heading text-lg xl:text-5xl">Creations</span></p>
+            <div className="h-full flex flex-col justify-center items-center">
+                <h1 className="text-white heading-3 font-normal max-w-prose leading-[1.6] xl:leading-[1.4]">Some of my <span className="special-heading heading-3 font-normal">Creations</span></h1>
             </div>
             
             <div ref={containerRef} className="flex">

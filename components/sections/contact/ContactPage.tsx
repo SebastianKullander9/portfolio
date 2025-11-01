@@ -40,7 +40,7 @@ export default function ContactPage() {
         <section className="w-full h-full relative site-x-padding site-y-padding">
             <div className="w-full h-full grid grid-cols-12">
                 <div className="h-[calc(100vh-384px)] col-span-12 flex items-center justify-center md:justify-start">
-                    <h1 className="special-heading text-7xl xl:text-8xl text-white">Contact</h1>
+                    <h1 className="special-heading heading-1 font-normal text-white">Contact</h1>
                 </div>
                 <div className="col-span-12 md:col-span-4 mb-24 md:mb-0">
                     <div className="sticky top-[384px] ">
@@ -48,7 +48,7 @@ export default function ContactPage() {
                     </div>
                 </div>
                 <div className="h-full col-span-12 md:col-span-8">
-                    <div className="flex flex-col text-white text-xl">
+                    <div className="flex flex-col text-white body">
                         {formProgress == 0 ? (
                             <StepFill formData={formData} handleChange={handleChange} setFormProgress={setFormProgress} />
                         ) : formProgress == 1 ? (
