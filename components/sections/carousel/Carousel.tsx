@@ -47,7 +47,7 @@ export default function Carousel() {
             if (cards.length === 0) return;
 
             const originalSetLength = data.length;
-            const wrapWidth = cards[originalSetLength - 1].offsetLeft + cards[originalSetLength - 1].offsetWidth - cards[0].offsetLeft;
+            const wrapWidth = cards[originalSetLength].offsetLeft - cards[0].offsetLeft;
 
             const cardData = cards.map(card => ({
                 offsetLeft: card.offsetLeft,
