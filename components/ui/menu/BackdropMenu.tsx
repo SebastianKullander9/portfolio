@@ -80,7 +80,7 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
     }, [isOpen]);
 
     return (
-        <div ref={backdropRef} className="opacity-0 backdrop-blur-sm w-screen h-screen absolute inset-0 bg-pink-400/30">
+        <div ref={backdropRef} className="opacity-0 backdrop-blur-sm w-screen h-screen fixed inset-0 z-[9998] bg-pink-400/30">
             <BackdropMenuContent ref={menuItemsRef} />
         </div>
     );

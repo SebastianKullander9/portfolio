@@ -22,7 +22,7 @@ export default function PrivacyBtn({ checked, onChange }: PrivacyBtnProps) {
                 <Image src={check} width={20} height={20} alt="" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden peer-checked:block invert" />
             </span>
             <Link 
-                href="/"
+                href="/privacy"
                 className="hover:underline underline-offset-4 body-small"
             >
                 I have read and agree to the Privacy Policy.

@@ -9,21 +9,21 @@ export default function Home() {
 		<>
 			<div className="relative w-[100%] h-screen">
 
-				<section className="w-[100%] h-[100lvh]">
+				<section className="w-[100%] h-[100lvh]" id="home">
 					<HomeView />
 				</section>
 
 				<section className="w-[100%] h-screen"></section>
 				
-				<section className="w-[100%] h-[200vh]">
+				<section className="w-[100%] h-[200vh]" id="about">
 					<About />
 				</section>
 
-				<section className="w-[100%] h-screen">
+				<section className="w-[100%] h-screen" id="projects">
 					<Carousel />
 				</section>
 				
-				<section className="w-[100%] h-screen">
+				<section className="w-[100%] h-screen" id="contact">
 					<ContactSection />
 				</section>
 

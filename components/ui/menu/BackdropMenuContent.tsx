@@ -1,10 +1,9 @@
 import Image from "next/image";
-import svgStar from "../../../public/svgs/white-star.svg";
 import Link from "next/link";
 import arrowRight from "../../../public/svgs/arrow-up-right.svg";
 import { RefObject } from "react";
-
-const menuItems = ["Top", "About", "Projects", "Contact"];
+import ScrollToLink from "./ScrollToLink";
+import { menuItems } from "./menuItemsData";
 
 export default function BackdropMenuContent({ ref }: { ref?: RefObject<HTMLDivElement | null>}) {
     return (
@@ -14,10 +13,11 @@ export default function BackdropMenuContent({ ref }: { ref?: RefObject<HTMLDivEl
                     <div className="w-full flex flex-row">
                         <div className="pl-[64px] sm:pl-[98px] md:pl-[128px] lg: xl:pl-[192px]">
                             {menuItems.map((item) => (
-                                <div key={item} className="overflow-hidden flex flex-row items-center gap-4 cursor-pointer group">
-                                    <Image src={svgStar} alt="" width={40} height={40} className=" scale-0 group-hover:scale-100 transition-transform duration-300" />
-                                    <h2 className="innerMenuItem p-2 text-[80px]/25 leading-27">{item}</h2>
-                                </div>
+                                <ScrollToLink 
+                                    key={item.label} 
+                                    label={item.label} 
+                                    scrollToId={item.scrollToId} 
+                                />
                             ))}
                         </div>
                     </div>

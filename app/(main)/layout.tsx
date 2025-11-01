@@ -1,12 +1,12 @@
 import Header from "@/components/ui/header/Header";
-import ClientHeaderWrapper from "@/components/ui/header/ClientHeaderWrapper";
+import HeaderWrapper from "@/components/ui/header/HeaderWrapper";
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
     return (
         <> 
-            <ClientHeaderWrapper>
+            <HeaderWrapper>
                 <Header />
-            </ClientHeaderWrapper>
+            </HeaderWrapper>
             {children}
         </>
     )

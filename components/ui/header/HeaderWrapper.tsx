@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function ClientHeaderWrapper({ children }: { children: React.ReactNode }) {
+export default function HeaderWrapper({ children }: { children: React.ReactNode }) {
     const [isAtBottom, setIsAtBottom] = useState(false);
     
     useEffect(() => {

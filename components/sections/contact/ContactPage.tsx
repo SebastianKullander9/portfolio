@@ -7,6 +7,8 @@ import FormProgress from "@/components/ui/forms/contactForm/formProgress/FormPro
 import StepFill from "@/components/ui/forms/contactForm/StepFill";
 import StepReview from "@/components/ui/forms/contactForm/StepReview";
 import StepResult from "@/components/ui/forms/contactForm/StepResult";
+import SmartBackBtnWrapper from "@/components/ui/buttons/smartBackBtnWrapper/SmartBackBtnWrapper";
+import BackBtn from "@/components/ui/buttons/backBtn/BackBtn";
 
 export type FormProgressType = 0 | 1 | 2;
 
@@ -38,7 +40,7 @@ export default function ContactPage() {
     
     return (
         <section className="w-full h-full relative site-x-padding site-y-padding">
-            <div className="w-full h-full grid grid-cols-12">
+            <div className="w-full h-full grid grid-cols-12 relative">
                 <div className="h-[calc(100vh-384px)] col-span-12 flex items-center justify-center md:justify-start">
                     <h1 className="special-heading heading-1 font-normal text-white">Contact</h1>
                 </div>
