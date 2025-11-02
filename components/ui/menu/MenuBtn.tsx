@@ -7,13 +7,15 @@ import whiteStar from "../../../public/svgs/white-star.svg";
 import BackdropMenu from "./BackdropMenu";
 import "./style.css";
 import gsap from "gsap";
+import { useAnimationStore } from "@/store/useAnimationStore";
 
 export default function MenuBtn() {
     const spinnerRef = useRef<HTMLDivElement>(null);
-    const [isOpen, setIsOpen] = useState(false);
     const tlRef = useRef<gsap.core.Timeline | null>(null);
     const [isAnimating, setIsAnimating] = useState(false);
     const lenis = useLenis();
+    const menuOpen = useAnimationStore((s) => s.menuOpen);
+    const setMenuOpen = useAnimationStore((s) => s.setMenuOpen);
 
     if (!tlRef.current) {
         tlRef.current = gsap.timeline({ defaults: { duration: 0.2 }, paused: true });
@@ -22,7 +24,7 @@ export default function MenuBtn() {
     useEffect(() => {
         if (!lenis) return;
 
-        if (isOpen) {
+        if (menuOpen) {
             lenis.stop();
         } else {
             lenis.start();
@@ -31,38 +33,39 @@ export default function MenuBtn() {
         return () => {
             lenis.start();
         };
-    }, [isOpen, lenis]);
+    }, [menuOpen, lenis]);
 
-    const handleClick = () => {
-        if (!spinnerRef.current || isAnimating) return;
+    useEffect(() => {
+        if (!spinnerRef.current) return;
 
         setIsAnimating(true);
 
         const tl = gsap.timeline({
-            defaults: { duration: 0.2 },
-            onComplete: () => {
-                setIsAnimating(false)
-                setIsOpen(!isOpen);
-            }
+            defaults: { duration: 0.2, ease: "power2.out" },
+            onComplete: () => setIsAnimating(false),
         });
 
-        if (!isOpen) {
-            tl.to(spinnerRef.current, { rotate: "+=45" })
-            .to(spinnerRef.current, { "--scale": 1.4 }, "<")
-            .to(spinnerRef.current, { "--dot-offset": "-15px" }, "<");
-        } else {
-            tl.to(spinnerRef.current, { rotate: "-=45" })
-            .to(spinnerRef.current, { "--scale": 1 }, "<")
-            .to(spinnerRef.current, { "--dot-offset": "-3px" }, "<");
-        }
+        tl.to(spinnerRef.current, {
+            rotate: menuOpen ? 45 : 0,
+        })
+        .to(spinnerRef.current, {
+            "--scale": menuOpen ? 1.4 : 1,
+        }, "<")
+        .to(spinnerRef.current, {
+            "--dot-offset": menuOpen ? "-15px" : "-3px",
+        }, "<");
 
         tl.play();
+    }, [menuOpen]);
+
+    const handleClick = () => {
+        if (isAnimating) return;
+        setMenuOpen(!menuOpen);
     };
 
     return (
         <>
             <div className="group cursor-pointer">
-                {/* relative */}
                 <div className="z-[9999] menu-icon" onClick={handleClick}>
                     <div ref={spinnerRef} className="menu-icon-cross absolute inset-0">
                         <div className="w-5 h-5 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 group-hover:w-8 group-hover:h-8 transform duration-300">
@@ -76,7 +79,7 @@ export default function MenuBtn() {
                 </div>
             </div>
 
-            <BackdropMenu isOpen={isOpen} />
+            <BackdropMenu />
         </>
     );
 }

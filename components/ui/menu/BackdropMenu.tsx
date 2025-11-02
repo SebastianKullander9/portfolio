@@ -3,15 +3,14 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import BackdropMenuContent from "./BackdropMenuContent";
+import { useAnimationStore } from "@/store/useAnimationStore";
 
-interface BackdropMenuProps {
-    isOpen: boolean;
-}
-
-export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
+export default function BackdropMenu() {
     const menuItemsRef = useRef<HTMLDivElement>(null);
     const backdropRef = useRef<HTMLDivElement>(null);
     const tlRef = useRef<gsap.core.Timeline | null>(null);
+    const menuOpen = useAnimationStore((s) => s.menuOpen);
+    const setMenuOpen = useAnimationStore((s) => s.setMenuOpen);
 
     useEffect(() => {
         if (!menuItemsRef.current || !backdropRef.current) return;
@@ -28,7 +27,7 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
             tlRef.current.kill();
         }
 
-        if (isOpen) {
+        if (menuOpen) {
             tl.to(backdropRef.current, {
                 opacity: 1,
                 duration: 0.1,
@@ -71,13 +70,14 @@ export default function BackdropMenu({ isOpen }: BackdropMenuProps) {
                 zIndex: -1,
                 onComplete: () => {
                     backdropRef.current!.classList.add("hidden");
+                    setMenuOpen(false);
                 }
             });
         }
 
         tlRef.current = tl;
 
-    }, [isOpen]);
+    }, [menuOpen]);
 
     return (
         <div ref={backdropRef} className="opacity-0 backdrop-blur-sm w-screen h-screen fixed inset-0 z-[9998] bg-pink-400/30">

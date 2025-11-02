@@ -2,13 +2,20 @@ import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import * as THREE from "three";
 import Scene from "../scene/Scene";
+import { CanvasReady } from "@/hooks/ui/CanvasReady";
 
 import { canvasConfig } from "../config/animationConfig";
 const { CAMERA, DIRECTIONALLIGHT } = canvasConfig;
 
-function Canvas3d() {
+type Canvas3dProps = {
+    onCanvasCreated: () => void;
+    frameloop?: "always" | "demand" | "never";
+}
+
+function Canvas3d({ onCanvasCreated, frameloop="always" }: Canvas3dProps) {
     return (
         <Canvas
+            frameloop={frameloop}
             camera={{ 
                 position: CAMERA.position,
                 near: 0.01,
@@ -25,6 +32,7 @@ function Canvas3d() {
             <directionalLight position={ DIRECTIONALLIGHT.position } intensity={ DIRECTIONALLIGHT.intensity } />
             <Environment preset="dawn"/>
             <Scene />
+            <CanvasReady onReady={onCanvasCreated}/>
         </Canvas>
     );
 }

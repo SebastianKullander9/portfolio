@@ -4,19 +4,26 @@ import arrowRight from "../../../public/svgs/arrow-up-right.svg";
 import { RefObject } from "react";
 import ScrollToLink from "./ScrollToLink";
 import { menuItems } from "./menuItemsData";
+import { useAnimationStore } from "@/store/useAnimationStore";
 
-export default function BackdropMenuContent({ ref }: { ref?: RefObject<HTMLDivElement | null>}) {
+type BackdropMenuContentProps = {
+    ref?: RefObject<HTMLDivElement | null>;
+}
+
+export default function BackdropMenuContent({ ref }: BackdropMenuContentProps) {
+    const menuOpen = useAnimationStore((s) => s.menuOpen);
+
     return (
         <div ref={ref} className="flex flex-col w-full h-full p-8">
             <div className="relative h-full">
-                <div  className="w-full fixed top-1/2 -translate-y-1/2 text-white font-medium xl:gap-2 site-x-padding">
+                <div  className="w-full fixed top-1/2 -translate-y-1/2 text-white font-medium xl:gap-2 md:site-x-padding">
                     <div className="w-full flex flex-row">
-                        <div className="pl-[64px] sm:pl-[98px] md:pl-[128px] lg: xl:pl-[192px]">
+                        <div className="md:pl-[128px] lg: xl:pl-[192px]">
                             {menuItems.map((item) => (
                                 <ScrollToLink 
                                     key={item.label} 
                                     label={item.label} 
-                                    scrollToId={item.scrollToId} 
+                                    scrollToId={item.scrollToId}
                                 />
                             ))}
                         </div>
@@ -26,7 +33,7 @@ export default function BackdropMenuContent({ ref }: { ref?: RefObject<HTMLDivEl
             </div>
 
             <div className="w-full site-x-padding site-y-padding site-text-size text-white flex flex-row justify-between items-center">
-                <div className="overflow-hidden flex flex-row gap-3">
+                <div className="overflow-hidden flex flex-row gap-3 body-small">
                     <Link href="https://github.com/SebastianKullander9" target="_blank">
                         <div className="outerMenuItem flex flex-row group cursor-pointer items-center">
                             <p>GitHub</p>
@@ -42,7 +49,7 @@ export default function BackdropMenuContent({ ref }: { ref?: RefObject<HTMLDivEl
                 </div>
 
                 <div className="overflow-hidden">
-                    <p className="text-sm outerMenuItem">Copyright © Sebastian Kullander</p>
+                    <p className="body-small outerMenuItem">Copyright © Sebastian Kullander</p>
                 </div>
             </div>
         </div>

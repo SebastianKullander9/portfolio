@@ -10,6 +10,9 @@ function SmoothScroll() {
     const setScroll = useAnimationStore((s) => s.setScroll);
     const scrollToSection = useScrollStore((s) => s.scrollToSection);
     const setScrollToSection = useScrollStore((s) => s.setScrollToSection);
+    const pendingScroll = useScrollStore((s) => s.pendingScroll);
+    const setPendingScroll = useScrollStore((s) => s.setPendingScroll);
+    const menuOpen = useAnimationStore((s) => s.menuOpen);
 
     useEffect(() => {
         if (!lenis) return;
@@ -27,19 +30,24 @@ function SmoothScroll() {
     }, [setScroll, lenis]);
 
     useEffect(() => {
-        if (scrollToSection && lenis) {
-            const element = document.getElementById(scrollToSection);
+        if (!lenis) return;
 
+        if (scrollToSection) {
+            const element = document.getElementById(scrollToSection);
             if (element) {
-                lenis.scrollTo(element, {
-                    offset: 0,
-                    duration: 2,
-                });
-                
-                setScrollToSection(null);
-            };
-        };
-    }, [scrollToSection, lenis, setScrollToSection]);
+            lenis.scrollTo(element, { offset: 0, duration: 2 });
+            setScrollToSection(null);
+            }
+        }
+
+        if (!menuOpen && pendingScroll) {
+            const element = document.getElementById(pendingScroll);
+            if (element) {
+                lenis.scrollTo(element, { offset: 0, duration: 2 });
+                setPendingScroll(null);
+            }
+        }
+    }, [scrollToSection, pendingScroll, lenis, menuOpen, setScrollToSection, setPendingScroll]);
 
     return <ReactLenis root options={{ lerp: 0.1, duration: 1 }} />
 }

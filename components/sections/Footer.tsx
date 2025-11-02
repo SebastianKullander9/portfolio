@@ -15,9 +15,9 @@ export default function Footer() {
                 <div className="w-full xl:w-1/2 h-full xl:border-r-1 border-t-1 xl:border-t-0 border-[#E0E0E0]">
                     <div className="w-full h-1/2 flex items-center site-x-padding">
                         <p className="heading-3 md:heading-2 font-normal max-w-prose leading-[1.6] xl:leading-[1.4]">Please feel free to contact me through 
-                            <span className="special-heading heading-4 md:heading-3 font-normal underline underline-offset-3 xl:no-underline"> Email </span> 
+                            <a href="mailto:sebastian.kullander9@gmail.com" className="special-heading heading-4 md:heading-3 font-normal underline underline-offset-3 xl:no-underline"> Email </a> 
                             or the 
-                            <span className="special-heading heading-4 md:heading-3 font-normal underline underline-offset-3 xl:no-underline"> Contact form.</span></p>                        
+                            <Link href="/contact" className="special-heading heading-4 md:heading-3 font-normal underline underline-offset-3 xl:no-underline"> Contact form.</Link></p>                        
                     </div>
                     <div className="h-1/2 flex flex-row site-x-padding justify-between items-center">
                     <div>
