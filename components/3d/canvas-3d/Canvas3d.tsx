@@ -13,6 +13,8 @@ type Canvas3dProps = {
 }
 
 function Canvas3d({ onCanvasCreated, frameloop="always" }: Canvas3dProps) {
+    const isMobile = typeof window !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
     return (
         <Canvas
             frameloop={frameloop}
@@ -20,9 +22,10 @@ function Canvas3d({ onCanvasCreated, frameloop="always" }: Canvas3dProps) {
                 position: CAMERA.position,
                 near: 0.01,
             }}
-            dpr={[1, 2]}
+            dpr={isMobile ? [1, 1.5] : [1, 2]}
             performance={{ min: 0.5 }}
             gl={{
+                antialias: !isMobile,
                 toneMapping: THREE.ACESFilmicToneMapping,
                 toneMappingExposure: 1.0,
                 localClippingEnabled: true,
