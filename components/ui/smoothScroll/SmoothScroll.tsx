@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import { useAnimationStore } from "@/store/useAnimationStore";
 import { useScrollStore } from "@/store/useScrollStore";
 
+const isMobile =
+    typeof navigator !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 function SmoothScroll() {
     const lenis = useLenis();
     const setScroll = useAnimationStore((s) => s.setScroll);
@@ -63,6 +66,21 @@ function SmoothScroll() {
             }
         }
     }, [scrollToSection, pendingScroll, lenis, menuOpen, setScrollToSection, setPendingScroll]);
+
+    useEffect(() => {
+        if (!isMobile) return;
+
+        const handleScroll = () => {
+            const scroll = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            setScroll(scroll, maxScroll);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [setScroll]);
+
+    if (isMobile) return null;
 
     return <ReactLenis root options={{ lerp: 0.1, duration: 1 }} />;
 }

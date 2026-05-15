@@ -18,7 +18,9 @@ export function useWorksScroll(
         const sentinel = getSentinel();
         if (!sections.length || !sentinel) return;
 
-        const images = sections.flatMap((el) => Array.from(el.querySelectorAll("img")));
+        const images = sections.flatMap((el) =>
+            Array.from(el.querySelectorAll<HTMLImageElement>("img[data-works-image]")),
+        );
 
         Promise.all(
             images.map((img) =>
@@ -54,7 +56,7 @@ export function useWorksScroll(
                                 trigger: next,
                                 start: `top ${naturalHeight + D * i}px`,
                                 end: `top ${D * (i + 1)}px`,
-                                scrub: 0,
+                                scrub: true,
                                 onUpdate: (self) => {
                                     const h = gsap.utils.interpolate(
                                         naturalHeight,

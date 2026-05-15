@@ -1,26 +1,23 @@
-import Image from "next/image";
-import svgStar from "../../../public/svgs/white-star.svg";
-import ViewMoreBtn from "@/components/ui/buttons/viewMoreBtn/ViewMoreBtn";
+import PrimaryButton from "@/components/ui/buttons/PrimaryButton/PrimaryButton";
+import Eyebrow from "@/components/ui/eyebrow/Eyebrow";
 
 export default function About() {
     return (
-        <div className="w-full flex flex-col justify-center site-x-padding site-y-padding">
-            <div className="flex-row gap-2 items-center mb-12 sm:mb-24 flex">
-                <Image src={svgStar} width={17} height={17} alt="" />
-                <h1 className="body-large text-white font-normal">About</h1>            
+        <div className="site-x-padding site-y-padding w-full md:h-screen grid grid-cols-12 text-white">
+            <div className="col-span-12 md:col-span-10 lg:col-span-8 xl:col-span-6 mb-16 md:mb-0">
+                <Eyebrow text="About" />
+                <p className="heading-1 font-medium">
+                    I&apos;m a fullstack developer based in Stockholm, Sweden, though the frontend
+                    is where I feel most at home. Outside of work I spend time exploring design and
+                    pushing my creativity.
+                </p>
             </div>
-            <div className="grid grid-cols-3 grid-rows-2 lg:h-[110vh] text-white lg:site-x-padding">
-                <div className="col-span-3 sm:col-span-2 justify-self-start w-full mb-12">
-                    <p className="heading-1 xl:leading-23 font-medium"><span className="uppercase">Fullstack Developer</span> turning design ideas into interactive experiences with JavaScript, code, and a touch of math
-                    </p>
-                </div>
-
-                <div className="col-span-3 row-start-2 sm:col-start-3 sm:row-start-2 self-start sm:self-end justify-self-end">
-                    <p className="body-large mb-6 sm:mb-12">Curious about the tools and technologies I use? Dive in to the stack for a deeper look.</p>
-                    <div className="flex w-full justify-start sm:justify-end">
-                        <ViewMoreBtn linkTo="/tech-stack" />
-                    </div>
-                </div>
+            <div className="col-span-12 md:col-span-7 md:col-end-13 lg:col-span-5 lg:col-end-13 xl:col-span-3 xl:col-end-13 flex flex-col md:items-end justify-end gap-8">
+                <p className="body-large">
+                    I keep my stack current and my code clean. Scroll down to see some projects, or
+                    check out what I&apos;m working with below.
+                </p>
+                <PrimaryButton text="View Stack" linkTo="/tech-stack" />
             </div>
         </div>
     );
