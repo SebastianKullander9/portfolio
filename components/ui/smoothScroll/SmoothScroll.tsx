@@ -25,6 +25,7 @@ function SmoothScroll() {
             const { default: ScrollTrigger } = await import("gsap/ScrollTrigger");
 
             gsap.registerPlugin(ScrollTrigger);
+            lenis.on("scroll", ScrollTrigger.update);
         })();
 
         return () => {

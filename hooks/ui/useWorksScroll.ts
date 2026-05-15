@@ -4,7 +4,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const raf = (fn: () => void) => requestAnimationFrame(fn);
+const isMobile =
+    typeof navigator !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 export function useWorksScroll(
     getSections: () => (HTMLElement | null)[],
@@ -37,10 +38,11 @@ export function useWorksScroll(
                     endTrigger: sentinel,
                     end: "bottom bottom",
                     pin: true,
+                    anticipatePin: isMobile ? 1 : 0,
                     pinSpacing: isLast,
                     ...(!isLast && {
-                        onLeave: () => raf(() => gsap.set(el, { height: D })),
-                        onEnterBack: () => raf(() => gsap.set(el, { height: D })),
+                        onLeave: () => gsap.set(el, { height: D }),
+                        onEnterBack: () => gsap.set(el, { height: D }),
                     }),
                 });
 
@@ -65,9 +67,8 @@ export function useWorksScroll(
                                     );
                                     gsap.set(el, { height: h });
                                 },
-                                onLeave: () => raf(() => gsap.set(el, { height: D })),
-                                onLeaveBack: () =>
-                                    raf(() => gsap.set(el, { height: naturalHeight })),
+                                onLeave: () => gsap.set(el, { height: D }),
+                                onLeaveBack: () => gsap.set(el, { height: naturalHeight }),
                             },
                         },
                     );
@@ -77,10 +78,9 @@ export function useWorksScroll(
             ScrollTrigger.create({
                 trigger: sentinel,
                 start: "top bottom",
-                onEnter: () =>
-                    raf(() => sections.slice(0, -1).forEach((el) => gsap.set(el, { height: D }))),
+                onEnter: () => sections.slice(0, -1).forEach((el) => gsap.set(el, { height: D })),
                 onLeaveBack: () =>
-                    raf(() => sections.slice(0, -1).forEach((el) => gsap.set(el, { height: D }))),
+                    sections.slice(0, -1).forEach((el) => gsap.set(el, { height: D })),
             });
         });
 
