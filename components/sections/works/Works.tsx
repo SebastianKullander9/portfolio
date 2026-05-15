@@ -69,7 +69,7 @@ export default function Works() {
             <div className="w-full flex justify-end text-white">
                 <PrimaryButton text="View Works" linkTo="" />
             </div>
-            <div ref={sentinelRef} className="h-[20vh] w-full" />
+            <div ref={sentinelRef} className="h-[20dvh] w-full" />
         </div>
     );
 }

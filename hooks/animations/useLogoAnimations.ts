@@ -42,7 +42,6 @@ function animateRotation(start: number[], end: number[], t: number, target: THRE
 
 export function useLogoAnimations() {
     const ref = useRef<THREE.Mesh>(null);
-    const scroll_progress = useAnimationStore((s) => s.progress);
 
     const { applyFadeIn } = useFadeInAnimation();
 
@@ -58,8 +57,9 @@ export function useLogoAnimations() {
     const animate = ({ clock }: { clock: THREE.Clock }) => {
         if (!ref.current) return;
 
+        const scroll_progress = useAnimationStore.getState().progress;
         const time = clock.getElapsedTime();
-        
+
         if (scroll_progress <= animationStart) {
             ref.current.position.set(...position);
             ref.current.scale.set(...scale);

@@ -10,15 +10,16 @@ const { CAMERA, DIRECTIONALLIGHT } = canvasConfig;
 type Canvas3dProps = {
     onCanvasCreated: () => void;
     frameloop?: "always" | "demand" | "never";
-}
+};
 
-function Canvas3d({ onCanvasCreated, frameloop="always" }: Canvas3dProps) {
-    const isMobile = typeof window !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+function Canvas3d({ onCanvasCreated, frameloop = "always" }: Canvas3dProps) {
+    const isMobile =
+        typeof window !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     return (
         <Canvas
             frameloop={frameloop}
-            camera={{ 
+            camera={{
                 position: CAMERA.position,
                 near: 0.01,
             }}
@@ -29,13 +30,16 @@ function Canvas3d({ onCanvasCreated, frameloop="always" }: Canvas3dProps) {
                 toneMapping: THREE.ACESFilmicToneMapping,
                 toneMappingExposure: 1.0,
                 localClippingEnabled: true,
-                powerPreference: "high-performance"
+                powerPreference: "high-performance",
             }}
         >
-            <directionalLight position={ DIRECTIONALLIGHT.position } intensity={ DIRECTIONALLIGHT.intensity } />
-            <Environment preset="dawn"/>
+            <directionalLight
+                position={DIRECTIONALLIGHT.position}
+                intensity={DIRECTIONALLIGHT.intensity}
+            />
+            <Environment preset="dawn" />
             <Scene />
-            <CanvasReady onReady={onCanvasCreated}/>
+            <CanvasReady onReady={onCanvasCreated} />
         </Canvas>
     );
 }

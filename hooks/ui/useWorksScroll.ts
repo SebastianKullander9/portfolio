@@ -4,9 +4,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const isMobile =
-    typeof navigator !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
 export function useWorksScroll(
     getSections: () => (HTMLElement | null)[],
     getSentinel: () => HTMLElement | null,
@@ -38,7 +35,6 @@ export function useWorksScroll(
                     endTrigger: sentinel,
                     end: "bottom bottom",
                     pin: true,
-                    anticipatePin: isMobile ? 1 : 0,
                     pinSpacing: isLast,
                     ...(!isLast && {
                         onLeave: () => gsap.set(el, { height: D }),

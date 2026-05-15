@@ -11,7 +11,6 @@ const lerp = (start: number, end: number, t: number) => start + (end - start) * 
 
 export function useMailContactAnimations() {
     const ref = useRef<THREE.Mesh>(null);
-    const scroll_progress = useAnimationStore((s) => s.progress);
 
     const { applyFadeIn } = useFadeInAnimation();
 
@@ -33,6 +32,7 @@ export function useMailContactAnimations() {
     const animate = ({ clock }: { clock: THREE.Clock }) => {
         if (!ref.current) return;
 
+        const scroll_progress = useAnimationStore.getState().progress;
         const time = clock.getElapsedTime();
 
         ref.current.position.set(...POSITION);

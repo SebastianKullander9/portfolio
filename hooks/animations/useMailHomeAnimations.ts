@@ -27,19 +27,19 @@ function animatePosition(
 
 export function useMailHomeAnimations() {
     const ref = useRef<THREE.Mesh>(null);
-    const scroll_progress = useAnimationStore((s) => s.progress);
     const { isMobile } = useDomViewport();
 
-    const { applyFadeIn } = useFadeInAnimation(); 
+    const { applyFadeIn } = useFadeInAnimation();
 
     const animationStart = 3.5 / TOTALPAGES;
     const animationEnd = 5.7 / TOTALPAGES;
-    
+
     const scale = isMobile ? SCALE.MOBILE : SCALE.TABLET;
 
     const animate = ({ clock }: { clock: THREE.Clock }) => {
         if (!ref.current) return;
 
+        const scroll_progress = useAnimationStore.getState().progress;
         const time = clock.getElapsedTime();
 
         if (scroll_progress > animationStart && scroll_progress < animationEnd) {
