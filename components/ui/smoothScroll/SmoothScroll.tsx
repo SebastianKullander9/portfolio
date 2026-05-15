@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactLenis, useLenis} from "lenis/react";
+import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect } from "react";
 import { useAnimationStore } from "@/store/useAnimationStore";
 import { useScrollStore } from "@/store/useScrollStore";
@@ -16,12 +16,27 @@ function SmoothScroll() {
 
     useEffect(() => {
         if (!lenis) return;
+
+        (async () => {
+            const gsap = (await import("gsap")).default;
+            const { default: ScrollTrigger } = await import("gsap/ScrollTrigger");
+
+            gsap.registerPlugin(ScrollTrigger);
+        })();
+
+        return () => {
+            lenis.off("scroll", ScrollTrigger.update);
+        };
+    }, [lenis]);
+
+    useEffect(() => {
+        if (!lenis) return;
         lenis.stop();
         return lenis.start();
     }, [lenis]);
 
     useEffect(() => {
-        if(!lenis) return;
+        if (!lenis) return;
 
         lenis.on("scroll", ({ scroll }) => {
             const maxScroll = document.body.scrollHeight - window.innerHeight;
@@ -35,8 +50,8 @@ function SmoothScroll() {
         if (scrollToSection) {
             const element = document.getElementById(scrollToSection);
             if (element) {
-            lenis.scrollTo(element, { offset: 0, duration: 2 });
-            setScrollToSection(null);
+                lenis.scrollTo(element, { offset: 0, duration: 2 });
+                setScrollToSection(null);
             }
         }
 
@@ -49,7 +64,7 @@ function SmoothScroll() {
         }
     }, [scrollToSection, pendingScroll, lenis, menuOpen, setScrollToSection, setPendingScroll]);
 
-    return <ReactLenis root options={{ lerp: 0.1, duration: 1 }} />
+    return <ReactLenis root options={{ lerp: 0.1, duration: 1 }} />;
 }
 
 export default SmoothScroll;
