@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect } from "react";
+import { useRef, useMemo } from "react";
 import * as THREE from "three";
 import { useAnimationStore } from "@/store/useAnimationStore";
 import { slidingTextConfig } from "@/components/3d/config/animationConfig";
@@ -7,6 +7,7 @@ const { TEXT, FONTSIZE, CHARWITHESTIMATE, SLIDINGSPEED, CLIPTEXTATY, SCALETEXTMU
     slidingTextConfig;
 
 export function useSlidingTextAnimations() {
+    const scroll_progress = useAnimationStore((s) => s.progress);
     const refs = useRef<THREE.Mesh[]>([]);
 
     const textWidth = useMemo(() => TEXT.length * FONTSIZE * CHARWITHESTIMATE, []);
@@ -14,29 +15,10 @@ export function useSlidingTextAnimations() {
         () => new THREE.Plane(new THREE.Vector3(0, -1, 0), CLIPTEXTATY),
         [],
     );
-    const clippingApplied = useRef(false);
-
-    useEffect(() => {
-        return () => { clippingApplied.current = false; };
-    }, []);
 
     const animate = () => {
-        const scroll_progress = useAnimationStore.getState().progress;
-
         refs.current.forEach((mesh) => {
             if (!mesh) return;
-
-            if (!clippingApplied.current) {
-                if (Array.isArray(mesh.material)) {
-                    mesh.material.forEach((m) => {
-                        m.clippingPlanes = [clippingPlane];
-                        m.clipShadows = true;
-                    });
-                } else if (mesh.material) {
-                    mesh.material.clippingPlanes = [clippingPlane];
-                    mesh.material.clipShadows = true;
-                }
-            }
 
             const targetY = scroll_progress * 0.5;
             mesh.position.y = targetY;
@@ -50,9 +32,18 @@ export function useSlidingTextAnimations() {
                 const maxX = Math.max(...refs.current.map((r) => r?.position.x ?? -Infinity));
                 mesh.position.x = maxX + textWidth;
             }
-        });
 
-        clippingApplied.current = true;
+            if (Array.isArray(mesh.material)) {
+                mesh.material.forEach((m) => {
+                    m.clippingPlanes = [clippingPlane];
+                    m.clipShadows = true;
+                });
+            } else if (mesh.material) {
+                mesh.material.clippingPlanes = [clippingPlane];
+                mesh.material.clipShadows = true;
+                mesh.material.needsUpdate = true;
+            }
+        });
     };
 
     return { refs, animate, textWidth };
