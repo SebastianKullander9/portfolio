@@ -6,9 +6,12 @@ import { useFrame } from "@react-three/fiber";
 
 import vertexShader from "../../../public/shaders/background/performance/custom.vert.glsl";
 import fragmentShader from "../../../public/shaders/background/performance/custom.frag.glsl";
+import { backgroundUniforms, updateBackgroundUniforms, withBackgroundGradient } from "../shaders/background";
 
 import { planeConfig } from "../config/animationConfig";
 const { UNIFORMS, PLANE } = planeConfig;
+
+const planeFragmentShader = withBackgroundGradient(fragmentShader);
 
 const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -22,13 +25,18 @@ const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
       incline: { value: UNIFORMS.incline },
       amplitude: { value: UNIFORMS.amplitude },
       uSpeed: { value: UNIFORMS.uSpeed },
+      uBlobPos: backgroundUniforms.uBlobPos,
     }),
     [],
   );
 
   useFrame(({ clock }) => {
+    const time = clock.getElapsedTime() * 10.0;
+
+    updateBackgroundUniforms(time);
+
     if (materialRef.current) {
-      materialRef.current.uniforms.uTime.value = clock.getElapsedTime() * 10.0;
+      materialRef.current.uniforms.uTime.value = time;
     }
   });
 
@@ -40,7 +48,7 @@ const Plane = forwardRef<THREE.Mesh, object>((_, ref) => {
       <shaderMaterial
         ref={materialRef}
         vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
+        fragmentShader={planeFragmentShader}
         uniforms={uniforms}
         side={THREE.DoubleSide}
       />

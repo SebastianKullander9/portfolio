@@ -1,26 +1,13 @@
-
-import React, { useMemo } from "react";
-import { MeshTransmissionMaterial } from "@react-three/drei";
-
-import { modelConfig } from "../../components/3d/config/animationConfig";
-const { TRANSMISSION_MATERIAL, STANDARD_MATERIAL, PHYSICAL_MATERIAL, COLOR } = modelConfig.MATERIAL;
+import React, { useEffect, useMemo } from "react";
+import { createBackgroundGlassMaterial } from "@/components/3d/materials/backgroundGlassMaterial";
 
 export default function useDetermineMeshMaterial(performanceTier: "low" | "medium" | "high") {
-    const material = useMemo(() => {
-        switch (performanceTier) {
-            case "low":
-                return <meshPhysicalMaterial {...PHYSICAL_MATERIAL} color={COLOR} transparent/>
-            case "medium":
-                return <meshPhysicalMaterial {...PHYSICAL_MATERIAL} color={COLOR} transparent/>
-            case "high":
-            default:
-                return (
-                    <MeshTransmissionMaterial {...TRANSMISSION_MATERIAL} color={COLOR} transparent/>
-                )
-        }
-    }, [performanceTier]);
+    const material = useMemo(
+        () => createBackgroundGlassMaterial({ dispersion: performanceTier === "high" }),
+        [performanceTier],
+    );
 
-    return material;
+    useEffect(() => () => material.dispose(), [material]);
+
+    return useMemo(() => <primitive object={material} attach="material" />, [material]);
 }
- 
-//<meshStandardMaterial {...STANDARD_MATERIAL} color={COLOR} />

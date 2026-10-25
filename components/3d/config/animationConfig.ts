@@ -84,25 +84,16 @@ export const modelConfig = {
         BOBBINGSPEED: 4,
     },
     MATERIAL: {
-        TRANSMISSION_MATERIAL: {
-            thickness: 0.9,
+        GLASS_MATERIAL: {
             roughness: 0.1,
-            transmission: 1,
-            ior: 0.8,
-            anisotropy: 0.105,
+            envMapIntensity: 0.6, // strength of the "dawn" environment highlights
+            ior: 1.5,
+            transmission: 1, // 0 = solid, 1 = background fully visible through the model
+            refraction: 1, // multiplier on how much the glass bends the background (0 = no bending)
+            dispersion: 0.03, // chromatic aberration, high performance tier only
+            rim: 0.6, // strength of the background-coloured edge reflection
+            rimSpread: 0.15, // how far the edge reflection samples from the point behind the model
         },
-        PHYSICAL_MATERIAL: {
-            metalness: 0,
-            roughness: 0.05,
-            transmission: 0.9,
-            thickness: 0.5,
-            opacity: 1,
-        },
-        STANDARD_MATERIAL: {
-            metalness: 0,
-            roughness: 0.05,
-            opacity: 1,
-        },
-        COLOR: "#B8D9F0",
+        COLOR: "#FFFFFF", // tints everything seen through the glass, keep close to white
     },
 };

@@ -1,7 +1,6 @@
 precision mediump float;
 
 varying vec2 vUv;
-varying float vNoise;
 
 uniform float uTime;
 uniform float uSpeed;
@@ -82,8 +81,6 @@ void main() {
     totalNoise += noise * 0.4;
     scale *= 1.5;
   }
-
-  vNoise = totalNoise;
 
   pos.z += totalNoise * amplitude;
   pos.z += incline * mix(-0.25, 0.25, vUv.y);
