@@ -1,27 +1,27 @@
-import lewaBostad from "@/public/works/lewa-bostad.png";
-import reliwe from "@/public/works/reliwe.png";
-import stashbox from "@/public/works/stashbox.png";
+import frontend from "@/public/works/frontend.png";
+import backend from "@/public/works/backend.png";
+import creative from "@/public/works/creative.png";
 
 export const worksData = [
-    {
-        year: "2025",
-        title: "Lewa bostad",
-        tags: "Design, UX, Conversion, Next.js, Sanity",
-        text: "A website for the real estate company Lewa Bostad, design created by me.",
-        image: lewaBostad,
-    },
-    {
-        year: "2026",
-        title: "Reliwe",
-        tags: "Design, UX, Conversion, Next.js, Sanity",
-        text: "A website for the real estate company Reliwe, design created by me.",
-        image: reliwe,
-    },
-    {
-        year: "2026",
-        title: "StashBox",
-        tags: "Frontend, Backend, Next.js, Nestjs, GraphQL, Prisma, PostgreSQL, AWS S3",
-        text: "My personal file hosting solution, handles images, websites, fonts, color palettes, code, models. Features like search, upload, download, admin dashboard",
-        image: stashbox,
-    },
+  {
+    eyebrow: "Interfaces",
+    title: "Frontend",
+    tags: "React, Next, Svelte, Vite, TypeScript, TailwindCSS, CSS Modules",
+    text: "I build fast, responsive interfaces with clean component structure and attention to detail, from the first design sketch to the finished product.",
+    image: frontend,
+  },
+  {
+    eyebrow: "Systems",
+    title: "Backend",
+    tags: "Node, NestJS, Prisma, REST, GraphQL, PostgreSQL, MySQL, AWS",
+    text: "I design APIs and data models that are typed, tested and built to grow.",
+    image: backend,
+  },
+  {
+    eyebrow: "Experiences",
+    title: "Creative",
+    tags: "Three.js, GSAP, Framer motion, Lenis, Blender, GIMP, InkScape",
+    text: "I use motion, 3D and interaction to make websites feel alive, from smooth scroll and animation to 3D models.",
+    image: creative,
+  },
 ];

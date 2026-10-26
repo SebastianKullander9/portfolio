@@ -98,6 +98,53 @@ body {
     box-sizing: border-box;
 }
 
+/* Works stack, driven by hooks/ui/useWorksStack.ts */
+[data-works-track] {
+    view-timeline: --works block;
+}
+
+[data-works-track]::after {
+    content: "";
+    display: block;
+    height: var(--works-extra, 0px);
+}
+
+@keyframes works-move {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(0, var(--works-to), 0); }
+}
+
+@keyframes works-mask {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(0, calc(-1 * var(--works-cut)), 0); }
+}
+
+@keyframes works-unmask {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(0, var(--works-cut), 0); }
+}
+
+/* Ranges are offsets into the track's contain range, which starts when the stage sticks. */
+@supports (animation-timeline: view()) {
+    [data-works-card][data-moves] {
+        animation: works-move linear both;
+        animation-timeline: --works;
+        animation-range: contain 0px contain var(--works-b);
+    }
+
+    [data-works-card][data-clips] [data-works-mask] {
+        animation: works-mask linear both;
+        animation-timeline: --works;
+        animation-range: contain var(--works-ma) contain var(--works-mb);
+    }
+
+    [data-works-card][data-clips] [data-works-inner] {
+        animation: works-unmask linear both;
+        animation-timeline: --works;
+        animation-range: contain var(--works-ma) contain var(--works-mb);
+    }
+}
+
 .marquee {
     overflow: hidden;
     white-space: nowrap;

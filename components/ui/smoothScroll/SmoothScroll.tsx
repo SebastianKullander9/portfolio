@@ -2,8 +2,12 @@
 
 import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { useAnimationStore } from "@/store/useAnimationStore";
 import { useScrollStore } from "@/store/useScrollStore";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const isMobile =
     typeof navigator !== "undefined" && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -56,13 +60,7 @@ function SmoothScroll() {
 
     useEffect(() => {
         if (!lenis) return;
-        (async () => {
-            const gsap = (await import("gsap")).default;
-            const { default: ScrollTrigger } = await import("gsap/ScrollTrigger");
-            gsap.registerPlugin(ScrollTrigger);
-            lenis.on("scroll", ScrollTrigger.update);
-        })();
-        return () => lenis.off("scroll", ScrollTrigger.update);
+        return lenis.on("scroll", ScrollTrigger.update);
     }, [lenis]);
 
     useEffect(() => {
@@ -73,7 +71,7 @@ function SmoothScroll() {
 
     useEffect(() => {
         if (!lenis) return;
-        lenis.on("scroll", ({ scroll }) => {
+        return lenis.on("scroll", ({ scroll }) => {
             const maxScroll = document.body.scrollHeight - window.innerHeight;
             setScroll(scroll, maxScroll);
             updateSections(scroll);
