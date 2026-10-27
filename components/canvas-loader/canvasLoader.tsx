@@ -5,6 +5,7 @@ import { useMounted } from "@/hooks/ui/useMounted";
 import { useProgress } from "@react-three/drei";
 import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
+import WorksBackdrop from "../ui/worksBackdrop/WorksBackdrop";
 
 const Canvas3d = dynamic(() => import("../3d/canvas-3d/Canvas3d"), { ssr: false });
 
@@ -27,6 +28,7 @@ export function CanvasLoader() {
     return (
         <div className="fixed inset-0 h-[100lvh] w-screen overflow-hidden">
             <Canvas3d frameloop={showOverlay ? "demand" : "always"} onCanvasCreated={() => setCanvasMounted(true)} />
+            <WorksBackdrop />
 
             <AnimatePresence>
                 {showOverlay && (

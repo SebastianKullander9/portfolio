@@ -53,6 +53,7 @@ export function useWorksStack(rootRef: RefObject<HTMLElement | null>) {
                 heights = cards.map((card) => card.offsetHeight);
                 travel = Math.max(0, tops[n - 1] - D * (n - 1));
                 root.style.setProperty("--works-extra", `calc(${travel}px + ${HOLD})`);
+                root.style.setProperty("--works-travel", `${travel}px`);
 
                 if (!css) return;
                 cards.forEach((card, i) => {

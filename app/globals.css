@@ -101,6 +101,7 @@ body {
 /* Works stack, driven by hooks/ui/useWorksStack.ts */
 [data-works-track] {
     view-timeline: --works block;
+    margin-bottom: calc(-1 * var(--works-travel, 0px));
 }
 
 [data-works-track]::after {
