@@ -8,13 +8,23 @@ float bgBlob(vec2 uv, vec2 pos, float radius) {
 }
 
 vec3 backgroundGradient(vec2 uv) {
-  vec3 base  = vec3(0.537, 0.780, 0.855);
-  vec3 pink  = vec3(0.820, 0.620, 0.750);
-  vec3 purp  = vec3(0.680, 0.580, 0.820);
-  vec3 mint  = vec3(0.550, 0.820, 0.790);
-  vec3 rose  = vec3(0.900, 0.700, 0.780);
-  vec3 sky   = vec3(0.600, 0.820, 0.920);
-  vec3 white = vec3(0.950, 0.950, 0.970);
+  // Pastels darkened (same hues) so the white text on top stays readable, roughly 2.4-2.9:1
+  vec3 base  = vec3(0.370, 0.664, 0.750);
+  vec3 pink  = vec3(0.775, 0.544, 0.697);
+  vec3 purp  = vec3(0.661, 0.541, 0.822);
+  vec3 mint  = vec3(0.373, 0.702, 0.669);
+  vec3 rose  = vec3(0.805, 0.577, 0.671);
+  vec3 sky   = vec3(0.426, 0.687, 0.802);
+  vec3 white = vec3(0.716, 0.716, 0.738);
+
+  // Backup: the original, lighter pastels. Swap these in for the block above to go back.
+  // vec3 base  = vec3(0.537, 0.780, 0.855);
+  // vec3 pink  = vec3(0.820, 0.620, 0.750);
+  // vec3 purp  = vec3(0.680, 0.580, 0.820);
+  // vec3 mint  = vec3(0.550, 0.820, 0.790);
+  // vec3 rose  = vec3(0.900, 0.700, 0.780);
+  // vec3 sky   = vec3(0.600, 0.820, 0.920);
+  // vec3 white = vec3(0.950, 0.950, 0.970);
 
   vec3 color = base;
   color = mix(color, pink,  bgBlob(uv, uBlobPos[0],  0.25) * 0.70);
