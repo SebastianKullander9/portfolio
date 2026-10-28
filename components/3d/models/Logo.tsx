@@ -14,7 +14,7 @@ interface ModelProps {
 }
 
 export default function Logo({ ref, performanceTier }: ModelProps) {
-  const { nodes } = useGLTF("/models/sk-logo-compressed.glb") as unknown as {
+  const { nodes } = useGLTF("/models/sk-logo-smooth.glb") as unknown as {
     nodes: { [key: string]: THREE.Mesh };
   };
 
@@ -35,7 +35,7 @@ export default function Logo({ ref, performanceTier }: ModelProps) {
     <group>
       <mesh
         ref={ref}
-        geometry={nodes.BézierCurve.geometry}
+        geometry={nodes["SK-logo"].geometry}
         position={position}
         scale={scale}
         rotation={ROTATION}

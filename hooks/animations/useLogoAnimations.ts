@@ -9,8 +9,9 @@ const { BOBBINGDISTANCE, BOBBINGSPEED, POSITION, ROTATION, SCALE, EXIT } = model
 
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
 
-function easeInOutCubic(t: number) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+// quint instead of cubic: lingers longer at the start, then snaps through the middle
+function easeInOutQuint(t: number) {
+    return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
 }
 
 function animatePosition(start: number[], end: number[], t: number, target: THREE.Mesh) {
@@ -38,7 +39,7 @@ function animateRotation(start: number[], end: number[], t: number, target: THRE
 }
 
 function animateLogoPosition(t: number, start: number[], end: number[], target: THREE.Mesh) {
-    const eased = easeInOutCubic(t);
+    const eased = easeInOutQuint(t);
 
     const drift = Math.sin(eased * Math.PI) * 0.05;
 
@@ -66,6 +67,7 @@ export function useLogoAnimations() {
     const vw = viewport.width;
     const position = vw < 4 ? POSITION.MOBILE : vw < 10 ? POSITION.TABLET : POSITION.DESKTOP;
     const scale = vw < 4 ? SCALE.MOBILE : vw < 10 ? SCALE.TABLET : SCALE.DESKTOP;
+    const exitPosition = vw < 4 ? EXIT.POSITION.MOBILE : vw < 10 ? EXIT.POSITION.TABLET : EXIT.POSITION.DESKTOP;
 
     const animate = ({ clock }: { clock: THREE.Clock }) => {
         if (!ref.current) return;
@@ -78,11 +80,11 @@ export function useLogoAnimations() {
             ref.current.scale.set(...scale);
             ref.current.rotation.set(...ROTATION);
         } else if (t < 1) {
-            const eased = animateLogoPosition(t, position, EXIT.POSITION, ref.current);
+            const eased = animateLogoPosition(t, position, exitPosition, ref.current);
             animateScale(scale, EXIT.SCALE, eased, ref.current);
             animateRotation(ROTATION, EXIT.ROTATION, eased, ref.current);
         } else {
-            ref.current.position.set(...EXIT.POSITION);
+            ref.current.position.set(...exitPosition);
             ref.current.scale.set(...EXIT.SCALE);
             ref.current.rotation.set(...EXIT.ROTATION);
         }

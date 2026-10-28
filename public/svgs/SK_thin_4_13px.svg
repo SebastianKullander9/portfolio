@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="560" viewBox="0 0 700 560">
+  <title>SK monogram — uniform 13px strokes, no dot</title>
+  <g fill="none" stroke="#ffffff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 248,23 C 180,19 130,43 132,89 C 136,151 222,195 280,243 C 326,281 349,310 334,347 C 316,396 235,407 166,387 C 82,365 28,316 21,265"/>
+    <path d="M 377,24 C 413,96 441,174 451,248 C 463,325 455,384 462,419"/>
+    <path d="M 458,198 C 552,174 626,88 677,36"/>
+    <path d="M 463,208 C 573,235 659,308 655,383 C 651,470 555,509 432,523 C 372,529 322,529 294,539"/>
+  </g>
+</svg>
