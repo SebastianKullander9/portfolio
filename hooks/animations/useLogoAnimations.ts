@@ -9,7 +9,6 @@ const { BOBBINGDISTANCE, BOBBINGSPEED, POSITION, ROTATION, SCALE, EXIT } = model
 
 const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
 
-// quint instead of cubic: lingers longer at the start, then snaps through the middle
 function easeInOutQuint(t: number) {
     return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
 }

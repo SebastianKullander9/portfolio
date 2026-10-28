@@ -57,7 +57,6 @@ export const modelConfig = {
             MOBILE: [0.09, 0.09, 0.09] as [number, number, number],
         },
         EXIT: {
-            // puts the logo's visual centre (not its pivot) on the camera axis, mobile sits further back so it fits the width
             POSITION: {
                 DESKTOP: [0.025, -0.039, 4.7] as [number, number, number],
                 TABLET: [0.022, -0.035, 4.68] as [number, number, number],

@@ -27,6 +27,10 @@ export default function Home() {
                     <Works />
                 </section>
 
+                <section className="w-[100%] h-screen" data-scroll-section="projects" id="projects">
+                    <Carousel />
+                </section>
+
                 <section className="w-[100%] h-screen" data-scroll-section="contact" id="contact">
                     <ContactSection />
                 </section>
