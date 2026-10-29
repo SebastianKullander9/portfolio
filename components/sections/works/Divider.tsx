@@ -5,7 +5,7 @@ interface DividerProps {
 
 export default function Divider({ index, year }: DividerProps) {
     return (
-        <div className="border-t border-white flex flex-row justify-between text-white text-lg py-5 md:py-10">
+        <div className="border-t border-[#d0d0d0] flex flex-row justify-between text-white text-lg py-5 md:py-10">
             <p>0{index + 1}</p>
             <p>{year}</p>
         </div>

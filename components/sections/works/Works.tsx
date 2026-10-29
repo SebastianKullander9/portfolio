@@ -62,7 +62,7 @@ export default function Works() {
                     </div>
                   </div>
                   {index + 1 === worksData.length && (
-                    <div className="absolute bottom-0 border-b border-white w-full"></div>
+                    <div className="absolute bottom-0 border-b border-[#d0d0d0] w-full"></div>
                   )}
                 </div>
               </div>
