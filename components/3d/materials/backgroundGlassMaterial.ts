@@ -30,6 +30,7 @@ export function createBackgroundGlassMaterial({ dispersion }: { dispersion: bool
         if (dispersion) shader.defines = { ...shader.defines, BG_DISPERSION: "" };
 
         shader.uniforms.uBlobPos = backgroundUniforms.uBlobPos;
+        shader.uniforms.uBlobScale = backgroundUniforms.uBlobScale;
         shader.uniforms.uBgPlaneCenter = { value: new THREE.Vector3(...PLANE.position) };
         shader.uniforms.uBgPlaneSize = { value: new THREE.Vector2(PLANE.geometry[0], PLANE.geometry[1]) };
         shader.uniforms.uBgIor = { value: GLASS_MATERIAL.ior };

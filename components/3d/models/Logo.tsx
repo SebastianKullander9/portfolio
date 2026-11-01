@@ -46,4 +46,4 @@ export default function Logo({ ref, performanceTier }: ModelProps) {
   );
 }
 
-useGLTF.preload("/models/sk-logo-compressed.glb");
+useGLTF.preload("/models/sk-logo-smooth.glb");

@@ -15,6 +15,9 @@ export function useSlidingTextAnimations() {
         () => new THREE.Plane(new THREE.Vector3(0, -1, 0), CLIPTEXTATY),
         [],
     );
+    // Materials already clipped. Each is set up once: needsUpdate every frame would make three.js
+    // re-check the shader program for every text mesh on every frame
+    const clipped = useMemo(() => new WeakSet<THREE.Material>(), []);
 
     const animate = () => {
         refs.current.forEach((mesh) => {
@@ -33,15 +36,13 @@ export function useSlidingTextAnimations() {
                 mesh.position.x = maxX + textWidth;
             }
 
-            if (Array.isArray(mesh.material)) {
-                mesh.material.forEach((m) => {
-                    m.clippingPlanes = [clippingPlane];
-                    m.clipShadows = true;
-                });
-            } else if (mesh.material) {
-                mesh.material.clippingPlanes = [clippingPlane];
-                mesh.material.clipShadows = true;
-                mesh.material.needsUpdate = true;
+            const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+            for (const m of materials) {
+                if (!m || clipped.has(m)) continue;
+                m.clippingPlanes = [clippingPlane];
+                m.clipShadows = true;
+                m.needsUpdate = true;
+                clipped.add(m);
             }
         });
     };

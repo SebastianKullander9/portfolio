@@ -27,12 +27,6 @@ export const slidingTextConfig = {
 };
 
 export const planeConfig = {
-    UNIFORMS: {
-        uTime: 0,
-        incline: 0,
-        amplitude: 0,
-        uSpeed: 0.15,
-    },
     PLANE: {
         position: [0, 0, 4] as [number, number, number],
         rotation: [0, 0, 0] as [number, number, number],

@@ -1,9 +1,5 @@
-precision mediump float;
-
-varying vec2 vUv;
-
-#include <background_gradient>
+varying vec3 vBgColor;
 
 void main() {
-  gl_FragColor = vec4(backgroundGradient(vUv), 1.0);
+  gl_FragColor = vec4(vBgColor, 1.0);
 }
