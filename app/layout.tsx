@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { fontVariables } from "./fonts";
 import { CanvasLoader } from "@/components/canvas-loader/canvasLoader";
 import SmoothScroll from "@/components/ui/smoothScroll/SmoothScroll";
 import SmoothCursor from "@/components/ui/smoothCursor/SmoothCursor";
@@ -15,7 +16,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className={fontVariables}>
             <body
                 className={`antialiased bg-[#FFD5E0]`}
             >

@@ -28,7 +28,7 @@ function Input({ value, onChange, label, type, name, required, placeholder, minL
                 placeholder={placeholder}
                 minLength={minLength}
                 maxLength={maxLength}
-                className="border-1 border-white p-8"
+                className="border-1 border-line focus:border-line-strong p-8"
             />
         </div>
     );

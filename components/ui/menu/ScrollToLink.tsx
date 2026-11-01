@@ -1,6 +1,6 @@
 "use client";
 
-import svgStar from "../../../public/svgs/white-star.svg";
+import svgStar from "../../../public/svgs/white-star-symmetrical.svg";
 import Image from "next/image";
 import { useScrollStore } from "@/store/useScrollStore";
 import { useAnimationStore } from "@/store/useAnimationStore";

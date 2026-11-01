@@ -23,7 +23,7 @@ export default function TextArea({ value, onChange, label, name, placeholder }: 
                 required={true}
                 minLength={10}
                 maxLength={5000}
-                className="border-1 border-white p-8"
+                className="border-1 border-line focus:border-line-strong p-8"
             />
         </div>
     )

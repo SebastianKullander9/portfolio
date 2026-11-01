@@ -1,5 +1,5 @@
 import plus from "../../../../public/svgs/plus.svg";
-import whiteStar from "../../../../public/svgs/white-star.svg";
+import whiteStar from "../../../../public/svgs/white-star-symmetrical.svg";
 import Image from "next/image";
 
 type BaseButtonProps = {
@@ -9,10 +9,10 @@ type BaseButtonProps = {
 export default function FormBtn({ label }: BaseButtonProps) {
     return (
         <div
-            className="relative p-6 border-1 border-white w-full max-w-70 min-w-70 cursor-pointer backdrop-blur-sm bg-white/20 rounded-full group text-center"
+            className="relative p-6 border-1 border-line w-full max-w-70 min-w-70 cursor-pointer backdrop-blur-sm bg-white/20 rounded-full group text-center"
         >
             {label}
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 border-1 border-white rounded-full
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 border-1 border-line rounded-full
                             backdrop-blur-sm bg-white/5 flex justify-center items-center
                             group-hover:scale-85 transition-all duration-200">
                 <Image src={plus} alt="" width={24} height={24} className="absolute invert group-hover:scale-0 transition-all duration-200" />

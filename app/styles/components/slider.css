@@ -1,0 +1,9 @@
+[data-slider] {
+  display: flex;
+  overflow: hidden;
+}
+
+[data-slider] > * {
+  flex-shrink: 0;
+  width: 100%;
+}

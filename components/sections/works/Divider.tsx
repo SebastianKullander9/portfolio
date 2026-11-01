@@ -1,13 +1,11 @@
 interface DividerProps {
     index: number;
-    year: string;
 }
 
-export default function Divider({ index, year }: DividerProps) {
+export default function Divider({ index }: DividerProps) {
     return (
-        <div className="border-t border-[#d0d0d0] flex flex-row justify-between text-white text-lg py-5 md:py-10">
+        <div className="border-t border-line flex flex-row justify-between text-white text-base py-5 md:py-10">
             <p>0{index + 1}</p>
-            <p>{year}</p>
         </div>
     );
 }

@@ -1,0 +1,8 @@
+/* Header controls: the menu button and the SK logo scale together, from phone to desktop.
+   Tailwind: size-(--header-control), w-(--header-logo) */
+:root {
+  /* The menu button's square: 38px on phones, 50px from about 1440px wide */
+  --header-control: clamp(38px, 32px + 1.25vw, 50px);
+  /* The logo keeps its width at 1.4 × the menu button, as at desktop size (70px vs 50px) */
+  --header-logo: calc(var(--header-control) * 1.4);
+}

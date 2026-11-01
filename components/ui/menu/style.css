@@ -1,9 +1,17 @@
 .menu-icon {
   position: relative;
-  width: 50px;
-  height: 50px;
-  border: 0.5px solid #d0d0d0;
+  width: var(--header-control);
+  height: var(--header-control);
+  border: 0.5px solid var(--color-line);
   --scale: 1;
+}
+
+/* --open goes 0 -> 1 when the menu opens (MenuBtn.tsx). Closed, the dots sit on the border; open,
+   they move out with the stretched lines, in proportion to the button so they meet the line ends
+   at every size (15px out at the desktop size of 50px) */
+.menu-icon-cross {
+  --open: 0;
+  --dot-offset: calc(-3px - var(--open) * (var(--header-control) * 0.3 - 3px));
 }
 
 .menu-icon-cross::before,
@@ -14,7 +22,7 @@
   left: 50%;
   width: 0.5px;
   height: 100%;
-  background: #d0d0d0;
+  background: var(--color-line);
   transform: translate(-50%, -50%) rotate(0deg) scaleY(var(--scale, 1));
   transform-origin: center;
 }

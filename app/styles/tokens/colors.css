@@ -1,0 +1,28 @@
+/* Brand colours. Plain custom properties, not @theme, so they don't replace Tailwind's own
+   blue/pink/purple/orange palettes. Use them as var(--color-pink) */
+:root {
+  --color-blue: #add8e6;
+  --color-blue-accent: #1d4d5d;
+
+  --color-pink: #ffadb9;
+  --color-pink-accent: #a3001b;
+
+  --color-purple: #b99dce;
+  --color-purple-accent: #603d7b;
+
+  --color-orange: #f8ba77;
+  --color-orange-accent: #884a07;
+
+  --color-darkblue: #89bdeb;
+  --color-darkblue-accent: #2c6a8c;
+
+  --color-offwhite: #f2f0ef;
+}
+
+/* Lines and borders: translucent white, so a border takes on the colour of the gradient behind it and
+   stays quiet instead of reading as a flat grey. Tailwind classes: border-line, border-line-strong */
+@theme {
+  --color-line: rgb(255 255 255 / 0.25);
+  /* Hover and focus */
+  --color-line-strong: rgb(255 255 255 / 0.7);
+}

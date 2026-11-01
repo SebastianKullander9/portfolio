@@ -1,0 +1,9 @@
+@layer base {
+  .site-x-padding {
+    @apply px-4 sm:px-8 md:px-12 lg:px-24 xl:px-32;
+  }
+
+  .site-y-padding {
+    @apply py-6 sm:py-10 md:py-12 lg:py-16 xl:py-20;
+  }
+}

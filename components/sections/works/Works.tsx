@@ -38,7 +38,7 @@ export default function Works() {
                     data-works-divider={index === 0 ? "" : undefined}
                     className="col-span-12"
                   >
-                    <Divider index={index} year={item.eyebrow} />
+                    <Divider index={index} />
                   </div>
                   <div className="col-span-12 md:col-span-6">
                     <Image
@@ -51,10 +51,7 @@ export default function Works() {
                     <div className="col-span-12 md:col-span-8 md:col-start-3 flex items-center">
                       <div className="flex flex-col gap-12">
                         <p className="heading-1">{item.title}</p>
-                        <div className="flex flex-col gap-4 max-w-prose">
-                          <p className="body-large">{item.tags}</p>
-                          <p className="body">{item.text}</p>
-                        </div>
+                        <p className="body max-w-prose">{item.text}</p>
                       </div>
                       <div className="absolute bottom-0 right-0">
                         <SimpleButton />
@@ -62,7 +59,7 @@ export default function Works() {
                     </div>
                   </div>
                   {index + 1 === worksData.length && (
-                    <div className="absolute bottom-0 border-b border-[#d0d0d0] w-full"></div>
+                    <div className="absolute bottom-0 border-b border-line w-full"></div>
                   )}
                 </div>
               </div>

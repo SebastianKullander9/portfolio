@@ -1,0 +1,46 @@
+@layer base {
+  /* Headings use the display font */
+  h1,
+  .heading-1 {
+    @apply font-display text-5xl font-bold tracking-tight;
+  }
+
+  h2,
+  .heading-2 {
+    @apply font-display text-4xl font-bold tracking-tight;
+  }
+
+  h3,
+  .heading-3 {
+    @apply font-display text-3xl font-bold tracking-tight;
+  }
+
+  h4,
+  .heading-4 {
+    @apply font-display text-2xl font-bold tracking-tight;
+  }
+
+  h5,
+  .heading-5 {
+    @apply font-display text-xl font-bold tracking-tight;
+  }
+
+  /* Body classes set the body font themselves, so a heading tag styled as body text
+     (like the footer's <h1 class="body">) stays in the body font */
+  .body-large {
+    @apply font-body text-lg leading-relaxed;
+  }
+
+  .body {
+    @apply font-body text-base leading-relaxed;
+  }
+
+  .body-small {
+    @apply font-body text-xs leading-relaxed;
+  }
+}
+
+.special-heading {
+  font-family: var(--font-special) !important;
+  font-style: italic;
+}

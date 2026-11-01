@@ -10,9 +10,9 @@ import ScrollToLink from "../ui/footer/ScrollToLink";
 export default function Footer() {
     return (
         <footer className="w-full h-full text-white">
-            <div className="w-full  border-b-1 border-[#E0E0E0]"></div>
+            <div className="w-full  border-b-1 border-line"></div>
             <div className="w-full h-9/10 flex flex-col-reverse xl:flex-row ">
-                <div className="w-full xl:w-1/2 h-full xl:border-r-1 border-t-1 xl:border-t-0 border-[#E0E0E0]">
+                <div className="w-full xl:w-1/2 h-full xl:border-r-1 border-t-1 xl:border-t-0 border-line">
                     <div className="w-full h-1/2 flex items-center site-x-padding">
                         <p className="heading-3 md:heading-2 font-normal max-w-prose leading-[1.6] xl:leading-[1.4]">Please feel free to contact me through 
                             <a href="mailto:sebastian.kullander9@gmail.com" className="special-heading heading-4 md:heading-3 font-normal underline underline-offset-3 xl:no-underline"> Email </a> 
@@ -58,7 +58,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="relative w-full xl:w-1/2 h-full 
-                    bg-[linear-gradient(to_right,#E0E0E0_1px,transparent_1px),linear-gradient(to_bottom,#E0E0E0_1px,transparent_1px)] 
+                    bg-[linear-gradient(to_right,var(--color-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-line)_1px,transparent_1px)] 
                     bg-[size:60px_60px]
                     xl:bg-[size:150px_150px]
                     bg-[position:-1px_-1px]"
@@ -70,7 +70,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="w-full h-1/10 border-[#E0E0E0] border-t-1 flex flex-row items-center justify-between site-x-padding body-small">
+            <div className="w-full h-1/10 border-line border-t-1 flex flex-row items-center justify-between site-x-padding body-small">
                 <p>Copyright © Sebastian Kullander</p>
                 <Link href="/privacy" className="hover:underline underline-offset-2">Privacy Policy</Link>
             </div>

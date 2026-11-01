@@ -91,7 +91,7 @@ export default function TechStack() {
     
     return (
         <section className="relative w-screen md:h-screen flex flex-col text-white">
-            <div className="w-full h-5/10 flex flex-col md:flex-row items-center border-b-1 border-white">
+            <div className="w-full h-5/10 flex flex-col md:flex-row items-center border-b-1 border-line">
                 <div className="w-full h-[33vh] md:w-1/2 md:h-full site-x-padding flex items-center justify-center">
                     <h1 className="heading-1 font-normal special-heading">MY TECH STACK</h1>
                 </div>

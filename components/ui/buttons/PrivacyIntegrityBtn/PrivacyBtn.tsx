@@ -10,7 +10,7 @@ type PrivacyBtnProps = {
 export default function PrivacyBtn({ checked, onChange }: PrivacyBtnProps) {
     return (
         <label className="flex gap-4 cursor-pointer items-center">
-            <span className="relative inline-block w-7 h-7 border-1 border-white">
+            <span className="relative inline-block w-7 h-7 border-1 border-line">
                 <input 
                     type="checkbox" 
                     name="privacy"
