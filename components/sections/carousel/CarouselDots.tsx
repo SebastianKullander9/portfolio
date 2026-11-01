@@ -1,5 +1,5 @@
 import Image from "next/image";
-import whiteStar from "../../../public/svgs/white-star-symmetrical.svg";
+import whiteStar from "../../../public/svgs/white-star-fully-symmetrical.svg";
 
 interface CarouselDotsProps {
     count: number;

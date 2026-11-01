@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from "react";
-import { createBackgroundGlassMaterial } from "@/components/3d/materials/backgroundGlassMaterial";
+import { createGradientGlassMaterial } from "@/components/3d/materials/gradientGlassMaterial";
 
 export default function useDetermineMeshMaterial(performanceTier: "low" | "medium" | "high") {
     const material = useMemo(
-        () => createBackgroundGlassMaterial({ dispersion: performanceTier === "high" }),
+        () => createGradientGlassMaterial({ dispersion: performanceTier === "high" }),
         [performanceTier],
     );
 

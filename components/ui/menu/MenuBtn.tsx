@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import { useLenis } from "lenis/react";
 import Image from "next/image";
-import whiteStar from "../../../public/svgs/white-star-symmetrical.svg";
+import whiteStar from "../../../public/svgs/white-star-fully-symmetrical.svg";
 import BackdropMenu from "./BackdropMenu";
 import "./style.css";
 import gsap from "gsap";

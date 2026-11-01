@@ -1,11 +1,10 @@
 import { Canvas } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
 import * as THREE from "three";
 import Scene from "../scene/Scene";
 import { CanvasReady } from "@/hooks/ui/CanvasReady";
 
 import { canvasConfig } from "../config/animationConfig";
-const { CAMERA, DIRECTIONALLIGHT } = canvasConfig;
+const { CAMERA } = canvasConfig;
 
 type Canvas3dProps = {
     onCanvasCreated: () => void;
@@ -33,11 +32,7 @@ function Canvas3d({ onCanvasCreated, frameloop = "always" }: Canvas3dProps) {
                 powerPreference: "high-performance",
             }}
         >
-            <directionalLight
-                position={DIRECTIONALLIGHT.position}
-                intensity={DIRECTIONALLIGHT.intensity}
-            />
-            <Environment preset="dawn" />
+            {/* No lights or environment map: the glass is lit by the background gradient itself */}
             <Scene />
             <CanvasReady onReady={onCanvasCreated} />
         </Canvas>

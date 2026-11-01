@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import gradientChunk from "../../../public/shaders/background/performance/gradient.glsl";
+import { parseGradientTable } from "./gradientTable";
 
 // The camera only sees a band of the plane (about 26% of it on desktop, 7% on a phone), so the blobs
 // are laid out in screen units instead of plane uv. x runs from 0 to LAYOUT_LENGTH and y from 0 to 1,
@@ -87,6 +88,12 @@ export function updateBackgroundUniforms(time: number, viewWidth: number, viewHe
 
 // Placeholder until the plane's first frame reports the real view
 updateBackgroundUniforms(0, 16 / 9, 1);
+
+// The blobs' colours, radii and strengths, read from gradient.glsl (null if its format isn't recognised)
+export const backgroundTable = parseGradientTable(gradientChunk);
+if (backgroundTable && backgroundTable.blobs.length !== BLOB_ORBITS.length) {
+    console.warn("gradient.glsl and BLOB_ORBITS list a different number of blobs");
+}
 
 export function withBackgroundGradient(shader: string) {
     return shader.replace("#include <background_gradient>", gradientChunk);

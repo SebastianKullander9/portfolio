@@ -1,5 +1,5 @@
 import Image from "next/image";
-import svgStar from "@/public/svgs/white-star-symmetrical.svg";
+import svgStar from "@/public/svgs/white-star-fully-symmetrical.svg";
 
 export default function SimpleButton() {
     return (

@@ -1,6 +1,6 @@
-import frontend from "@/public/works/frontend.png";
-import backend from "@/public/works/backend.png";
-import creative from "@/public/works/creative.png";
+import frontend from "@/public/works/minimal/frontend-minimal.png";
+import backend from "@/public/works/minimal/backend-minimal.png";
+import creative from "@/public/works/minimal/creative-minimal.png";
 
 export const worksData = [
   {

@@ -1,5 +1,5 @@
 import left from "../../../../public/svgs/arrow-left.svg";
-import whiteStar from "../../../../public/svgs/white-star-symmetrical.svg";
+import whiteStar from "../../../../public/svgs/white-star-fully-symmetrical.svg";
 import Image from "next/image";
 
 type BaseButtonProps = {

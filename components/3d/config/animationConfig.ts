@@ -6,10 +6,6 @@ export const canvasConfig = {
     CAMERA: {
         position: [0, 0, 5] as [number, number, number],
     },
-    DIRECTIONALLIGHT: {
-        position: [0, 3, 5] as [number, number, number],
-        intensity: 1.5,
-    },
     SCROLLCONTROLS: {
         pages: 6,
         damping: 0.2,
@@ -82,16 +78,51 @@ export const modelConfig = {
         BOBBINGSPEED: 4,
     },
     MATERIAL: {
-        GLASS_MATERIAL: {
-            roughness: 0.1,
-            envMapIntensity: 0.6, // strength of the "dawn" environment highlights
-            ior: 1.5,
-            transmission: 1, // 0 = solid, 1 = background fully visible through the model
-            refraction: 1, // multiplier on how much the glass bends the background (0 = no bending)
-            dispersion: 0.03, // chromatic aberration, high performance tier only
-            rim: 0.6, // strength of the background-coloured edge reflection
-            rimSpread: 0.15, // how far the edge reflection samples from the point behind the model
+        // The logo and mail glass: clear glass lit by the background gradient (gradientGlassMaterial.ts)
+        GRADIENT_GLASS: {
+            // The glass: the background seen through the model, bent like real glass
+            ior: 1.4,
+            refraction: 0, // how much the glass bends the background (0 = none, 1 = physical)
+            lens: -0.03, // shifts what's seen through the model: below 0 magnifies, above 0 shrinks
+            dispersion: 0.03, // colour fringes, high performance tier only
+            // Roughness
+            frost: 0, // blurs what's seen through the model (0 = perfectly clear)
+            texture: 0.14, // small surface ripples for a rougher look (0 = smooth)
+            textureScale: 1, // higher = finer ripples
+            // The gradient reflected all over the surface
+            reflection: 1.2, // above 1, reflections are brighter than the background, like lights
+            reflectionSaturation: 1.9, // colour strength of the reflections (1 = the gradient as it is)
+            reflectionBlur: 0.18,
+            reflectionSpread: 1.4, // how far across the screen the reflections reach, in screen heights: more colours
+            fresnelPower: 5.2, // how quickly reflections fade from the edges toward the middle
+            fresnelMin: 0.08, // reflection where the glass faces the camera
+            // Flow: the reflections bend and swirl over the surface, even where it's straight
+            flow: 0.57, // how much (0 = reflections follow the shape exactly)
+            flowScale: 1.75, // higher = smaller swirls
+            flowSpeed: 0.8,
+            // Iridescence: pastel soap-bubble bands that shift with the viewing angle and run along the curves
+            iridescence: 0.84,
+            iridBands: 2.3, // how many colour bands across a curve
+            iridShift: 0.2, // shifts which colours appear where
+            iridPastel: 0, // 0 = the colours as picked, 1 = white
+            // The film's colours, cycled in order around a curve
+            iridColor1: "#ff7cc4",
+            iridColor2: "#9c7dff",
+            iridColor3: "#5ad4ec",
+            iridColor4: "#efdc86",
+            haze: 0, // lifts the body toward white, like slightly frosted glass
+            rim: 0.62, // crisp light line along the silhouette
+            rimSharpness: 14, // higher = thinner line
+            // Highlights where the reflections catch the gradient's brightest blobs
+            highlights: 0.65,
+            highlightSharpness: 4,
+            highlightColour: 0.56, // 0 = white highlights, 1 = the gradient's own colours
+            // Colour of what's seen through the model (neutral by default)
+            tint: "#ffffff",
+            saturation: 2,
+            brightness: 0.86,
+            edgeTint: "#cfbcf0",
+            thickness: 0, // how strongly the edges take on edgeTint (0 = off)
         },
-        COLOR: "#FFFFFF", // tints everything seen through the glass, keep close to white
     },
 };

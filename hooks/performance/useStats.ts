@@ -1,24 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Stats from "stats.js";
 import { useFrame } from "@react-three/fiber";
+import { useDebugFlag } from "@/hooks/ui/useDebugFlag";
 
 export function useStats(panel = 0) {
     const statsRef = useRef<Stats | null>(null);
-    const [enabled, setEnabled] = useState(
-        typeof window !== "undefined" && window.location.hash === "#debug"
-    );
-
-    useEffect(() => {
-        function handleHashChange() {
-            setEnabled(window.location.hash === "#debug");
-        };
-
-        window.addEventListener("hashchange", handleHashChange);
-        
-        return () => {
-            window.removeEventListener("hashchange", handleHashChange);
-        };
-    }, []);
+    const enabled = useDebugFlag();
 
     useEffect(() => {
         if (!enabled) return;
@@ -32,7 +19,7 @@ export function useStats(panel = 0) {
             document.body.removeChild(stats.dom);
         };
     }, [panel, enabled]);
-    
+
     useFrame(() => {
         if (!enabled) return;
 
