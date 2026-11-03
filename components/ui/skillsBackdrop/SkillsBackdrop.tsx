@@ -12,19 +12,23 @@ const TOP_SHADE = `linear-gradient(to bottom,
     rgb(0 0 0 / 0.015) 78%,
     rgb(0 0 0 / 0) 100%)`;
 
-export default function WorksBackdrop() {
+export default function SkillsBackdrop() {
     const pathname = usePathname();
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        const works = document.querySelector('[data-scroll-section="works"]');
-        if (!works) {
+        const skills = document.querySelector('[data-scroll-section="skills"]');
+        if (!skills) {
             setVisible(false);
             return;
         }
 
-        const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
-        observer.observe(works);
+        // Only while Skills reaches below the top 25% of the screen: the blur fades once its bottom passes that,
+        // so it's gone before the logo flies out over the divider below it
+        const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), {
+            rootMargin: "-25% 0px 0px 0px",
+        });
+        observer.observe(skills);
         return () => observer.disconnect();
     }, [pathname]);
 

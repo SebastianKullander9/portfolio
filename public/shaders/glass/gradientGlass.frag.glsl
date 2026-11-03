@@ -54,6 +54,7 @@ uniform float uSaturation;
 uniform float uBrightness;
 uniform vec3 uAbsorb;
 uniform float uThickness;
+uniform float uOpacity;
 
 const vec3 LUMA = vec3(0.2126, 0.7152, 0.0722);
 
@@ -97,9 +98,10 @@ vec2 bgPlaneUv(vec3 origin, vec3 dir) {
   return (origin.xy + dir.xy * t - uPlaneCenter.xy) / uPlaneSize + 0.5;
 }
 
-// The background point seen through the surface: refracted, then shifted by the lens amount
+// The background point seen through the surface: refracted, then shifted by the lens amount. While the model
+// fades, both ease off, so at opacity 0 it's exactly the point straight behind it
 vec2 refractedUv(vec3 i, vec3 n, float ior) {
-  return bgPlaneUv(vWorldPos, normalize(mix(i, refract(i, n, 1.0 / ior), uRefraction))) + n.xy * uLens;
+  return bgPlaneUv(vWorldPos, normalize(mix(i, refract(i, n, 1.0 / ior), uRefraction * uOpacity))) + n.xy * (uLens * uOpacity);
 }
 
 // The film colour at phase t: the four colours in a smooth loop
@@ -128,6 +130,8 @@ void main() {
   #else
     vec3 body = toLinear(bgGradient((refractedUv(i, n, uIor) - 0.5) * uBlobScale, false));
   #endif
+  // The background as seen through the glass, before the glass colours it (for fading)
+  vec3 seen = body;
   body = mix(vec3(dot(body, LUMA)), body, uSaturation) * uTint * uBrightness;
   // Haze: the glass scatters a little white light, which lifts the body slightly above the background
   body = mix(body, vec3(1.0), uHaze);
@@ -165,6 +169,9 @@ void main() {
 
   // A crisp light line along the silhouette
   color += uRim * pow(1.0 - nv, uRimSharpness);
+
+  // Fading in or out, the glass dissolves into the background behind it, so it never needs blending
+  color = mix(seen, color, uOpacity);
 
   gl_FragColor = linearToOutputTexel(vec4(color, 1.0));
 }

@@ -1,11 +1,11 @@
 /* Font roles and the type scale. The font files themselves are loaded in app/fonts.ts, which sets
-   --font-satoshi, --font-heros and --font-tanpearl on <html>. Each role is also a Tailwind
+   --font-satoshi and --font-tanpearl on <html>. Each role is also a Tailwind
    utility: font-body, font-display, font-special */
 @theme {
   /* Running text, labels, buttons */
   --font-body: var(--font-satoshi), "Helvetica Neue", Arial, sans-serif;
-  /* Headings and very large text */
-  --font-display: var(--font-heros), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Headings and very large text: Satoshi too, kept as its own role so it can be swapped on its own */
+  --font-display: var(--font-satoshi), "Helvetica Neue", Arial, sans-serif;
   /* The italic special headings */
   --font-special: var(--font-tanpearl), Georgia, serif;
 

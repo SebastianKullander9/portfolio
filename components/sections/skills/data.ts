@@ -1,8 +1,8 @@
-import frontend from "@/public/works/minimal/frontend-minimal.png";
-import backend from "@/public/works/minimal/backend-minimal.png";
-import creative from "@/public/works/minimal/creative-minimal.png";
+import frontend from "@/public/skills/minimal/frontend-minimal.png";
+import backend from "@/public/skills/minimal/backend-minimal.png";
+import creative from "@/public/skills/minimal/creative-minimal.png";
 
-export const worksData = [
+export const skillsData = [
   {
     title: "Frontend",
     text: "I build fast, responsive interfaces with clean component structure and attention to detail, from the first design sketch to the finished product.",

@@ -2,6 +2,7 @@
 
 import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useAnimationStore } from "@/store/useAnimationStore";
@@ -20,6 +21,7 @@ interface Section {
 
 function SmoothScroll() {
     const lenis = useLenis();
+    const pathname = usePathname();
     const setScroll = useAnimationStore((s) => s.setScroll);
     const setSectionScroll = useAnimationStore((s) => s.setSectionScroll);
     const scrollToSection = useScrollStore((s) => s.scrollToSection);
@@ -28,14 +30,6 @@ function SmoothScroll() {
     const setPendingScroll = useScrollStore((s) => s.setPendingScroll);
     const menuOpen = useAnimationStore((s) => s.menuOpen);
     const sectionsRef = useRef<Section[]>([]);
-
-    function measure() {
-        sectionsRef.current = [...document.querySelectorAll("[data-scroll-section]")].map((el) => ({
-            id: (el as HTMLElement).dataset.scrollSection ?? "",
-            top: (el as HTMLElement).offsetTop,
-            height: (el as HTMLElement).offsetHeight,
-        }));
-    }
 
     function updateSections(scrollY: number) {
         const totalHeight = document.body.scrollHeight - window.innerHeight;
@@ -48,15 +42,23 @@ function SmoothScroll() {
         });
     }
 
+    // Sections change size after load too (fonts, the skills stack's scroll distance), which moves every section
+    // below them, so they're measured again whenever one resizes. The observer also fires once when it starts
     useEffect(() => {
-        measure();
-        window.addEventListener("load", measure);
-        window.addEventListener("resize", measure);
-        return () => {
-            window.removeEventListener("load", measure);
-            window.removeEventListener("resize", measure);
+        const elements = [...document.querySelectorAll<HTMLElement>("[data-scroll-section]")];
+        const measure = () => {
+            sectionsRef.current = elements.map((el) => ({
+                id: el.dataset.scrollSection ?? "",
+                top: el.offsetTop,
+                height: el.offsetHeight,
+            }));
+            updateSections(window.scrollY);
         };
-    }, []);
+
+        const observer = new ResizeObserver(measure);
+        elements.forEach((el) => observer.observe(el));
+        return () => observer.disconnect();
+    }, [pathname]);
 
     useEffect(() => {
         if (!lenis) return;

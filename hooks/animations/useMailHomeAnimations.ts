@@ -1,28 +1,69 @@
 import { useRef } from "react";
 import * as THREE from "three";
-import { useAnimationStore } from "@/store/useAnimationStore";
 import { useFadeInAnimation } from "./useFadeInAnimation";
-import { pageConfig } from "@/components/3d/config/animationConfig";
 import { modelConfig } from "@/components/3d/config/animationConfig";
 import { useDomViewport } from "../ui/useDomViewport";
 
-const { TOTALPAGES } = pageConfig;
 const { MAILHOME } = modelConfig;
-const { SCALE } = MAILHOME;
+const { SCALE, ANCHOR, OFFSET, POSITION, CATCHUP, LAG } = MAILHOME;
 
-const lerp = (start: number, end: number, t: number) => start + (end - start) * t;
+let anchor: HTMLElement | null = null;
 
-function animatePosition(
-    start: number[],
-    end: number[],
-    t: number,
-    target: THREE.Mesh
+/**
+ * How far below the text the mail is, in screen heights, when the text is at `s` (0 = top of the screen,
+ * 1 = bottom). None from CATCHUP up, so it rides on the text there. Below that it trails by LAG at the bottom
+ * edge, easing in so it catches up without a bump, and keeps trailing at the same rate below the screen
+ */
+function lagBehind(s: number) {
+    const d = (s - CATCHUP) / (1 - CATCHUP);
+    if (d <= 0) return 0;
+    return d <= 1 ? LAG * d * d : LAG * (2 * d - 1);
+}
+
+const localCentre = new THREE.Vector3();
+const offset = new THREE.Vector3();
+
+/**
+ * Puts the middle of the mail on the anchor text, at the mail's depth, so it scrolls with the text. It trails
+ * behind while the text comes up the screen and catches up at CATCHUP (see lagBehind).
+ * Its pivot sits off to one side in the model, so the offset to its middle is taken out, turned with it as it
+ * spins: it spins in place on the text. Hidden while the text is off screen
+ */
+function stickToAnchor(
+    mesh: THREE.Mesh,
+    camera: THREE.Camera,
+    canvas: { width: number; height: number },
 ) {
-    target.position.set(
-        lerp(start[0], end[0], t),
-        lerp(start[1], end[1], t),
-        lerp(start[2], end[2], t)
-    );
+    if (!anchor?.isConnected) anchor = document.querySelector<HTMLElement>(ANCHOR);
+    if (!anchor || !(camera instanceof THREE.PerspectiveCamera)) return;
+
+    // The canvas is fixed to the top of the window, so the text's place in the window is its place on the canvas
+    const rect = anchor.getBoundingClientRect();
+    const h = canvas.height;
+    const s = (rect.top + rect.height * (0.5 - OFFSET[1])) / h;
+    const trailing = s + lagBehind(s);
+    mesh.visible = trailing > -0.5 && trailing < 1.5;
+    if (!mesh.visible) return;
+
+    // Where the mail goes on screen, from -1 to 1 across, like the camera sees it
+    const x = ((rect.left + rect.width * (0.5 + OFFSET[0])) / canvas.width) * 2 - 1;
+    const y = 1 - trailing * 2;
+
+    // How far the screen reaches up and across at the mail's depth
+    const depth = camera.position.z - POSITION[2];
+    const halfHeight = depth * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2);
+
+    if (!mesh.geometry.boundingBox) mesh.geometry.computeBoundingBox();
+    mesh.geometry.boundingBox!.getCenter(localCentre);
+    offset.copy(localCentre).multiply(mesh.scale).applyEuler(mesh.rotation);
+
+    mesh.position
+        .set(
+            camera.position.x + x * halfHeight * camera.aspect,
+            camera.position.y + y * halfHeight,
+            POSITION[2],
+        )
+        .sub(offset);
 }
 
 export function useMailHomeAnimations() {
@@ -31,26 +72,24 @@ export function useMailHomeAnimations() {
 
     const { applyFadeIn } = useFadeInAnimation();
 
-    const animationStart = 3.5 / TOTALPAGES;
-    const animationEnd = 5.7 / TOTALPAGES;
-
     const scale = isMobile ? SCALE.MOBILE : SCALE.TABLET;
 
-    const animate = ({ clock }: { clock: THREE.Clock }) => {
+    const animate = ({
+        clock,
+        camera,
+        size,
+    }: {
+        clock: THREE.Clock;
+        camera: THREE.Camera;
+        size: { width: number; height: number };
+    }) => {
         if (!ref.current) return;
 
-        const scroll_progress = useAnimationStore.getState().progress;
         const time = clock.getElapsedTime();
-
-        if (scroll_progress > animationStart && scroll_progress < animationEnd) {
-            const t =
-                (scroll_progress - animationStart) /
-                (animationEnd - animationStart);
-            animatePosition([0, -1.5, 4.5], [0, 0.6, 4.5], t, ref.current);
-        }
 
         ref.current.rotation.y += 0.004;
         applyFadeIn(ref.current, time, scale);
+        stickToAnchor(ref.current, camera, size);
     };
 
     return { ref, animate };

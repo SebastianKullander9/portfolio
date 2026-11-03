@@ -20,7 +20,9 @@ function Canvas3d({ onCanvasCreated, frameloop = "always" }: Canvas3dProps) {
             frameloop={frameloop}
             camera={{
                 position: CAMERA.position,
-                near: 0.01,
+                // Tiny, so the near plane doesn't cut the logo open as it flies at the camera (0.01 cut it for the
+                // last 11% of the fly-out, 0.001 for the last 2%, this never on screen)
+                near: 0.0001,
             }}
             dpr={isMobile ? [1, 1.5] : [1, 2]}
             performance={{ min: 0.5 }}

@@ -17,7 +17,7 @@ export default function Carousel() {
             className="relative h-full overflow-hidden flex flex-col justify-center z-[1]"
         >
             <div className="h-full flex flex-col justify-center items-center">
-                <h2 className="text-white heading-3 font-normal max-w-prose leading-[1.6] xl:leading-[1.4]">
+                <h2 data-logo-flyout className="text-white heading-3 font-normal max-w-prose leading-[1.6] xl:leading-[1.4]">
                     Some of my <span className="special-heading heading-3 font-normal">Creations</span>
                 </h2>
             </div>

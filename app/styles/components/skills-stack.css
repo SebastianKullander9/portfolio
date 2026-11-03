@@ -1,0 +1,59 @@
+/* Skills stack, driven by hooks/ui/useSkillsStack.ts */
+[data-skills-track] {
+  view-timeline: --skills block;
+  margin-bottom: calc(-1 * var(--skills-travel, 0px));
+}
+
+[data-skills-track]::after {
+  content: "";
+  display: block;
+  height: var(--skills-extra, 0px);
+}
+
+@keyframes skills-move {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, var(--skills-to), 0);
+  }
+}
+
+@keyframes skills-mask {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, calc(-1 * var(--skills-cut)), 0);
+  }
+}
+
+@keyframes skills-unmask {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, var(--skills-cut), 0);
+  }
+}
+
+/* Ranges are offsets into the track's contain range, which starts when the stage sticks. */
+@supports (animation-timeline: view()) {
+  [data-skills-card][data-moves] {
+    animation: skills-move linear both;
+    animation-timeline: --skills;
+    animation-range: contain 0px contain var(--skills-b);
+  }
+
+  [data-skills-card][data-clips] [data-skills-mask] {
+    animation: skills-mask linear both;
+    animation-timeline: --skills;
+    animation-range: contain var(--skills-ma) contain var(--skills-mb);
+  }
+
+  [data-skills-card][data-clips] [data-skills-inner] {
+    animation: skills-unmask linear both;
+    animation-timeline: --skills;
+    animation-range: contain var(--skills-ma) contain var(--skills-mb);
+  }
+}

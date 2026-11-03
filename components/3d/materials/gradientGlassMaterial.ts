@@ -149,13 +149,16 @@ export function createGradientGlassMaterial({ dispersion }: { dispersion: boolea
     const material = new THREE.ShaderMaterial({
         vertexShader,
         fragmentShader,
-        uniforms,
+        // The shared uniforms, plus this model's own opacity
+        uniforms: { ...uniforms, uOpacity: { value: 1 } },
         defines: splitColours ? { BG_BLOBS: blobs.length, BG_DISPERSION: "" } : { BG_BLOBS: blobs.length },
     });
     // Like the plane, the glass outputs display colours directly
     material.toneMapped = false;
-    material.onBeforeRender = (renderer, _scene, camera) =>
+    material.onBeforeRender = (renderer, _scene, camera) => {
         update(renderer.info.render.frame, camera instanceof THREE.PerspectiveCamera ? camera.aspect : 16 / 9);
+        material.uniforms.uOpacity.value = material.opacity;
+    };
 
     return material;
 }
