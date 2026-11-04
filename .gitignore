@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Windows download markers, copied in from the Windows side of WSL
+*:Zone.Identifier

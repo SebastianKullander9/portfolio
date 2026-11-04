@@ -1,0 +1,27 @@
+/* The opened card's scrolling text. No scrollbar: text fades out at the edges of the area instead, which also shows
+   there's more. Each fade sits inside the area's padding, so it only touches text that has been scrolled into it,
+   and text that fits is never faded */
+.project-text {
+  /* On landscape screens, text is gone before it reaches the card's number */
+  --fade-clear: 3.5rem;
+  --fade: 3.5rem;
+  scrollbar-width: none;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent var(--fade-clear),
+    #000 calc(var(--fade-clear) + var(--fade)),
+    #000 calc(100% - var(--fade)),
+    transparent 100%
+  );
+}
+
+.project-text::-webkit-scrollbar {
+  display: none;
+}
+
+@media (orientation: portrait) {
+  .project-text {
+    --fade-clear: 0px;
+    --fade: 2.5rem;
+  }
+}
